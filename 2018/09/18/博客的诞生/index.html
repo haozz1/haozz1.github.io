@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>试一试 | 史晨昊的博客</title>
+  <title>博客的诞生 | 史晨昊的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="早睡早起">
-<meta name="keywords" content="日记">
+  <meta name="description" content="很早就想搭建一个博客来记录一些心得和笔记了周转了很多人的教程都多多少少存在一些小问题，综合了几个终于把自己的搭建完成了整理了一下记录下来">
+<meta name="keywords" content="博客">
 <meta property="og:type" content="article">
-<meta property="og:title" content="试一试">
-<meta property="og:url" content="http://yoursite.com/2018/09/17/试一试/index.html">
+<meta property="og:title" content="博客的诞生">
+<meta property="og:url" content="http://yoursite.com/2018/09/18/博客的诞生/index.html">
 <meta property="og:site_name" content="史晨昊的博客">
-<meta property="og:description" content="早睡早起">
+<meta property="og:description" content="很早就想搭建一个博客来记录一些心得和笔记了周转了很多人的教程都多多少少存在一些小问题，综合了几个终于把自己的搭建完成了整理了一下记录下来">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-17T11:35:18.215Z">
+<meta property="og:updated_time" content="2018-09-18T11:40:34.895Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="试一试">
-<meta name="twitter:description" content="早睡早起">
+<meta name="twitter:title" content="博客的诞生">
+<meta name="twitter:description" content="很早就想搭建一个博客来记录一些心得和笔记了周转了很多人的教程都多多少少存在一些小问题，综合了几个终于把自己的搭建完成了整理了一下记录下来">
   
     <link rel="alternative" href="/atom.xml" title="史晨昊的博客" type="application/atom+xml">
   
@@ -151,28 +151,88 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-试一试" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-博客的诞生" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      试一试
+      博客的诞生
     </h1>
   
 
         
-        <a href="/2018/09/17/试一试/" class="archive-article-date">
-  	<time datetime="2018-09-17T11:32:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-17</time>
+        <a href="/2018/09/18/博客的诞生/" class="archive-article-date">
+  	<time datetime="2018-09-18T10:36:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>早睡早起<br><a id="more"></a></p>
-<p>按时吃饭</p>
+        <p>很早就想搭建一个博客来记录一些心得和笔记了<br>周转了很多人的教程都多多少少存在一些小问题，综合了几个终于把自己的搭建完成了<br>整理了一下记录下来<br><a id="more"></a><br>首先来看一下整体流程吧！<br>&lt;% asset_img mulu.jpg %&gt;</p>
+<p>1.1. 准备工作</p>
+<p>在开始一切之前，你必须已经：</p>
+<ul>
+<li>有一个github账号，没有的话去注册一个；</li>
+<li>安装了node.js、npm，并了解相关基础知识；</li>
+<li>安装了git for windows（或者其它git客户端）<br>本文所使用的环境：</li>
+<li><a href="mailto:macOS@10.13.6" target="_blank" rel="noopener">macOS@10.13.6</a></li>
+<li><a href="mailto:node.js@8.12" target="_blank" rel="noopener">node.js@8.12</a></li>
+<li><a href="mailto:git@2.18" target="_blank" rel="noopener">git@2.18</a></li>
+<li><a href="mailto:hexo@3.7.1" target="_blank" rel="noopener">hexo@3.7.1</a></li>
+</ul>
+<p>2.1. 创建仓库</p>
+<p>新建一个名为你的用户名.github.io的仓库，比如说，如果你的github用户名是test，那么你就新建test.github.io的仓库（必须是你的用户名，其它名称无效），将来你的网站访问地址就是 <a href="http://test.github.io" target="_blank" rel="noopener">http://test.github.io</a> 了，是不是很方便？<br>由此可见，每一个github账户最多只能创建一个这样可以直接使用域名访问的仓库。<br>几个注意的地方：</p>
+<ol>
+<li>注册的邮箱一定要验证，否则不会成功；</li>
+<li>仓库名字必须是：username.github.io，其中username是你的用户名；</li>
+<li>库创建成功不会立即生效，需要过一段时间，大概10-30分钟，或者更久，我的等了半个小时才生效；<br>创建成功后，默认会在你这个仓库里生成一些示例页面，以后你的网站所有代码都是放在这个仓库里啦。</li>
+</ol>
+<p>2.2. 绑定域名</p>
+<p>当然，你不绑定域名肯定也是可以的，就用默认的 xxx.github.io 来访问，如果你想更个性一点，想拥有一个属于自己的域名，那也是OK的。<br>首先你要注册一个域名，域名注册以前总是推荐去godaddy，现在觉得其实国内的阿里云也挺不错的，价格也不贵，毕竟是大公司，放心！<br>买好了域名之后就按照它提示的流程进行绑定和认证！我当时就是没认证一直配置缺没有用也找不到原因。<br>绑定域名分2种情况：带www和不带www的。<br>域名配置最常见有2种方式，CNAME和A记录，CNAME填写域名，A记录填写IP，由于不带www方式只能采用A记录，所以必须先ping一下你的用户名.github.io的IP，然后到你的域名DNS设置页，将A记录指向你ping出来的IP，将CNAME指向你的用户名.github.io，这样可以保证无论是否添加www都可以访问，如下：<br>&lt;% asset_img yuming.png %&gt;<br>然后到你的github项目根目录新建一个名为CNAME的文件（无后缀），里面填写你的域名，加不加www看你自己喜好，因为经测试：</p>
+<ul>
+<li>如果你填写的是没有www的，比如 mygit.me，那么无论是访问 <a href="http://www.mygit.me" target="_blank" rel="noopener">http://www.mygit.me</a> 还是 <a href="http://mygit.me" target="_blank" rel="noopener">http://mygit.me</a> ，都会自动跳转到 <a href="http://mygit.me" target="_blank" rel="noopener">http://mygit.me</a></li>
+<li>如果你填写的是带www的，比如 <a href="http://www.mygit.me" target="_blank" rel="noopener">www.mygit.me</a> ，那么无论是访问 <a href="http://www.mygit.me" target="_blank" rel="noopener">http://www.mygit.me</a> 还是 <a href="http://mygit.me" target="_blank" rel="noopener">http://mygit.me</a> ，都会自动跳转到 <a href="http://www.mygit.me" target="_blank" rel="noopener">http://www.mygit.me</a></li>
+<li>如果你填写的是其它子域名，比如 abc.mygit.me，那么访问 <a href="http://abc.mygit.me" target="_blank" rel="noopener">http://abc.mygit.me</a> 没问题，但是访问 <a href="http://mygit.me" target="_blank" rel="noopener">http://mygit.me</a> ，不会自动跳转到 <a href="http://abc.mygit.me" target="_blank" rel="noopener">http://abc.mygit.me</a><br>另外说一句，在你绑定了新域名之后，原来的你的用户名.github.io并没有失效，而是会自动跳转到你的新域名。<br>配置SSH key</li>
+</ul>
+<p>为什么要配置这个呢？因为你提交代码肯定要拥有你的github权限才可以，但是直接使用用户名和密码太不安全了，所以我们使用ssh key来解决本地和服务器的连接问题。<br>$ cd ~/. ssh #检查本机已存在的ssh密钥<br>如果提示：No such file or directory 说明你是第一次使用git。<br>ssh-keygen -t rsa -C “邮件地址”<br>然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到.ssh\id_rsa.pub文件，记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key:<br>&lt;% asset_img ssh.jpg %&gt;<br>将刚复制的内容粘贴到key那里，title随便填，保存。<br>3.1. 测试是否成功<br>$ ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a> # 注意邮箱地址不用改<br>如果提示Are you sure you want to continue connecting (yes/no)?，输入yes，然后会看到：<br>Hi liuxianan! You’ve successfully authenticated, but GitHub does not provide shell access.<br>看到这个信息说明SSH已配置成功！<br>此时你还需要配置：<br>$ git config –global user.name “haozz1”// 你的github用户名，非昵称<br>$ git config –global user.email  “<a href="mailto:xxx@qq.com" target="_blank" rel="noopener">xxx@qq.com</a>“// 填写你的github注册邮箱<br>具体这个配置是干嘛的我没仔细深究。<br>4.1. hexo简介</p>
+<p>Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdown格式，有众多优秀插件和主题。<br>官网： <a href="http://hexo.io" target="_blank" rel="noopener">http://hexo.io</a></p>
+<p>github: <a href="https://github.com/hexojs/hexo" target="_blank" rel="noopener">https://github.com/hexojs/hexo</a><br>4.2. 原理</p>
+<p>由于github pages存放的都是静态文件，博客存放的不只是文章内容，还有文章列表、分类、标签、翻页等动态内容，假如每次写完一篇文章都要手动更新博文目录和相关链接信息，相信谁都会疯掉，所以hexo所做的就是将这些md文件都放在本地，每次写完文章后调用写好的命令来批量完成相关页面的生成，然后再将有改动的页面提交到github。<br>4.3. 注意事项</p>
+<p>安装之前先来说几个注意事项：</p>
+<ol>
+<li>很多命令既可以用Windows的cmd来完成，也可以使用git bash来完成，但是部分命令会有一些问题，为避免不必要的问题，建议全部使用git bash来执行；</li>
+<li>hexo不同版本差别比较大，网上很多文章的配置信息都是基于2.x的，所以注意不要被误导；</li>
+<li>hexo有2种_config.yml文件，一个是根目录下的全局的_config.yml，一个是各个theme下的；<br>4.4. 安装</li>
+</ol>
+<p>$ npm install -g hexo<br>4.5. 初始化</p>
+<p>在电脑的某个地方新建一个名为hexo的文件夹（名字可以随便取），比如我的是F:\Workspaces\hexo，由于这个文件夹将来就作为你存放代码的地方，所以最好不要随便放。<br>$ cd /f/Workspaces/hexo/<br>$ hexo init<br>hexo会自动下载一些文件到这个目录，包括node_modules，目录结构如下图：<br>&lt;% asset_img node.jpg %&gt;<br>$ hexo g # 生成<br>$ hexo s # 启动服务<br>执行以上命令之后，hexo就会在public文件夹生成相关html文件，这些文件将来都是要提交到github去的：<br>&lt;% asset_img tijiao.jpg %&gt;<br>hexo s是开启本地预览服务，打开浏览器访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 即可看到内容，很多人会碰到浏览器一直在转圈但是就是加载不出来的问题，一般情况下是因为端口占用的缘故，因为4000这个端口太常见了，解决端口冲突问题请参考这篇文章：<br><a href="http://blog.liuxianan.com/windows-port-bind.html" target="_blank" rel="noopener">http://blog.liuxianan.com/windows-port-bind.html</a><br>第一次初始化的时候hexo已经帮我们写了一篇名为 Hello World 的文章，默认的主题比较丑，打开时就是这个样子：<br>&lt;% asset_img boke.jpg %&gt;<br>4.6. 修改主题</p>
+<p>既然默认主题很丑，那我们别的不做，首先来替换一个好看点的主题。这是 官方主题。<br>个人比较喜欢的2个主题：hexo-theme-jekyll 和 hexo-theme-yilia。<br>首先下载这个主题：<br>$ cd /f/Workspaces/hexo/<br>$ git clone <a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="noopener">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia<br>下载后的主题都在这里：<br>&lt;% asset_img zhuti.jpg %&gt;<br>修改_config.yml中的theme: landscape改为theme: yilia，然后重新执行hexo g来重新生成。<br>如果出现一些莫名其妙的问题，可以先执行hexo clean来清理一下public的内容，然后再来重新生成和发布。<br>4.7. 上传之前</p>
+<p>在上传代码到github之前，一定要记得先把你以前所有代码下载下来（虽然github有版本管理，但备份一下总是好的），因为从hexo提交代码时会把你以前的所有代码都删掉。<br>4.8. 上传到github</p>
+<p>如果你一切都配置好了，发布上传很容易，一句hexo d就搞定，当然关键还是你要把所有东西配置好。<br>首先，ssh key肯定要配置好。<br>其次，配置_config.yml中有关deploy的部分：<br>正确写法：<br>deploy:<br>  type: git<br>  repository: <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:liuxianan/liuxianan.github.io.git<br>  branch: master<br>错误写法：<br>deploy:<br>  type: github<br>  repository: <a href="https://github.com/liuxianan/liuxianan.github.io.git" target="_blank" rel="noopener">https://github.com/liuxianan/liuxianan.github.io.git</a><br>  branch: master<br>后面一种写法是hexo2.x的写法，现在已经不行了，无论是哪种写法，此时直接执行hexo d的话一般会报如下错误：<br>Deployer not found: github 或者 Deployer not found: git<br>原因是还需要安装一个插件：<br>npm install hexo-deployer-git –save<br>其它命令不确定，部署这个命令一定要用git bash，否则会提示Permission denied (publickey).<br>打开你的git bash，输入hexo d就会将本次有改动的代码全部提交，没有改动的不会：<br>&lt;% asset_img git.jpg %&gt;</p>
+<p>4.9. 保留CNAME、README.md等文件</p>
+<p>提交之后网页上一看，发现以前其它代码都没了，此时不要慌，一些非md文件可以把他们放到source文件夹下，这里的所有文件都会原样复制（除了md文件）到public目录的：<br>&lt;% asset_img baoliu.jpg %&gt;<br>由于hexo默认会把所有md文件都转换成html，包括README.md，所有需要每次生成之后、上传之前，手动将README.md复制到public目录，并删除README.html。</p>
+<p>到此，一个新的GitHub博客就搭建完成，剩下的就是更新博客了！工作学习中有了新的领悟和想法及时写下来发布上去！<br>那下面就是应用hexo技术来写一篇博客了</p>
+<p>写博客</p>
+<p>定位到我们的hexo根目录，执行命令：<br>hexo new ‘my-first-blog’<br>hexo会帮我们在_posts下生成相关md文件：<br>&lt;% asset_img new.jpg %&gt;<br>我们只需要打开这个文件就可以开始写博客了，默认生成如下内容：<br>&lt;% asset_img write.jpg %&gt;<br>当然你也可以直接自己新建md文件，用这个命令的好处是帮我们自动生成了时间。</p>
+<h2 id="一般完整格式如下："><a href="#一般完整格式如下：" class="headerlink" title="一般完整格式如下："></a>一般完整格式如下：</h2><p>title: postName #文章页面上的显示名称，一般是中文<br>date: 2013-12-02 15:30:16 #文章生成时间，一般不改，当然也可以任意修改<br>categories: 默认分类 #分类<br>tags: [tag1,tag2,tag3] #文章标签，可空，多标签请用格式，注意:后面有个空格</p>
+<h2 id="description-附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面"><a href="#description-附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面" class="headerlink" title="description: 附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面"></a>description: 附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面</h2><p>以下是正文<br>那么hexo new page ‘postName’命令和hexo new ‘postName’有什么区别呢？<br>hexo new page “my-second-blog”<br>生成如下：<br>&lt;% asset_img shengcheng.jpg%&gt;<br>最终部署时生成：hexo\public\my-second-blog\index.html，但是它不会作为文章出现在博文目录。<br>4.12.1. 写博客工具</p>
+<p>那么用什么工具写博客呢？这个我还没去找，以前自己使用editor.md简单弄了个，大家有好用的hexo写博客工具可以推荐个。<br>4.12.2. 如何让博文列表不显示全部内容</p>
+<p>默认情况下，生成的博文目录会显示全部的文章内容，如何设置文章摘要的长度呢？<br>答案是在合适的位置加上<!--more-->即可，例如：<br>修改hexo博客项目根目录_config.yml配置文件post_asset_folder项为true。<br>2.hexo new “hexo发布带图片博客”<br>3.在source/_post文件夹里面就会出现一个“hexo发布带图片博客.md”的文件和一个“hexo发布带图片博客”的文件夹。<br>4.引用图片：<br></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用github pages服务搭建博客的好处有：</p>
+<ol>
+<li>全是静态文件，访问速度快；</li>
+<li>免费方便，不用花一分钱就可以搭建一个自由的个人博客，不需要服务器不需要后台；</li>
+<li>可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的；</li>
+</ol>
+<!--more-->
+<ol start="4">
+<li>数据绝对安全，基于github的版本管理，想恢复到哪个历史版本都行；</li>
+<li>博客内容可以轻松打包、转移、发布到其它平台；</li>
+<li>等等；<br>最终效果：<br>&lt;% asset_img more.jpg %&gt;</li>
+</ol>
 
       
 
@@ -207,7 +267,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
         		</li>
       		
 		</ul>
@@ -263,7 +323,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/09/17/试一试/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/09/18/博客的诞生/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -277,15 +337,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/09/17/再试一试/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          再试一试
-        
-      </div>
-    </a>
   
+    <a href="/2018/09/18/图片博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">图片博客</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
