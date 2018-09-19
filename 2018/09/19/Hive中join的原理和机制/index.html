@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/09/19/Hive中join的原理和机制/comjoin.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/09/19/Hive中join的原理和机制/mapjoin.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/19/Hive中join的原理和机制/cmd.jpg">
-<meta property="og:updated_time" content="2018-09-19T09:41:45.403Z">
+<meta property="og:updated_time" content="2018-09-19T09:48:59.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hive中join的原理和机制">
 <meta name="twitter:description" content="笼统的说，Hive中的Join可分为Common Join（Reduce阶段完成join）和Map Join（Map阶段完成join）。本文简单介绍一下两种join的原理和机制。">
@@ -176,29 +176,28 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>笼统的说，Hive中的Join可分为<strong>Common Join</strong>（Reduce阶段完成join）和<strong>Map Join</strong>（Map阶段完成join）。本文简单介绍一下两种join的原理和机制。<br><a id="more"></a></p>
-<p>###Hive Common Join</p>
-<p>如果不指定MapJoin或者不符合MapJoin的条件，那么Hive解析器会将Join操作转换成Common Join,即：在Reduce阶段完成join.整个过程包含Map、Shuffle、Reduce阶段。</p>
-<p>####Map阶段</p>
-<p>读取源表的数据，Map输出时候以Join on条件中的列为key，如果Join有多个关联键，则以这些关联键的组合作为key;Map输出的value为join之后所关心的(select或者where中需要用到的)列；同时在value中还会包含表的Tag信息，用于标明此value对应哪个表；按照key进行排序</p>
-<p>####Shuffle阶段</p>
-<p>根据key的值进行hash,并将key/value按照hash值推送至不同的reduce中，这样确保两个表中相同的key位于同一个reduce中</p>
-<p>####Reduce阶段</p>
-<p>根据key的值完成join操作，期间通过Tag来识别不同表中的数据。<br>以下面的HQL为例，图解其过程：</p>
+<h1 id="Hive-Common-Join"><a href="#Hive-Common-Join" class="headerlink" title="Hive Common Join"></a>Hive Common Join</h1><p>如果不指定MapJoin或者不符合MapJoin的条件，那么Hive解析器会将Join操作转换成Common Join,即：在Reduce阶段完成join.整个过程包含Map、Shuffle、Reduce阶段。</p>
+<h2 id="Map阶段"><a href="#Map阶段" class="headerlink" title="Map阶段"></a>Map阶段</h2><p>读取源表的数据，Map输出时候以Join on条件中的列为key，如果Join有多个关联键，则以这些关联键的组合作为key;Map输出的value为join之后所关心的(select或者where中需要用到的)列；同时在value中还会包含表的Tag信息，用于标明此value对应哪个表；按照key进行排序</p>
+<h2 id="Shuffle阶段"><a href="#Shuffle阶段" class="headerlink" title="Shuffle阶段"></a>Shuffle阶段</h2><p>根据key的值进行hash,并将key/value按照hash值推送至不同的reduce中，这样确保两个表中相同的key位于同一个reduce中</p>
+<h2 id="Reduce阶段"><a href="#Reduce阶段" class="headerlink" title="Reduce阶段"></a>Reduce阶段</h2><p>根据key的值完成join操作，期间通过Tag来识别不同表中的数据。<br>以下面的HQL为例，图解其过程：</p>
 <pre><code>SELECT 
 a.id,a.dept,b.age 
 FROM a join b 
 ON (a.id = b.id);
 </code></pre><img src="/2018/09/19/Hive中join的原理和机制/comjoin.jpg">
-<p>###Hive Map Join</p>
-<p>MapJoin通常用于一个很小的表和一个大表进行join的场景，具体小表有多小，由参数<strong>hive.mapjoin.smalltable.filesize</strong>来决定，该参数表示小表的总大小，默认值为25000000字节，即25M。Hive0.7之前，需要使用hint提示 /<em>+ mapjoin(table) </em>/才会执行MapJoin,否则执行Common Join，但在0.7版本之后，默认自动会转换Map Join，由参数<strong>hive.auto.convert.join</strong>来控制，默认为true.仍然以9.1中的HQL来说吧，假设a表为一张大表，b为小表，并且<strong>hive.auto.convert.join=true</strong>,那么Hive在执行时候会自动转化为MapJoin。</p>
+<h1 id="Hive-Map-Join"><a href="#Hive-Map-Join" class="headerlink" title="Hive Map Join"></a>Hive Map Join</h1><p>MapJoin通常用于一个很小的表和一个大表进行join的场景，具体小表有多小，由参数<strong>hive.mapjoin.smalltable.filesize</strong>来决定，该参数表示小表的总大小，默认值为25000000字节，即25M。Hive0.7之前，需要使用hint提示 /<em>+ mapjoin(table) </em>/才会执行MapJoin,否则执行Common Join，但在0.7版本之后，默认自动会转换Map Join，由参数<strong>hive.auto.convert.join</strong>来控制，默认为true.仍然以9.1中的HQL来说吧，假设a表为一张大表，b为小表，并且<strong>hive.auto.convert.join=true</strong>,那么Hive在执行时候会自动转化为MapJoin。</p>
 <img src="/2018/09/19/Hive中join的原理和机制/mapjoin.png">
-<p>*如图中的流程，首先是Task A，它是一个Local Task（在客户端本地执行的Task），负责扫描小表b的数据，将其转换成一个HashTable的数据结构，并写入本地的文件中，之后将该文件加载到DistributeCache中，该HashTable的数据结构可以抽象为：</p>
-<table><br>    <tr><br>        <th>key</th><br>        <th>value</th><br>    </tr><br>    <tr><br>        <th>1</th><br>        <th>26</th><br>    </tr><br>    <tr><br>        <th>2</th><br>        <th>34</th><br>    </tr><br></table>
+<ul>
+<li>如图中的流程，首先是Task A，它是一个Local Task（在客户端本地执行的Task），负责扫描小表b的数据，将其转换成一个HashTable的数据结构，并写入本地的文件中，之后将该文件加载到DistributeCache中，该HashTable的数据结构可以抽象为：<table><br>  <tr><br>      <th>key</th><br>      <th>value</th><br>  </tr><br>  <tr><br>      <th>1</th><br>      <th>26</th><br>  </tr><br>  <tr><br>      <th>2</th><br>      <th>34</th><br>  </tr><br></table>
 
+</li>
+</ul>
 <img src="/2018/09/19/Hive中join的原理和机制/cmd.jpg">
 <p>图中红框圈出了执行Local Task的信息。</p>
-<p><em>接下来是Task B，该任务是一个没有Reduce的MR，启动MapTasks扫描大表a,在Map阶段，根据a的每一条记录去和DistributeCache中b表对应的HashTable关联，并直接输出结果。
-</em>由于MapJoin没有Reduce，所以由Map直接输出结果文件，有多少个Map Task，就有多少个结果文件。</p>
+<ul>
+<li>接下来是Task B，该任务是一个没有Reduce的MR，启动MapTasks扫描大表a,在Map阶段，根据a的每一条记录去和DistributeCache中b表对应的HashTable关联，并直接输出结果。</li>
+<li>由于MapJoin没有Reduce，所以由Map直接输出结果文件，有多少个Map Task，就有多少个结果文件。</li>
+</ul>
 
       
 
