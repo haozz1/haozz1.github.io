@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/09/18/博客的诞生/write.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/09/18/博客的诞生/shengcheng.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/09/18/博客的诞生/more.jpg">
-<meta property="og:updated_time" content="2018-09-19T12:25:13.524Z">
+<meta property="og:updated_time" content="2018-09-19T12:49:07.757Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博客的诞生">
 <meta name="twitter:description" content="很早就想搭建一个博客来记录一些心得和笔记了周转了很多人的教程都多多少少存在一些小问题，综合了几个终于把自己的搭建完成了整理了一下记录下来">
@@ -192,10 +192,10 @@
 <li>有一个github账号，没有的话去注册一个；</li>
 <li>安装了node.js、npm，并了解相关基础知识；</li>
 <li>安装了git for windows（或者其它git客户端）<br>本文所使用的环境：</li>
-<li><a href="mailto:**macOS@10.13.6" target="_blank" rel="noopener">**macOS@10.13.6</a>**</li>
-<li><a href="mailto:**node.js@8.12" target="_blank" rel="noopener">**node.js@8.12</a>**</li>
-<li><a href="mailto:**git@2.18" target="_blank" rel="noopener">**git@2.18</a>**</li>
-<li><a href="mailto:**hexo@3.7.1" target="_blank" rel="noopener">**hexo@3.7.1</a>**</li>
+<li><strong>macOS-10.13.6</strong></li>
+<li><strong>node.js-8.12</strong></li>
+<li><strong>git-2.18</strong></li>
+<li><strong>hexo-3.7.1</strong></li>
 </ul>
 <blockquote>
 <h3 id="2-1-创建仓库"><a href="#2-1-创建仓库" class="headerlink" title="2.1. 创建仓库"></a>2.1. 创建仓库</h3></blockquote>
@@ -222,9 +222,9 @@
 <p>然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到.ssh\id_rsa.pub文件，记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key:<br></p>
 <p>将刚复制的内容粘贴到key那里，title随便填，保存。</p>
 <blockquote>
-<h3 id="3-1-测试是否成功"><a href="#3-1-测试是否成功" class="headerlink" title="3.1. 测试是否成功"></a>3.1. 测试是否成功</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com <span class="comment"># 注意邮箱地址不用改</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>如果提示Are you sure you want to continue connecting (yes/no)?，输入yes，然后会看到：<br>Hi liuxianan! You’ve successfully authenticated, but GitHub does not provide shell access.<br>看到这个信息说明SSH已配置成功！<br>此时你还需要配置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"haozz1"</span>// 你的github用户名，非昵称</span><br><span class="line">$ git config --global user.email  <span class="string">"xxx@qq.com"</span>// 填写你的github注册邮箱</span><br><span class="line">具体这个配置是干嘛的我没仔细深究。</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-1-测试是否成功"><a href="#3-1-测试是否成功" class="headerlink" title="3.1. 测试是否成功"></a>3.1. 测试是否成功</h3></blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com <span class="comment"># 注意邮箱地址不用改</span></span><br></pre></td></tr></table></figure>
+<p>如果提示Are you sure you want to continue connecting (yes/no)?，输入yes，然后会看到：<br>Hi liuxianan! You’ve successfully authenticated, but GitHub does not provide shell access.<br>看到这个信息说明SSH已配置成功！<br>此时你还需要配置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"haozz1"</span>// 你的github用户名，非昵称</span><br><span class="line">$ git config --global user.email  <span class="string">"xxx@qq.com"</span>// 填写你的github注册邮箱</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <h3 id="4-1-hexo简介"><a href="#4-1-hexo简介" class="headerlink" title="4.1. hexo简介"></a>4.1. hexo简介</h3></blockquote>
 <p>Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdown格式，有众多优秀插件和主题。<br><a href="http://hexo.io" target="_blank" rel="noopener">hexo官网</a></p>
@@ -238,8 +238,10 @@
 <ol>
 <li>很多命令既可以用Windows的cmd来完成，也可以使用git bash来完成，但是部分命令会有一些问题，为避免不必要的问题，建议全部使用git bash来执行；</li>
 <li>hexo不同版本差别比较大，网上很多文章的配置信息都是基于2.x的，所以注意不要被误导；</li>
-<li>hexo有2种_config.yml文件，一个是根目录下的全局的_config.yml，一个是各个theme下的；<br>4.4. 安装</li>
+<li>hexo有2种_config.yml文件，一个是根目录下的全局的_config.yml，一个是各个theme下的；</li>
 </ol>
+<blockquote>
+<h3 id="4-4-安装"><a href="#4-4-安装" class="headerlink" title="4.4. 安装"></a>4.4. 安装</h3></blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure>
 <blockquote>
 <h3 id="4-5-初始化"><a href="#4-5-初始化" class="headerlink" title="4.5. 初始化"></a>4.5. 初始化</h3></blockquote>
@@ -275,24 +277,27 @@
 <p>生成如下：<br><img src="/2018/09/18/博客的诞生/shengcheng.jpg"><br>最终部署时生成：hexo\public\my-second-blog\index.html，但是它不会作为文章出现在博文目录。</p>
 <blockquote>
 <h3 id="写博客工具"><a href="#写博客工具" class="headerlink" title="写博客工具"></a>写博客工具</h3></blockquote>
-<p>那么用什么工具写博客呢？这个我还没去找，以前自己使用editor.md简单弄了个，大家有好用的hexo写博客工具可以推荐个。</p>
+<p>那么用什么工具写博客呢？<br><a href="http://www.williamlong.info/archives/4319.html" target="_blank" rel="noopener">http://www.williamlong.info/archives/4319.html</a><br>这里面推荐了不少编辑Markdown格式文档的工具，或者熟悉一些常用的Markdown语法手动编写。</p>
 <blockquote>
 <h3 id="如何让博文列表不显示全部内容"><a href="#如何让博文列表不显示全部内容" class="headerlink" title="如何让博文列表不显示全部内容"></a>如何让博文列表不显示全部内容</h3></blockquote>
-<p>默认情况下，生成的博文目录会显示全部的文章内容，如何设置文章摘要的长度呢？<br>答案是在合适的位置加上<!--more-->即可，例如：</p>
+<p>默认情况下，生成的博文目录会显示全部的文章内容，如何设置文章摘要的长度呢？<br>答案是在合适的位置加上    <code>&lt;!--more--&gt;</code> 即可，例如：<br>最终效果：<br><img src="/2018/09/18/博客的诞生/more.jpg"></p>
+<blockquote>
+<h3 id="如何在博文中添加图片"><a href="#如何在博文中添加图片" class="headerlink" title="如何在博文中添加图片"></a>如何在博文中添加图片</h3></blockquote>
 <ol>
 <li>修改hexo博客项目根目录_config.yml配置文件post_asset_folder项为true。</li>
 <li>hexo new “hexo发布带图片博客”</li>
 <li>在source/_post文件夹里面就会出现一个“hexo发布带图片博客.md”的文件和一个“hexo发布带图片博客”的文件夹。</li>
-<li>引用图片： 
-</li>
+<li>引用图片：<br><code></code></li>
 </ol>
-<h3 id="使用github-pages服务搭建博客的好处有："><a href="#使用github-pages服务搭建博客的好处有：" class="headerlink" title="使用github pages服务搭建博客的好处有："></a>使用github pages服务搭建博客的好处有：</h3><ol>
+<blockquote>
+<h3 id="使用github-pages服务搭建博客的好处有："><a href="#使用github-pages服务搭建博客的好处有：" class="headerlink" title="使用github pages服务搭建博客的好处有："></a>使用github pages服务搭建博客的好处有：</h3></blockquote>
+<ol>
 <li>全是静态文件，访问速度快；</li>
 <li>免费方便，不用花一分钱就可以搭建一个自由的个人博客，不需要服务器不需要后台；</li>
 <li>可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的；</li>
 <li>数据绝对安全，基于github的版本管理，想恢复到哪个历史版本都行；</li>
 <li>博客内容可以轻松打包、转移、发布到其它平台；</li>
-<li>等等；<br>最终效果：<img src="/2018/09/18/博客的诞生/more.jpg"></li>
+<li>等等；</li>
 </ol>
 
       
