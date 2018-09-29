@@ -148,6 +148,118 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-使用SecureCRT传输文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/29/使用SecureCRT传输文件/">使用SecureCRT传输文件</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/29/使用SecureCRT传输文件/" class="archive-article-date">
+  	<time datetime="2018-09-29T06:10:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Mac中没有Xshell,远程调控服务器只好使用了一个叫SecureCRT的软件.</p>
+<p>开发或部署过程中都经常需要把文件上传到服务器或者把服务器上的文件下载到本地,这就需要我们的SecureCRT终端能实现文件传输功能了.</p>
+<p>SecureCRT下的文件传输协议有以下几种：ASCII、Xmodem、Ymodem、Zmodem<br><img src="/2018/09/29/使用SecureCRT传输文件/3.png"></p>
+<ul>
+<li>ASCII：这是最快的传输协议,但只能传送文本文件.</li>
+<li>Xmodem：这种古老的传输协议速度较慢,但由于使用了CRC错误侦测方法,传输的准确率可高达99.6%.</li>
+<li>Ymodem：这是Xmodem的改良版,使用了1024位区段传送,速度比Xmodem要快.</li>
+<li>Zmodem：Zmodem采用了串流式（streaming）传输方式,传输速度较快,而且还具有自动改变区段大小和断点续传、快速错误侦测等功能.这是目前最流行的文件传输协议.</li>
+</ul>
+<p>使用SecureCRT传输主要可以采用两种方式</p>
+<h3 id="使用lrzsz"><a href="#使用lrzsz" class="headerlink" title="使用lrzsz"></a>使用lrzsz</h3><hr>
+<p>lrzsz是一款在linux里可代替ftp上传和下载的程序.<br>之前使用Xshell的时候用的都是lrzsz,在SecureCRT中也可以正常使用</p>
+<p>安装lrzsz<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install lrzsz <span class="comment"># -y:安装过程的提示选择全部为"yes"</span></span><br></pre></td></tr></table></figure></p>
+<p>安装好了lrzsz之后就可以通过命令来直接拖拽文件时间上传或下载了.</p>
+<ul>
+<li>rz:received 输入rz时意味着服务器需要接收文件及你要上传文件到服务器上.<br>在服务器终端中直接输入rz服务器会进入等待状态,找到需要上传的文件即可.<img src="/2018/09/29/使用SecureCRT传输文件/4.png">
+</li>
+</ul>
+<img src="/2018/09/29/使用SecureCRT传输文件/5.png">
+<p>这时候在目录下查看一下就会发现多出了刚刚上传的文件了.</p>
+<blockquote>
+<p>需要注意的是：上传的时候,如果上传到的linux目录有同名的文件,是无法上传的,需要先删掉linux上的同名文件.</p>
+</blockquote>
+<ul>
+<li>sz:send    输入sz时意味着服务器要发送文件及你要把服务器上的文件下载下来.<br>下载一个文件：sz filename<br>下载多个文件：sz filename1 filename2<br>下载dir目录下的所有文件，不包含dir下的文件夹：sz dir/*<br>在终端输入<code>sz filename1 filename2 filename3</code>,回车后出现如下截图所示<img src="/2018/09/29/使用SecureCRT传输文件/6.png">
+</li>
+</ul>
+<p>选择好存放目录之后点击确定<br><img src="/2018/09/29/使用SecureCRT传输文件/7.png"><br>上传完成后相应目录下就多出了在服务器上下载的文件.</p>
+<ul>
+<li>修改默认位置<br>文件上传、下载存放的默认位置在securtCRT中设置,位于：<br>英文版 <code>options — session options — X/Y/Zmodem</code><br>中文版 <code>选项— 会话选项— X/Y/Zmodem</code></li>
+</ul>
+<h3 id="使用SFTP"><a href="#使用SFTP" class="headerlink" title="使用SFTP"></a>使用SFTP</h3><hr>
+<p>SFTP是Secure File Transfer Protocol的缩写,安全文件传送协议.可以为传输文件提供一种安全的网络的加密方法.SFTP 与 FTP有着几乎一样的语法和功能.</p>
+<p>在SecureCRT中打开SFTP<br><img src="/2018/09/29/使用SecureCRT传输文件/1.png"></p>
+<p>在SFTP窗口中输入命令定位到本地和服务器的目录下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lpwd <span class="comment">#查看本地路径</span></span><br><span class="line">lcd <span class="comment">#定位到本地目录下</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">pwd</span> <span class="comment">#查看服务器路径</span></span><br><span class="line"><span class="built_in">cd</span> <span class="comment">#定位到服务器路径下</span></span><br></pre></td></tr></table></figure></p>
+<img src="/2018/09/29/使用SecureCRT传输文件/2.png">
+<p>本地定位到需要上传文件所在的目录,服务器上定位到需要上传到的目录下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">put <span class="comment">#上传</span></span><br><span class="line">get <span class="comment">#下载</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sftp&gt; put tables.txt</span><br><span class="line">Uploading tables.txt to /home/hive/anfang/tables.txt</span><br><span class="line">  100% 420 bytes    420 bytes/s 00:00:00     </span><br><span class="line">/Users/dev/Desktop/tables.txt: 420 bytes transferred <span class="keyword">in</span> 0 seconds (420 bytes/s)</span><br><span class="line">sftp&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sftp&gt; get tables.txt</span><br><span class="line">Downloading tables.txt from /home/hive/anfang/tables.txt</span><br><span class="line">  100% 420 bytes    420 bytes/s 00:00:00     </span><br><span class="line">/home/hive/anfang/tables.txt: 420 bytes transferred <span class="keyword">in</span> 0 seconds (420 bytes/s)</span><br><span class="line">sftp&gt;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-Mac -SecureCRT</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/29/使用SecureCRT传输文件/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Hive配置MySQL-metastore" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1384,6 +1496,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac SecureCRT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-Mac -SecureCRT</a>
               </li>
             
             <div class="clearfix"></div>
