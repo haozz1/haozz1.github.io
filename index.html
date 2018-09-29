@@ -171,6 +171,7 @@
         <p>hive中除了保存真正的数据以外还要额外保存用来描述库、表、列的数据,称为hive的元数据.<br>这些元数据又存放在何处呢？hive需要将这些元数据存放在另外的关系型数据库中.</p>
 <p>发行版的Hadoop无论是CDH还是HDP安装Hive之前都可以提前配置好MySQL服务来使用MySQL管理Hive的元数据,通过Cloudera Manager或者Ambari管理Hadoop集群来配置MySQL和Hive.过程这里不做描述.</p>
 <p>这里讲的是以前使用社区版Hadoop时单独安装Hadoop集群和Hive需要修改的工作.</p>
+<hr>
 <p>Hive中除了保存真正的数据以外还要额外保存用来描述库、表、列的数据,称为Hive的元数据.<br>这些元数据又存放在何处呢？Hive需要将这些元数据存放在另外的关系型数据库中.<br>如果不修改配置Hive默认使用内置的derby数据库存储元数据.<br>derby是apache开发的基于java的文件型数据库.<br>可以检查之前执行命令的目录,会发现其中产生了一个<code>metastore.db</code>的文件,这就是derby产生的用来保存元数据的数据库文件.<br>derby数据库仅仅用来进行测试,真正使用时会有很多限制.最明显的问题是不能支持并发.经测试可以发现,在同一目录下使用无法同时开启hive,不同目录下可以同时开启hive但是会各自产生metastore.db文件造成数据无法共同访问.<br>所以真正生产环境中我们是不会使用默认的derby数据库保存hive的元数据的.</p>
 <p>hive目前支持derby和mysql来存储元数据.</p>
 <p>配置hive使用mysql保存元数据信息：<br>删除hdfs中的<code>/user/hive</code></p>
