@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Hive | 史晨昊的博客</title>
+  <title>Sqoop异常 | 史晨昊的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="史晨昊的博客">
-<meta property="og:url" content="http://yoursite.com/tags/Hive/index.html">
+  <meta name="description" content="Sqoop异常不定时更新">
+<meta name="keywords" content="Sqoop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sqoop异常">
+<meta property="og:url" content="http://yoursite.com/2018/12/10/Sqoop异常/index.html">
 <meta property="og:site_name" content="史晨昊的博客">
+<meta property="og:description" content="Sqoop异常不定时更新">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/12/10/Sqoop异常/sqoop.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/10/Sqoop异常/sqoop2.png">
+<meta property="og:updated_time" content="2018-12-10T07:21:07.534Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="史晨昊的博客">
+<meta name="twitter:title" content="Sqoop异常">
+<meta name="twitter:description" content="Sqoop异常不定时更新">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/10/Sqoop异常/sqoop.png">
   
     <link rel="alternative" href="/atom.xml" title="史晨昊的博客" type="application/atom+xml">
   
@@ -146,136 +154,181 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Sqoop异常" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Sqoop异常
+    </h1>
+  
+
+        
+        <a href="/2018/12/10/Sqoop异常/" class="archive-article-date">
+  	<time datetime="2018-12-10T07:21:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-10</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Sqoop异常<br>不定时更新<br><a id="more"></a></p>
+<p>#####</p>
+<h2 id="1-sqoop-命令格式"><a href="#1-sqoop-命令格式" class="headerlink" title="1.sqoop 命令格式"></a>1.sqoop 命令格式</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sqoop <span class="built_in">export</span> \</span><br><span class="line">--connect <span class="string">'jdbc:mysql://192.168.177.239:3306/umbrella?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false'</span> \</span><br><span class="line">--username <span class="string">'root'</span> \</span><br><span class="line">--password <span class="string">';P4oT9&#125;h69'</span> \ <span class="comment">#预防字段值中有特殊符号,加上引号\</span></span><br><span class="line">--driver com.mysql.jdbc.Driver \</span><br><span class="line">--<span class="built_in">export</span>-dir <span class="string">'hdfs://cdh1:8020/user/hive/warehouse/tmp0929'</span> \</span><br><span class="line">--table person_dynamic \</span><br><span class="line">-m 1 \</span><br><span class="line">--fields-terminated-by <span class="string">'\001'</span> \<span class="comment">#列分隔符,Hive默认行分隔符'\001'or'^A'\</span></span><br><span class="line">--lines-terminated-by <span class="string">'\n'</span> \<span class="comment">#行分隔符,Hive默认行分隔符'\n'\</span></span><br><span class="line">--input-null-string <span class="string">'\\N'</span> \<span class="comment">#预防空字段\</span></span><br><span class="line">--input-null-non-string <span class="string">'\\N'</span></span><br></pre></td></tr></table></figure>
+<p>#####</p>
+<h2 id="2-sqoop-并发引发的问题"><a href="#2-sqoop-并发引发的问题" class="headerlink" title="2.sqoop 并发引发的问题"></a>2.sqoop 并发引发的问题</h2><p>前段时间在使用并发sqoop job的时候出现的问题,貌似是sqoop metastore出现了问题<br>在使用<code>sqoop job --list</code>时报错<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Caused by: java.sql.SQLException: User not found: SA</span><br></pre></td></tr></table></figure></p>
+<p>出现问题后的的思路一直是寻找连接metastore,sqoop默认使用的是hsqldb,一种及其轻量的数据库,sqoop用其来存储一些sqoop job的中间状态.<br>而我用的是单机的sqoop 每个节点的sqoop都独立,没有配置sqoop server和统一的metastore,所以没有在sqoop.site.xml中配置.<br>每次启动sqoop 都会在用户的家目录即<code>~/</code>下生成.sqoop文件夹,并且在此文件夹下写一个名为<em>metastore.db.script</em>的文件,打开这个文件就发现了问题所在<br><img src="/2018/12/10/Sqoop异常/sqoop.png"><br>sqoop job将所有的状态写进了这个文件中,在磁盘中存储,其中前几行是sqoop job自动生成的,之前报的错误就是因为此文件因为并发而损坏,文件中没有了内容,<br><img src="/2018/12/10/Sqoop异常/sqoop2.png"><br>如果sqoop 命令异常或者文件损坏可以直接复制此内容到文件中来,这样可以保证sqoop job恢复</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE SCHEMA PUBLIC AUTHORIZATION DBA</span><br><span class="line">CREATE MEMORY TABLE SQOOP_ROOT(VERSION INTEGER,PROPNAME VARCHAR(128) NOT NULL,PROPVAL VARCHAR(256),CONSTRAINT SQOOP_ROOT_UNQ UNIQUE(VERSION,PROPNAME))</span><br><span class="line">CREATE MEMORY TABLE SQOOP_SESSIONS(JOB_NAME VARCHAR(64) NOT NULL,PROPNAME VARCHAR(128) NOT NULL,PROPVAL VARCHAR(1024),PROPCLASS VARCHAR(32) NOT NULL,CONSTRAINT SQOOP_SESSIONS_UNQ UNIQUE(JOB_NAME,PROPNAME,PROPCLASS))</span><br><span class="line">CREATE USER SA PASSWORD <span class="string">""</span></span><br><span class="line">GRANT DBA TO SA</span><br><span class="line">SET WRITE_DELAY 10</span><br><span class="line">SET SCHEMA PUBLIC</span><br><span class="line">INSERT INTO SQOOP_ROOT VALUES(NULL,<span class="string">'sqoop.hsqldb.job.storage.version'</span>,<span class="string">'0'</span>)</span><br><span class="line">INSERT INTO SQOOP_ROOT VALUES(0,<span class="string">'sqoop.hsqldb.job.info.table'</span>,<span class="string">'SQOOP_SESSIONS'</span>)</span><br></pre></td></tr></table></figure>
+<p>而文件中的其他内容则是每个sqoop job的状态了,记录了一个sqoop job的详细信息,<code>sqoop job -delete xxxx</code> 就是在次文件中将所有xxxx这个sqoop job的内容全部删除掉.</p>
+<p>*sqoop使用的默认数据库对于并发的支持不是很好,可以手动配置更改为其他数据库,例如mysql,但是这样就失去了sqoop自己提供的增量更新功能(提供更新列,自动根据更新列的值来做增量导入,实际上就是sqoop job所记录的状态和文件),自行实现sqoop job的功能代价太大,所以只好退而求其次,继续使用sqoop,同时在其他方面寻找改进方法.</p>
+<p>另外,在遇到上述问题的时候,换了集群中的另一个节点时,又出现了第二个问题 <code>Cannot restore missing job xxxx</code><br>每次创建sqoop job后执行时都会报错,sqoop job –list时也没有这个job,也暂时归结为并行造成的问题.取消并行后没有再遇到过.</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/asset/wx.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/29/Hive配置MySQL-metastore/" class="archive-article-date">
-  	<time datetime="2018-09-29T02:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/29/Hive配置MySQL-metastore/">Hive配置MySQL metastore</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hive</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Sqoop</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/12/10/Sqoop异常/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/28/Hive元数据结构/" class="archive-article-date">
-  	<time datetime="2018-09-28T08:47:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-28</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/24/Tomcat做图片服务器/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Tomcat做图片服务器</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/28/Hive元数据结构/">Hive元数据结构</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/19/Hive中join的原理和机制/" class="archive-article-date">
-  	<time datetime="2018-09-19T09:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/19/Hive中join的原理和机制/">Hive中join的原理和机制</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -303,9 +356,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
