@@ -173,7 +173,7 @@
 <p>可以看到我使用的kingston u盘的卷标是 <code>disk3s1</code> 完整路径是<code>/dev/disk3s1</code> </p>
 <h5 id="2-取消挂载"><a href="#2-取消挂载" class="headerlink" title="2. 取消挂载"></a>2. 取消挂载</h5><p><code>diskutil umount /dev/卷标</code><br>上面一步知道了我的u盘的路径 所以完整命令为<code>diskutil umount /dev/disk3s1</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh-3.2<span class="comment"># diskutil umount /dev/disk3s1 </span></span><br><span class="line">Volume KINGSTON on disk3s1 unmounted</span><br></pre></td></tr></table></figure></p>
 <p>成功后会得到提示.</p>
-<h5 id="3-写入u盘"><a href="#3-写入u盘" class="headerlink" title="3. 写入u盘"></a>3. 写入u盘</h5><p><code>sudo dd if=镜像路径 of=/dev/r卷标 bs=1m</code> <code>加r会让写入速度更快,bs为一次写入饿容量</code><br>结合我的得到完整命令为<br><code>sudo dd if=/Users/dev/Downloads/CentOS-7-x86_64-DVD-1810.iso of=/dev/rdisk3s1 bs=1m</code></p>
+<h5 id="3-写入u盘"><a href="#3-写入u盘" class="headerlink" title="3. 写入u盘"></a>3. 写入u盘</h5><p><code>sudo dd if=镜像路径 of=/dev/r卷标 bs=1m</code> <code>加r会让写入速度更快,bs为一次写入容量</code><br>结合我的得到完整命令为<br><code>sudo dd if=/Users/dev/Downloads/CentOS-7-x86_64-DVD-1810.iso of=/dev/rdisk3s1 bs=1m</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sh-3.2<span class="comment"># sudo dd if=/Users/dev/Downloads/CentOS-7-x86_64-DVD-1810.iso of=/dev/rdisk3s1 bs=1m</span></span><br><span class="line">4376+0 records <span class="keyword">in</span></span><br><span class="line">4376+0 records out</span><br><span class="line">4588568576 bytes transferred <span class="keyword">in</span> 143.529066 secs (31969612 bytes/sec)</span><br></pre></td></tr></table></figure>
 <p>成功后会得到提示<br>也可以使用<code>iostat</code>命令查看磁盘写入状态<br>例如<code>iostat -w 2</code></p>
 <h5 id="4-弹出u盘"><a href="#4-弹出u盘" class="headerlink" title="4. 弹出u盘"></a>4. 弹出u盘</h5><p><code>diskutil eject /dev/卷标</code></p>
@@ -1734,15 +1734,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Sqoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1751,10 +1755,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Sqoop</a>
               </li>
              
               <li class="article-tag-list-item">
