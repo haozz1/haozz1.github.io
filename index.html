@@ -148,6 +148,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mac下的u盘刻录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/11/mac下的u盘刻录/">mac下的u盘刻录</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/11/mac下的u盘刻录/" class="archive-article-date">
+  	<time datetime="2018-12-11T07:26:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近工作中需要将一份超大数据导入到新的机器上,那台机器重新添加了磁盘之后需要重新安装系统,于是新工作又来了.</p>
+<h2 id="下载好了CenOS-7-everything-iso后需要做u盘刻录然后给机器安装新系统"><a href="#下载好了CenOS-7-everything-iso后需要做u盘刻录然后给机器安装新系统" class="headerlink" title="下载好了CenOS-7-everything.iso后需要做u盘刻录然后给机器安装新系统"></a>下载好了CenOS-7-everything.iso后需要做u盘刻录然后给机器安装新系统</h2><h5 id="1-查看u盘盘符"><a href="#1-查看u盘盘符" class="headerlink" title="1. 查看u盘盘符"></a>1. 查看u盘盘符</h5><p><code>diskutil list</code> 查看盘符<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">sh-3.2<span class="comment"># diskutil list</span></span><br><span class="line">/dev/disk0 (internal):</span><br><span class="line">   <span class="comment">#:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:      GUID_partition_scheme                         251.0 GB   disk0</span><br><span class="line">   1:                        EFI EFI                     314.6 MB   disk0s1</span><br><span class="line">   2:                 Apple_APFS Container disk1         250.7 GB   disk0s2</span><br><span class="line"></span><br><span class="line">/dev/disk1 (synthesized):</span><br><span class="line">   <span class="comment">#:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:      APFS Container Scheme -                      +250.7 GB   disk1</span><br><span class="line">                                 Physical Store disk0s2</span><br><span class="line">   1:                APFS Volume Macintosh HD            81.0 GB    disk1s1</span><br><span class="line">   2:                APFS Volume Preboot                 66.2 MB    disk1s2</span><br><span class="line">   3:                APFS Volume Recovery                1.0 GB     disk1s3</span><br><span class="line">   4:                APFS Volume VM                      4.3 GB     disk1s4</span><br><span class="line"></span><br><span class="line">/dev/disk3 (external, physical):</span><br><span class="line">   <span class="comment">#:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:     FDisk_partition_scheme                        *62.1 GB    disk3</span><br><span class="line">   1:             Windows_FAT_32 KINGSTON                61.9 GB    disk3s1</span><br></pre></td></tr></table></figure></p>
+<p>可以看到我使用的kingston u盘的卷标是 <code>disk3s1</code> 完整路径是<code>/dev/disk3s1</code> </p>
+<h5 id="2-取消挂载"><a href="#2-取消挂载" class="headerlink" title="2. 取消挂载"></a>2. 取消挂载</h5><p><code>diskutil umount /dev/卷标</code><br>上面一步知道了我的u盘的路径 所以完整命令为<code>diskutil umount /dev/disk3s1</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh-3.2<span class="comment"># diskutil umount /dev/disk3s1 </span></span><br><span class="line">Volume KINGSTON on disk3s1 unmounted</span><br></pre></td></tr></table></figure></p>
+<p>成功后会得到提示.</p>
+<h5 id="3-写入u盘"><a href="#3-写入u盘" class="headerlink" title="3. 写入u盘"></a>3. 写入u盘</h5><p><code>sudo dd if=镜像路径 of=/dev/r卷标 bs=1m</code> <code>加r会让写入速度更快,bs为一次写入饿容量</code><br>结合我的得到完整命令为<br><code>sudo dd if=/Users/dev/Downloads/CentOS-7-x86_64-DVD-1810.iso of=/dev/rdisk3s1 bs=1m</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sh-3.2<span class="comment"># sudo dd if=/Users/dev/Downloads/CentOS-7-x86_64-DVD-1810.iso of=/dev/rdisk3s1 bs=1m</span></span><br><span class="line">4376+0 records <span class="keyword">in</span></span><br><span class="line">4376+0 records out</span><br><span class="line">4588568576 bytes transferred <span class="keyword">in</span> 143.529066 secs (31969612 bytes/sec)</span><br></pre></td></tr></table></figure>
+<p>成功后会得到提示<br>也可以使用<code>iostat</code>命令查看磁盘写入状态<br>例如<code>iostat -w 2</code></p>
+<h5 id="4-弹出u盘"><a href="#4-弹出u盘" class="headerlink" title="4. 弹出u盘"></a>4. 弹出u盘</h5><p><code>diskutil eject /dev/卷标</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh-3.2<span class="comment"># diskutil eject /dev/disk3s1</span></span><br><span class="line">Disk /dev/disk3s1 ejected</span><br></pre></td></tr></table></figure>
+<p>然后就可以拔出u盘,拿到新机器上u盘启动安装新系统了.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/11/mac下的u盘刻录/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Sqoop异常" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1646,23 +1734,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Sqoop</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SecureCRT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1671,6 +1751,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Sqoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SecureCRT</a>
               </li>
              
               <li class="article-tag-list-item">
