@@ -169,7 +169,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>oracle 提供了完善的exp/imp功能,可以用来备份数据.<br>当然,plsql developer等数据库连接工具提供了图形化的操作功能,但是那些功能也是在你选择了任务提交后将你所做的操作转换为系统命令提供给系统的,所以我就简单的总结一下在使用exp/imp过程中的经验.</p>
-<h4 id="1-准备"><a href="#1-准备" class="headerlink" title="1. 准备"></a>1. 准备</h4><p>在做数据导出之前,我们先要做一些准备工作,这些工作项你可以选择在后续的过程中做甚至不做,但是为了后续工作能少出现一些意外,或者让结果更尽如人意,还是准备一下为好：）</p>
+<h3 id="1-准备"><a href="#1-准备" class="headerlink" title="1. 准备"></a>1. 准备</h3><p>在做数据导出之前,我们先要做一些准备工作,这些工作项你可以选择在后续的过程中做甚至不做,但是为了后续工作能少出现一些意外,或者让结果更尽如人意,还是准备一下为好：）</p>
 <h5 id="1-更多功能"><a href="#1-更多功能" class="headerlink" title="1. 更多功能"></a>1. 更多功能</h5><p>exp/imp 是oracle提供的用来导出/导入数据的功能,相似的,oracle还提供了 expdp/impdp 两个功能.<br>简单来说expdp和impdp是exp/imp的加强版,他们的效率更高,允许数据多样性更高(这个后面会说到),但是相比于exp/imp可以同时在client和server使用来说,expdp/impdp是server端的工具程序,他们只能在oracle server使用.<br>imp只适用于exp导出的文件,不适用于expdp导出文件；impdp只适用于expdp导出的文件,而不适用于exp导出文件.<br>对于10g以上的服务器,使用exp通常不能导出0行数据的空表,而此时必须使用expdp导出.</p>
 <p>而无论你是用哪一套命令,你所在的操作环境必须拥有oracle.</p>
 <h5 id="2-流水线"><a href="#2-流水线" class="headerlink" title="2. 流水线"></a>2. 流水线</h5><p>这里的流水线的意思是 源oracle-&gt;exp client-&gt;imp client-&gt;目标oracle 这一串工作的流程.</p>
@@ -180,28 +180,34 @@
 </li>
 </ul>
 <h5 id="3-目标oracle"><a href="#3-目标oracle" class="headerlink" title="3. 目标oracle"></a>3. 目标oracle</h5><p>为你的目标oracle创建好新用户,赋予用户dba权限,如有必要需要同时赋予表空间</p>
-<h4 id="2-exp-导出"><a href="#2-exp-导出" class="headerlink" title="2. exp 导出"></a>2. exp 导出</h4><p>示例命令<br><code>exp test/test@localhost/ee file=/home/oracle/test.dmp log=/home/oracle/test.log</code><br>导出test用户下的所有数据,包括数据库连接、序号等.<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log tables=(xxxx1,xxx2)</code><br>全用户导出的话省略tables,缺省full 等同于<code>full=y</code> 全用户导出<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log</code></p>
+<h3 id="2-exp-导出"><a href="#2-exp-导出" class="headerlink" title="2. exp 导出"></a>2. exp 导出</h3><p>示例命令<br><code>exp test/test@localhost/ee file=/home/oracle/test.dmp log=/home/oracle/test.log</code><br>导出test用户下的所有数据,包括数据库连接、序号等.<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log tables=(xxxx1,xxx2)</code><br>全用户导出的话省略tables,缺省full 等同于<code>full=y</code> 全用户导出<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log</code></p>
 <ul>
-<li>使用缓冲（速度差异很大）<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log buffer=4096000</code><br>网上有人说buffer建议在1024000-10240000之间,自己把控吧,我用的40960000</li>
-<li>使用direct<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log direct=y recordlength=65536</code><br>tips:<ol>
+<li><p>使用缓冲（速度差异很大）<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log buffer=4096000</code><br>网上有人说buffer建议在1024000-10240000之间,自己把控吧,我用的40960000</p>
+</li>
+<li><p>使用direct<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log direct=y recordlength=65536</code></p>
+</li>
+</ul>
+<ol>
 <li>直接导出,数据从磁盘读入到高速缓存,直接写入到最终文件,所以没有数据行检查与匹配的过程,据不权威的评测结果,性能有50%到70%的提升</li>
 <li>recordlength参数（IO缓冲大小）,与direct参数配对使用,默认该参数为1024bytes,上面的例子为64K（最大值也为64K）</li>
 <li>使用direct后,buffer参数失效；</li>
 <li>使用direct,不支持query子句（没有行匹配的过程）,不支持带Blob类型字段的表,但是系统会自动判断、自动切换,也就是说不会因为一张表的问题,导致整个schema不能使用direct备份；</li>
 <li>direct不支持表空间导出</li>
 </ol>
-</li>
-</ul>
 <img src="/2018/12/12/oracle的导入导出/exp.png">
 <p>可以看到使用exp导出时,空表会出现异常,但不会影响整个操作,另外导出整个user同时导出了数据之外的很多东西,如果只要数据可以选择<code>tables=()</code></p>
 <p>如果导出中还遇到以下错误,可以尝试解决<br><img src="/2018/12/12/oracle的导入导出/yichang.png"></p>
-<p>我还遇到过在导出过程中突然报错,<code>内部出现不一致性错误</code><br><img src="/2018/12/12/oracle的导入导出/cuowu.png"><br>而造成这个错误的原因是oracle11后,数据表的新特性,网上说的都是建议使用数据泵(expdp/impdp),可是因为我无法操作server端,只好用<code>tables=()</code>得到这个user的所有表,再把有错误的表删掉.(至于怎么知道是哪个表出现问题,我不会告诉你我是一个表一个表试的,或者你看一下所有表的列表顺序,一般提示错误时还没打印出的那张表就是有问题的表)</p>
-<h4 id="3-imp-导入"><a href="#3-imp-导入" class="headerlink" title="3. imp 导入"></a>3. imp 导入</h4><p>导入过程终于可以用server端了！！<br>但是因为导出用的exp,导入只能用imp,貌似也没有什么不一样…<br><code>imp tlods/tlods@localhost/orcl fromuser=tlods touser=tlods file=f:dmp\tlods.dmp buffer=4096000</code><br>因为我是按user导出的,所以我直接再按user导入<br><img src="/2018/12/12/oracle的导入导出/daoru.png"><br>如果这时候又出现了异常,当然选择继续忽视！<br><img src="/2018/12/12/oracle的导入导出/shibai.png"><br>而如果遇到这个错误,那就得看一下了,因为这样的话这个表是没有导入进去的,分析完就知道了是这个表需要表空间,而我们的目标oracle里是没有的.<br>现在遇到的情况是如果需要导入的表中存在LOB字段,就会报错 <code>oracle error 959</code><br>解决办法:</p>
-<pre><code>1. 先将这个user导入的数据删除,就是把那些已经成功的表删除 drop table xxods.xxxx;
-2. 创建表空间    create tablespace xxods logging datafile &apos;/home/oracle/dbf/xx.dbf&apos; size 32m autoextend on next 32m 3. maxsize unlimited extent management local;
-4. 为用户赋予表空间    alter user xxods default tablespace xxods;
-5. 再次导入就可以了
-</code></pre><p>思考:在exp导出的时候指定表 <code>tables=()</code>只导出表数据的话就不会导出一些表空间之类的东西,那么这样再imp的时候会不会出现这个错误呢？</p>
+<p>我还遇到过在导出过程中突然报错<code>内部出现不一致性错误</code><br><img src="/2018/12/12/oracle的导入导出/cuowu.png"><br>而造成这个错误的原因是oracle11后,数据表的新特性,网上说的都是建议使用数据泵(expdp/impdp),可是因为我无法操作server端,只好用<code>tables=()</code>得到这个user的所有表,再把有错误的表删掉.(至于怎么知道是哪个表出现问题,我不会告诉你我是一个表一个表试的,或者你看一下所有表的列表顺序,一般提示错误时还没打印出的那张表就是有问题的表)</p>
+<h3 id="3-imp-导入"><a href="#3-imp-导入" class="headerlink" title="3. imp 导入"></a>3. imp 导入</h3><p>导入过程终于可以用server端了！！<br>但是因为导出用的exp,导入只能用imp,貌似也没有什么不一样…<br><code>imp tlods/tlods@localhost/orcl fromuser=tlods touser=tlods file=f:dmp\tlods.dmp buffer=4096000</code><br>因为我是按user导出的,所以我直接再按user导入<br><img src="/2018/12/12/oracle的导入导出/daoru.png"><br>如果这时候又出现了异常,当然选择继续忽视！<br><img src="/2018/12/12/oracle的导入导出/shibai.png"><br>而如果遇到这个错误,那就得看一下了,因为这样的话这个表是没有导入进去的,分析完就知道了是这个表需要表空间,而我们的目标oracle里是没有的.<br>现在遇到的情况是如果需要导入的表中存在LOB字段,就会报错 <code>oracle error 959</code><br>解决办法:</p>
+<ol>
+<li>先将这个user导入的数据删除,就是把那些已经成功的表删除 drop table xxods.xxxx;</li>
+<li>创建表空间    create tablespace xxods logging datafile ‘/home/oracle/dbf/xx.dbf’ size 32m autoextend on next 32m 3. maxsize unlimited extent management local;</li>
+<li>为用户赋予表空间    alter user xxods default tablespace xxods;</li>
+<li>再次导入就可以了</li>
+</ol>
+<blockquote>
+<p>思考:在exp导出的时候指定表 <code>tables=()</code>只导出表数据的话就不会导出一些表空间之类的东西,那么这样再imp的时候会不会出现这个错误呢？</p>
+</blockquote>
 
       
 
