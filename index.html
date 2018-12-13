@@ -172,11 +172,11 @@
 <h3 id="1-准备"><a href="#1-准备" class="headerlink" title="1. 准备"></a>1. 准备</h3><p>在做数据导出之前,我们先要做一些准备工作,这些工作项你可以选择在后续的过程中做甚至不做,但是为了后续工作能少出现一些意外,或者让结果更尽如人意,还是准备一下为好：)</p>
 <h5 id="1-1-更多功能"><a href="#1-1-更多功能" class="headerlink" title="1.1. 更多功能"></a>1.1. 更多功能</h5><p>exp/imp 是oracle提供的用来导出/导入数据的功能,相似的,oracle还提供了 expdp/impdp 两个功能.<br>简单来说expdp和impdp是exp/imp的加强版,他们的效率更高,允许数据多样性更高(这个后面会说到),但是相比于exp/imp可以同时在client和server使用来说,expdp/impdp是server端的工具程序,他们只能在oracle server使用.<br>imp只适用于exp导出的文件,不适用于expdp导出文件;impdp只适用于expdp导出的文件,而不适用于exp导出文件.<br>对于10g以上的服务器,使用exp通常不能导出0行数据的空表,而此时必须使用expdp导出.</p>
 <p>而无论你是用哪一套命令,你所在的操作环境必须拥有oracle.</p>
-<h5 id="1-2-流水线"><a href="#1-2-流水线" class="headerlink" title="1.2. 流水线"></a>1.2. 流水线</h5><p>这里的流水线的意思是 源oracle-&gt;exp client-&gt;imp client-&gt;目标oracle 这一串工作的流程.</p>
+<h5 id="1-2-流水线"><a href="#1-2-流水线" class="headerlink" title="1.2. 流水线"></a>1.2. 流水线</h5><p>这里的流水线的意思是 <code>源oracle-&gt;exp client-&gt;imp client-&gt;目标oracle</code> 这一串工作的流程.</p>
 <ul>
 <li><p>尽量保证流水线上的每一步的字符集是相同的.<br>而关于oracle字符集的讲解和设置,<a href="http://www.cnblogs.com/rootq/articles/2049324.html" target="_blank" rel="noopener">这里</a>讲的很详细.</p>
 </li>
-<li><p>尽量保证版本一致.<br>如果你的流水线中 exp client和imp client为单独的两台机器而非源/目标机器(这样的情况属于大多数,因为很多情况你是无法去相应的机器上操作的,这也是没有使用expdp/impdp的原因),尽量保证四个机器的oracle版本一致,我是用的都是oracle11.<br>oracle 的版本很多都提供了单独的工具包,这样你可以不用安装完整的oracke就可以使用其中的exp/imp命令,我在刚开始的时候就是用了oracle12中的<code>instantclient-basic-windows.x64-12.2.0.1.0</code> 和 <code>instantclient-tools-windows.x64-12.2.0.1.0</code> 其中tools里就是exp等一些命令的包,但是因为与我的oracle版本不一致而放弃,另外一件很费解的事情是oracle11的tools包中竟然没有exp等命令文件…</p>
+<li><p>尽量保证版本一致.<br>如果你的流水线中 exp client和imp client为单独的两台机器而非源/目标机器(这样的情况属于大多数,因为很多情况你是无法去相应的机器上操作的,这也是没有使用expdp/impdp的原因),尽量保证四个机器的oracle版本一致,我用的都是oracle11.<br>oracle 的很多版本都提供了单独的工具包,这样你可以不用安装完整的oracle就可以使用其中的exp/imp命令,我刚开始的时候就是用了oracle12中的<code>instantclient-basic-windows.x64-12.2.0.1.0</code> 和 <code>instantclient-tools-windows.x64-12.2.0.1.0</code>两个包,其中tools就是exp等一些命令的包,但是因为与我的源oracle版本不一致而放弃使用改为安装完整的oracle11,另外一件令我很费解的事是oracle11的tools包中竟然没有exp等命令文件…</p>
 </li>
 </ul>
 <h5 id="1-3-目标oracle"><a href="#1-3-目标oracle" class="headerlink" title="1.3. 目标oracle"></a>1.3. 目标oracle</h5><p>为你的目标oracle创建好新用户,赋予用户dba权限,如有必要需要同时赋予表空间</p>
@@ -211,7 +211,7 @@
 </li>
 </ol>
 <blockquote>
-<p>思考:在exp导出的时候指定表 <code>tables=()</code>只导出表数据的话就不会导出一些表空间之类的东西,那么这样再imp的时候会不会出现这个错误呢？</p>
+<p>思考:在exp导出的时候指定表 <code>tables=()</code>只导出表数据的话就不会导出一些表空间之类的东西,那么这样再imp的时候还会不会出现这个错误呢？</p>
 </blockquote>
 
       
@@ -1800,10 +1800,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SecureCRT</a>
               </li>
              
@@ -1813,6 +1809,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
             
             <div class="clearfix"></div>
