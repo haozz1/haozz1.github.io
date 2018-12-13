@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/12/12/oracle的导入导出/cuowu.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/12/oracle的导入导出/daoru.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/12/oracle的导入导出/shibai.png">
-<meta property="og:updated_time" content="2018-12-13T07:06:26.536Z">
+<meta property="og:updated_time" content="2018-12-13T07:18:55.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="oracle的导入导出">
 <meta name="twitter:description" content="oracle 提供了完善的exp/imp功能,可以用来备份数据.当然,plsql developer等数据库连接工具提供了图形化的操作功能,但是那些功能也是在你选择了任务提交后将你所做的操作转换为系统命令提供给系统的,所以我就简单的总结一下在使用exp/imp过程中的经验. 1. 准备在做数据导出之前,我们先要做一些准备工作,这些工作项你可以选择在后续的过程中做甚至不做,但是为了后续工作能少出现一">
@@ -209,12 +209,12 @@
 <p>我还遇到过在导出过程中突然报错<code>内部出现不一致性错误</code><br><img src="/2018/12/12/oracle的导入导出/cuowu.png"><br>而造成这个错误的原因是oracle11后,数据表的新特性,网上说的都是建议使用数据泵(expdp/impdp),可是因为我无法操作server端,只好用<code>tables=()</code>得到这个user的所有表,再把有错误的表删掉.(至于怎么知道是哪个表出现问题,我不会告诉你我是一个表一个表试的,或者你看一下所有表的列表顺序,一般提示错误时还没打印出的那张表就是有问题的表)</p>
 <h3 id="3-imp-导入"><a href="#3-imp-导入" class="headerlink" title="3. imp 导入"></a>3. imp 导入</h3><p>导入过程终于可以用server端了！！<br>但是因为导出用的exp,导入只能用imp,貌似也没有什么不一样…<br><code>imp tlods/tlods@localhost/orcl fromuser=tlods touser=tlods file=f:dmp\tlods.dmp buffer=4096000</code><br>因为我是按user导出的,所以我直接再按user导入<br><img src="/2018/12/12/oracle的导入导出/daoru.png"><br>如果这时候又出现了异常,当然选择继续忽视！<br><img src="/2018/12/12/oracle的导入导出/shibai.png"><br>而如果遇到这个错误,那就得看一下了,因为这样的话这个表是没有导入进去的,分析完就知道了是这个表需要表空间,而我们的目标oracle里是没有的.<br>现在遇到的情况是如果需要导入的表中存在LOB字段,就会报错 <code>oracle error 959</code><br>解决办法:</p>
 <ol>
-<li>先将这个user导入的数据删除,就是把那些已经成功的表删除 drop table xxods.xxxx;</li>
+<li>先将这个user导入的数据删除,就是把那些已经成功的表删除 <code>drop table xxods.xxxx</code></li>
 <li>创建表空间</li>
 </ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> xxods <span class="keyword">logging</span> <span class="keyword">datafile</span> <span class="string">'/home/oracle/dbf/xx.dbf'</span> <span class="keyword">size</span> <span class="number">32</span>m <span class="keyword">autoextend</span> <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">32</span>m <span class="keyword">maxsize</span> <span class="keyword">unlimited</span> <span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>;</span><br></pre></td></tr></table></figure>
 <ol start="3">
-<li>为用户赋予表空间    </li>
+<li>为用户赋予表空间</li>
 </ol>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> xxods <span class="keyword">default</span> <span class="keyword">tablespace</span> xxods;</span><br></pre></td></tr></table></figure>
 <ol start="4">
@@ -465,23 +465,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Sqoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,11 +485,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SecureCRT</a>
+                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SecureCRT</a>
               </li>
             
             <div class="clearfix"></div>
