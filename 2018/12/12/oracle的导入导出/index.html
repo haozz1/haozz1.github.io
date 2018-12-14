@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/12/12/oracle的导入导出/daoru.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/12/oracle的导入导出/shibai.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/12/oracle的导入导出/kongjian.png">
-<meta property="og:updated_time" content="2018-12-14T04:14:44.359Z">
+<meta property="og:updated_time" content="2018-12-14T09:37:57.057Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="oracle的导入导出">
 <meta name="twitter:description" content="oracle 提供了完善的exp/imp功能,可以用来备份数据.当然,plsql developer等数据库连接工具提供了图形化的操作功能,但是那些功能也是在你选择了任务提交后将你所做的操作转换为系统命令提供给系统的,所以我就简单的总结一下在使用exp/imp过程中的经验. 1. 准备在做数据导出之前,我们先要做一些准备工作,这些工作项你可以选择在后续的过程中做甚至不做,但是为了后续工作能少出现一">
@@ -196,14 +196,12 @@
 </li>
 <li><p>使用direct<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log direct=y recordlength=65536</code></p>
 </li>
-</ul>
-<ol>
 <li>直接导出,数据从磁盘读入到高速缓存,直接写入到最终文件,所以没有数据行检查与匹配的过程,据不权威的评测结果,性能有50%到70%的提升</li>
 <li>recordlength参数(IO缓冲大小),与direct参数配对使用,默认该参数为1024bytes,上面的例子为64K(最大值也为64K)</li>
 <li>使用direct后,buffer参数失效;</li>
 <li>使用direct,不支持query子句(没有行匹配的过程),不支持带Blob类型字段的表,但是系统会自动判断、自动切换,也就是说不会因为一张表的问题,导致整个schema不能使用direct备份;</li>
 <li>direct不支持表空间导出</li>
-</ol>
+</ul>
 <img src="/2018/12/12/oracle的导入导出/exp.png">
 <p>可以看到使用exp导出时,空表会出现异常,但不会影响整个操作,另外导出整个user同时导出了数据之外的很多东西,如果只要数据可以选择<code>tables=()</code></p>
 <p>如果导出中还遇到以下错误,可以尝试解决<br><img src="/2018/12/12/oracle的导入导出/yichang.png"></p>
@@ -482,19 +480,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SecureCRT</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">oracle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SecureCRT</a>
               </li>
              
               <li class="article-tag-list-item">
