@@ -148,6 +148,99 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-oracle" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/19/oracle/">oracle异常</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/19/oracle/" class="archive-article-date">
+  	<time datetime="2018-12-19T10:32:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1-用户session"><a href="#1-用户session" class="headerlink" title="1. 用户session"></a>1. 用户session</h5><p>意外终端sql或者sqlplus终端关掉可能会使正在执行的session被oracle锁掉<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SQL Error: ORA-00054: resource busy and acquire with NOWAIT specified or timeout expired</span><br><span class="line">00054. 00000 -  "resource busy and acquire with NOWAIT specified"</span><br><span class="line">*Cause:    Resource interested is busy.</span><br><span class="line">*Action:   Retry if necessary.</span><br></pre></td></tr></table></figure></p>
+<p>session 被lock了</p>
+<ol>
+<li><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; select session_id from v$locked_object;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>得到sid 比如结果是142</p>
+<ol start="2">
+<li><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; SELECT sid, serial#, username, osuser FROM v$session where sid = 142;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>得到结果比如 142 38 SCOTT oracle</p>
+<ol start="3">
+<li><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; ALTER SYSTEM KILL SESSION '142,38';</span><br><span class="line">System altered</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样就把lock的session杀掉了</p>
+<p>但有时候第三步alter的时候可能说用户会话不存在,这就很麻烦了<br>处理办法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sid</span>, <span class="built_in">serial</span>#,paddr, <span class="keyword">status</span>,<span class="keyword">type</span>, last_call_et,blocking_Session,<span class="keyword">event</span>,wait_class,state, command <span class="keyword">from</span> v$<span class="keyword">session</span> <span class="keyword">where</span> <span class="keyword">sid</span>=<span class="number">142</span></span><br></pre></td></tr></table></figure></p>
+<p>得到paddr比如000000015F4DBEA0<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> addr,pid,spid,username,pga_used_mem <span class="keyword">from</span> v$process <span class="keyword">where</span> addr = <span class="string">'000000015F4DBEA0'</span></span><br></pre></td></tr></table></figure></p>
+<p>得到spid比如1783<br>在系统终端直接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 1783</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/19/oracle/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Sqoop异常" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1601,82 +1694,6 @@
 
 
   
-    <article id="post-Hive中join的原理和机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/19/Hive中join的原理和机制/">Hive中join的原理和机制</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/19/Hive中join的原理和机制/" class="archive-article-date">
-  	<time datetime="2018-09-19T09:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>笼统的说，Hive中的Join可分为<strong>Common Join</strong>（Reduce阶段完成join）和<strong>Map Join</strong>（Map阶段完成join）。本文简单介绍一下两种join的原理和机制。<br>
-        
-          <a class="article-more-a" href="/2018/09/19/Hive中join的原理和机制/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/19/Hive中join的原理和机制/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1779,15 +1796,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Sqoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1796,10 +1817,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Sqoop</a>
               </li>
              
               <li class="article-tag-list-item">
