@@ -169,21 +169,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h5 id="1-用户session"><a href="#1-用户session" class="headerlink" title="1. 用户session"></a>1. 用户session</h5><p>意外终端sql或者sqlplus终端关掉可能会使正在执行的session被oracle锁掉<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SQL Error: ORA-00054: resource busy and acquire with NOWAIT specified or timeout expired</span><br><span class="line">00054. 00000 -  "resource busy and acquire with NOWAIT specified"</span><br><span class="line">*Cause:    Resource interested is busy.</span><br><span class="line">*Action:   Retry if necessary.</span><br></pre></td></tr></table></figure></p>
-<p>session 被lock了</p>
-<ol>
-<li><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; select session_id from v$locked_object;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>得到sid 比如结果是142</p>
-<ol start="2">
-<li><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; SELECT sid, serial#, username, osuser FROM v$session where sid = 142;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>得到结果比如 142 38 SCOTT oracle</p>
-<ol start="3">
-<li><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; ALTER SYSTEM KILL SESSION '142,38';</span><br><span class="line">System altered</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<p>session 被lock了<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; select session_id from v$locked_object;</span><br></pre></td></tr></table></figure></p>
+<p>得到sid 比如结果是142<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; SELECT sid, serial#, username, osuser FROM v$session where sid = 142;</span><br></pre></td></tr></table></figure></p>
+<p>得到结果比如 142 38 SCOTT oracle<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; ALTER SYSTEM KILL SESSION '142,38';</span><br><span class="line">System altered</span><br></pre></td></tr></table></figure></p>
 <p>这样就把lock的session杀掉了</p>
 <p>但有时候第三步alter的时候可能说用户会话不存在,这就很麻烦了<br>处理办法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sid</span>, <span class="built_in">serial</span>#,paddr, <span class="keyword">status</span>,<span class="keyword">type</span>, last_call_et,blocking_Session,<span class="keyword">event</span>,wait_class,state, command <span class="keyword">from</span> v$<span class="keyword">session</span> <span class="keyword">where</span> <span class="keyword">sid</span>=<span class="number">142</span></span><br></pre></td></tr></table></figure></p>
 <p>得到paddr比如000000015F4DBEA0<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> addr,pid,spid,username,pga_used_mem <span class="keyword">from</span> v$process <span class="keyword">where</span> addr = <span class="string">'000000015F4DBEA0'</span></span><br></pre></td></tr></table></figure></p>
@@ -561,11 +549,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tomcat</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tomcat</a>
         		</li>
       		
 		</ul>
@@ -1800,11 +1788,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1812,11 +1800,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
