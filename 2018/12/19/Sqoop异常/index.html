@@ -6,24 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hive中join的原理和机制 | 史晨昊的博客</title>
+  <title>Sqoop异常 | 史晨昊的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="笼统的说，Hive中的Join可分为Common Join（Reduce阶段完成join）和Map Join（Map阶段完成join）。本文简单介绍一下两种join的原理和机制。">
-<meta name="keywords" content="Hive">
+  <meta name="description" content="Sqoop异常不定时更新">
+<meta name="keywords" content="Sqoop">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hive中join的原理和机制">
-<meta property="og:url" content="http://yoursite.com/2018/09/19/Hive中join的原理和机制/index.html">
+<meta property="og:title" content="Sqoop异常">
+<meta property="og:url" content="http://yoursite.com/2018/12/19/Sqoop异常/index.html">
 <meta property="og:site_name" content="史晨昊的博客">
-<meta property="og:description" content="笼统的说，Hive中的Join可分为Common Join（Reduce阶段完成join）和Map Join（Map阶段完成join）。本文简单介绍一下两种join的原理和机制。">
+<meta property="og:description" content="Sqoop异常不定时更新">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/09/19/Hive中join的原理和机制/comjoin.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/09/19/Hive中join的原理和机制/mapjoin.png">
-<meta property="og:image" content="http://yoursite.com/2018/09/19/Hive中join的原理和机制/cmd.jpg">
-<meta property="og:updated_time" content="2018-09-19T12:32:54.697Z">
+<meta property="og:image" content="http://yoursite.com/2018/12/19/Sqoop异常/sqoop.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/19/Sqoop异常/sqoop2.png">
+<meta property="og:updated_time" content="2018-12-19T10:21:54.880Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hive中join的原理和机制">
-<meta name="twitter:description" content="笼统的说，Hive中的Join可分为Common Join（Reduce阶段完成join）和Map Join（Map阶段完成join）。本文简单介绍一下两种join的原理和机制。">
-<meta name="twitter:image" content="http://yoursite.com/2018/09/19/Hive中join的原理和机制/comjoin.jpg">
+<meta name="twitter:title" content="Sqoop异常">
+<meta name="twitter:description" content="Sqoop异常不定时更新">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/19/Sqoop异常/sqoop.png">
   
     <link rel="alternative" href="/atom.xml" title="史晨昊的博客" type="application/atom+xml">
   
@@ -155,65 +154,50 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hive中join的原理和机制" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Sqoop异常" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hive中join的原理和机制
+      Sqoop异常
     </h1>
   
 
         
-        <a href="/2018/09/19/Hive中join的原理和机制/" class="archive-article-date">
-  	<time datetime="2018-09-19T09:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-19</time>
+        <a href="/2018/12/19/Sqoop异常/" class="archive-article-date">
+  	<time datetime="2018-12-19T10:21:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>笼统的说，Hive中的Join可分为<strong>Common Join</strong>（Reduce阶段完成join）和<strong>Map Join</strong>（Map阶段完成join）。本文简单介绍一下两种join的原理和机制。<br><a id="more"></a></p>
-<blockquote>
-<h3 id="Hive-Common-Join"><a href="#Hive-Common-Join" class="headerlink" title="Hive Common Join"></a>Hive Common Join</h3></blockquote>
-<p>如果不指定MapJoin或者不符合MapJoin的条件，那么Hive解析器会将Join操作转换成Common Join,即：在Reduce阶段完成join.整个过程包含Map、Shuffle、Reduce阶段。</p>
-<h4 id="Map阶段"><a href="#Map阶段" class="headerlink" title="Map阶段"></a>Map阶段</h4><p>读取源表的数据，Map输出时候以Join on条件中的列为key，如果Join有多个关联键，则以这些关联键的组合作为key;Map输出的value为join之后所关心的(select或者where中需要用到的)列；同时在value中还会包含表的Tag信息，用于标明此value对应哪个表；按照key进行排序</p>
-<h4 id="Shuffle阶段"><a href="#Shuffle阶段" class="headerlink" title="Shuffle阶段"></a>Shuffle阶段</h4><p>根据key的值进行hash,并将key/value按照hash值推送至不同的reduce中，这样确保两个表中相同的key位于同一个reduce中</p>
-<h4 id="Reduce阶段"><a href="#Reduce阶段" class="headerlink" title="Reduce阶段"></a>Reduce阶段</h4><p>根据key的值完成join操作，期间通过Tag来识别不同表中的数据。<br>以下面的HQL为例，图解其过程：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">a.id,a.dept,b.age </span><br><span class="line"><span class="keyword">FROM</span> a <span class="keyword">join</span> b </span><br><span class="line"><span class="keyword">ON</span> (a.id = b.id);</span><br></pre></td></tr></table></figure></p>
-<img src="/2018/09/19/Hive中join的原理和机制/comjoin.jpg">
-<blockquote>
-<h3 id="Hive-Map-Join"><a href="#Hive-Map-Join" class="headerlink" title="Hive Map Join"></a>Hive Map Join</h3></blockquote>
-<p>MapJoin通常用于一个很小的表和一个大表进行join的场景，具体小表有多小，由参数<strong>hive.mapjoin.smalltable.filesize</strong>来决定，该参数表示小表的总大小，默认值为25000000字节，即25M。Hive0.7之前，需要使用hint提示 /<em>+ mapjoin(table) </em>/才会执行MapJoin,否则执行Common Join，但在0.7版本之后，默认自动会转换Map Join，由参数<strong>hive.auto.convert.join</strong>来控制，默认为true.仍然以9.1中的HQL来说吧，假设a表为一张大表，b为小表，并且<strong>hive.auto.convert.join=true</strong>,那么Hive在执行时候会自动转化为MapJoin。</p>
-<img src="/2018/09/19/Hive中join的原理和机制/mapjoin.png">
+        <p>Sqoop异常<br>不定时更新<br><a id="more"></a></p>
+<h5 id="1-sqoop-命令格式"><a href="#1-sqoop-命令格式" class="headerlink" title="1. sqoop 命令格式"></a>1. sqoop 命令格式</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sqoop <span class="built_in">export</span> \</span><br><span class="line">--connect <span class="string">'jdbc:mysql://192.168.177.239:3306/umbrella?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false'</span> \</span><br><span class="line">--username <span class="string">'root'</span> \</span><br><span class="line">--password <span class="string">';P4oT9&#125;h69'</span> \ <span class="comment">#预防字段值中有特殊符号,加上引号\</span></span><br><span class="line">--driver com.mysql.jdbc.Driver \</span><br><span class="line">--<span class="built_in">export</span>-dir <span class="string">'hdfs://cdh1:8020/user/hive/warehouse/tmp0929'</span> \</span><br><span class="line">--table person_dynamic \</span><br><span class="line">-m 1 \</span><br><span class="line">--fields-terminated-by <span class="string">'\001'</span> \<span class="comment">#列分隔符,Hive默认行分隔符'\001'or'^A'\</span></span><br><span class="line">--lines-terminated-by <span class="string">'\n'</span> \<span class="comment">#行分隔符,Hive默认行分隔符'\n'\</span></span><br><span class="line">--input-null-string <span class="string">'\\N'</span> \<span class="comment">#预防空字段\</span></span><br><span class="line">--input-null-non-string <span class="string">'\\N'</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-sqoop-并发引发的问题"><a href="#2-sqoop-并发引发的问题" class="headerlink" title="2. sqoop 并发引发的问题"></a>2. sqoop 并发引发的问题</h5><p>前段时间在使用并发sqoop job的时候出现的问题,貌似是sqoop metastore出现了问题<br>在使用<code>sqoop job --list</code>时报错<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Caused by: java.sql.SQLException: User not found: SA</span><br></pre></td></tr></table></figure></p>
+<p>出现问题后的的思路一直是寻找连接metastore,sqoop默认使用的是hsqldb,一种及其轻量的数据库,sqoop用其来存储一些sqoop job的中间状态.<br>而我用的是单机的sqoop 每个节点的sqoop都独立,没有配置sqoop server和统一的metastore,所以没有在sqoop.site.xml中配置.<br>每次启动sqoop 都会在用户的家目录即<code>~/</code>下生成.sqoop文件夹,并且在此文件夹下写一个名为<code>metastore.db.script</code>的文件,打开这个文件就发现了问题所在<br><img src="/2018/12/19/Sqoop异常/sqoop.png"><br>sqoop job将所有的状态写进了这个文件中,在磁盘中存储,其中前几行是sqoop job自动生成的,之前报的错误就是因为此文件因为并发而损坏,文件中没有了内容,<br><img src="/2018/12/19/Sqoop异常/sqoop2.png"><br>如果sqoop 命令异常或者文件损坏可以直接复制此内容到文件中来,这样可以保证sqoop job恢复<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SCHEMA</span> <span class="keyword">PUBLIC</span> AUTHORIZATION DBA</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">MEMORY</span> <span class="keyword">TABLE</span> SQOOP_ROOT(<span class="keyword">VERSION</span> <span class="built_in">INTEGER</span>,PROPNAME <span class="built_in">VARCHAR</span>(<span class="number">128</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,PROPVAL <span class="built_in">VARCHAR</span>(<span class="number">256</span>),<span class="keyword">CONSTRAINT</span> SQOOP_ROOT_UNQ <span class="keyword">UNIQUE</span>(<span class="keyword">VERSION</span>,PROPNAME))</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">MEMORY</span> <span class="keyword">TABLE</span> SQOOP_SESSIONS(JOB_NAME <span class="built_in">VARCHAR</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,PROPNAME <span class="built_in">VARCHAR</span>(<span class="number">128</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,PROPVAL <span class="built_in">VARCHAR</span>(<span class="number">1024</span>),PROPCLASS <span class="built_in">VARCHAR</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,<span class="keyword">CONSTRAINT</span> SQOOP_SESSIONS_UNQ <span class="keyword">UNIQUE</span>(JOB_NAME,PROPNAME,PROPCLASS))</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> SA <span class="keyword">PASSWORD</span> <span class="string">""</span></span><br><span class="line"><span class="keyword">GRANT</span> DBA <span class="keyword">TO</span> SA</span><br><span class="line"><span class="keyword">SET</span> WRITE_DELAY <span class="number">10</span></span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">SCHEMA</span> <span class="keyword">PUBLIC</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SQOOP_ROOT <span class="keyword">VALUES</span>(<span class="literal">NULL</span>,<span class="string">'sqoop.hsqldb.job.storage.version'</span>,<span class="string">'0'</span>)</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SQOOP_ROOT <span class="keyword">VALUES</span>(<span class="number">0</span>,<span class="string">'sqoop.hsqldb.job.info.table'</span>,<span class="string">'SQOOP_SESSIONS'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>而文件中的其他内容则是每个sqoop job的状态了,记录了一个sqoop job的详细信息,<code>sqoop job -delete xxxx</code> 就是在文件中将所有xxxx这个sqoop job的内容全部删除掉.</p>
+<p><em>sqoop使用的默认数据库对于并发的支持不是很好,可以手动配置更改为其他数据库,例如mysql,但是这样就失去了sqoop自己提供的增量更新功能(提供更新列,自动根据更新列的值来做增量导入,实际上就是sqoop job所记录的状态和文件),自行实现sqoop job的功能代价太大,所以只好退而求其次,继续使用sqoop,同时在其他方面寻找改进方法.</em></p>
+<p>另外,在遇到上述问题的时候,换了集群中的另一个节点时,又出现了第二个问题 <code>Cannot restore missing job xxxx</code><br>每次创建sqoop job后执行时都会报错,<code>sqoop job --list</code>时也没有这个job,也暂时归结为并行造成的问题.取消并行后没有再遇到过.</p>
+<h5 id="3-sqoop-import-incremental"><a href="#3-sqoop-import-incremental" class="headerlink" title="3. sqoop import incremental"></a>3. sqoop import incremental</h5><p>sqoop import中也提供了增量导入的功能<br>官方文档中关于sqoop import增量的部分<br><br>可以看到import 提供了三个参数来完成增量功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">--incremental #指定增量的模式</span><br><span class="line">    -append #指定一个自增的列,如id,实现增量导入</span><br><span class="line">    -lastmodified #指定一个时间格式的列</span><br><span class="line">--check-column #指定数据库中的某个字段,这个字段就是用来增加的列 </span><br><span class="line">--last-value #上一次导入的最大值,用来界定下一次导入的量</span><br></pre></td></tr></table></figure></p>
+<p>比如指定id列实现增量导入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--incremental-append \</span><br><span class="line">--check-column id \</span><br><span class="line">--last-value 5</span><br></pre></td></tr></table></figure></p>
+<p>或者指定时间列<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--incremental-lastmodified \</span><br><span class="line">--check-column time \</span><br><span class="line">--last-value &apos;2018-10-01 00:00:00&apos;</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>如图中的流程，首先是Task A，它是一个Local Task（在客户端本地执行的Task），负责扫描小表b的数据，将其转换成一个HashTable的数据结构，并写入本地的文件中，之后将该文件加载到DistributeCache中，该HashTable的数据结构可以抽象为：</li>
+<li>值得注意的是使用这种方式做增量导入的话,增量导入的数据中是包括lastValue的值在内的数据,也就是大于等于lastValue值的数据都会导入,而我的工作内容是更新更新时间做增量导入,无法实现实现类似id字段的自动增长和值的预估,使用此模式会导入重复数据.</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>key</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>26</td>
-</tr>
-<tr>
-<td>2</td>
-<td>34</td>
-</tr>
-</tbody>
-</table>
-<img src="/2018/09/19/Hive中join的原理和机制/cmd.jpg">
-<p>图中红框圈出了执行Local Task的信息。</p>
+<p>所以我用到了sqoop import中的另外几个参数<br><code>--query</code>或者<code>--where</code></p>
+<h5 id="4-sqoop-import中的where和query"><a href="#4-sqoop-import中的where和query" class="headerlink" title="4. sqoop import中的where和query"></a>4. sqoop import中的where和query</h5><p><code>--query</code><br>query参数后边的SQL语句,需要注意:</p>
 <ul>
-<li>接下来是Task B，该任务是一个没有Reduce的MR，启动MapTasks扫描大表a,在Map阶段，根据a的每一条记录去和DistributeCache中b表对应的HashTable关联，并直接输出结果。</li>
-<li>由于MapJoin没有Reduce，所以由Map直接输出结果文件，有多少个Map Task，就有多少个结果文件。</li>
+<li>一般不要用双引号,除非双引号里边包含单引号,使用双引号的话就不能再使用换行符了,双引号必须在同一行.</li>
+<li>SQL中的from后面的表明要写全,<code>XXX.xxx</code></li>
+<li>如果SQL中使用了where语句,后边必须有 <code>$CONDITIONS</code> 条件,sqoop 运行的时候,看日志发现sqoop 会在这里插入（1=0）或（1=1）来控制这条语句的执行.外边使用双引号的话,$CONDITIONS 前边需要加反斜杠 即：\$CONDITIONS<br><code>sqoop import --quert &quot;select * from XXX.xxx where \$CONDITIONS AND column &gt; to_timestamp(&#39;1970-01-01 00:00:00&#39;,&#39;yyyy-MM-dd HH24:mi:ss&#39;)&quot;</code></li>
+<li>参数和值一般一行一个,但是如果就像SQL语句一样,长的话可以在结尾使用反斜杠来换行</li>
+<li><code>--query</code>不能和<code>--table</code>一起使用</li>
 </ul>
+<p><code>--where</code><br>使用<code>--query</code>的时候SQL语句里需要写<code>select * xxx</code>,看日志内容<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> ZAODS.T_ZAXT_BUREAU <span class="keyword">where</span>  (<span class="number">1</span> = <span class="number">0</span>)  <span class="keyword">AND</span> <span class="string">'ACQUISTIONTIME'</span> &gt; to_timestamp(<span class="string">'1970-01-01 00:00:00'</span>,<span class="string">'yyyy-MM-dd HH24:mi:ss'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>考虑到是否会平添负担就放弃了.<br>而使用<code>--where</code>只需要提供增加的列名和界定值就可以了<br><code>sqoop import --where &quot;column &gt; to_timestamp(&#39;1970-01-01 00:00:00&#39;,&#39;yyyy-MM-dd HH24:mi:ss&#39;)&quot;</code></p>
 
       
 
@@ -253,7 +237,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hive</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Sqoop</a>
         		</li>
       		
 		</ul>
@@ -309,7 +293,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/09/19/Hive中join的原理和机制/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/12/19/Sqoop异常/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -323,18 +307,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/09/20/GitHub-GitLab中的Git命令/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          GitHub/GitLab中的Git命令
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/09/18/博客的诞生/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">博客的诞生</div>
+    <a href="/2018/12/12/oracle的导入导出/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">oracle的导入导出</div>
       <i class="icon-circle-right"></i>
     </a>
   
