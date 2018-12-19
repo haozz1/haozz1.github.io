@@ -18,6 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/12/19/Sqoop异常/sqoop.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/19/Sqoop异常/sqoop2.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/19/Sqoop异常/gf.png">
 <meta property="og:updated_time" content="2018-12-19T10:21:54.880Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sqoop异常">
@@ -181,7 +182,7 @@
 <p>而文件中的其他内容则是每个sqoop job的状态了,记录了一个sqoop job的详细信息,<code>sqoop job -delete xxxx</code> 就是在文件中将所有xxxx这个sqoop job的内容全部删除掉.</p>
 <p><em>sqoop使用的默认数据库对于并发的支持不是很好,可以手动配置更改为其他数据库,例如mysql,但是这样就失去了sqoop自己提供的增量更新功能(提供更新列,自动根据更新列的值来做增量导入,实际上就是sqoop job所记录的状态和文件),自行实现sqoop job的功能代价太大,所以只好退而求其次,继续使用sqoop,同时在其他方面寻找改进方法.</em></p>
 <p>另外,在遇到上述问题的时候,换了集群中的另一个节点时,又出现了第二个问题 <code>Cannot restore missing job xxxx</code><br>每次创建sqoop job后执行时都会报错,<code>sqoop job --list</code>时也没有这个job,也暂时归结为并行造成的问题.取消并行后没有再遇到过.</p>
-<h5 id="3-sqoop-import-incremental"><a href="#3-sqoop-import-incremental" class="headerlink" title="3. sqoop import incremental"></a>3. sqoop import incremental</h5><p>sqoop import中也提供了增量导入的功能<br>官方文档中关于sqoop import增量的部分<br><br>可以看到import 提供了三个参数来完成增量功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">--incremental #指定增量的模式</span><br><span class="line">    -append #指定一个自增的列,如id,实现增量导入</span><br><span class="line">    -lastmodified #指定一个时间格式的列</span><br><span class="line">--check-column #指定数据库中的某个字段,这个字段就是用来增加的列 </span><br><span class="line">--last-value #上一次导入的最大值,用来界定下一次导入的量</span><br></pre></td></tr></table></figure></p>
+<h5 id="3-sqoop-import-incremental"><a href="#3-sqoop-import-incremental" class="headerlink" title="3. sqoop import incremental"></a>3. sqoop import incremental</h5><p>sqoop import中也提供了增量导入的功能<br>官方文档中关于sqoop import增量的部分<br><img src="/2018/12/19/Sqoop异常/gf.png"><br>可以看到import 提供了三个参数来完成增量功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">--incremental #指定增量的模式</span><br><span class="line">    -append #指定一个自增的列,如id,实现增量导入</span><br><span class="line">    -lastmodified #指定一个时间格式的列</span><br><span class="line">--check-column #指定数据库中的某个字段,这个字段就是用来增加的列 </span><br><span class="line">--last-value #上一次导入的最大值,用来界定下一次导入的量</span><br></pre></td></tr></table></figure></p>
 <p>比如指定id列实现增量导入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--incremental-append \</span><br><span class="line">--check-column id \</span><br><span class="line">--last-value 5</span><br></pre></td></tr></table></figure></p>
 <p>或者指定时间列<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--incremental-lastmodified \</span><br><span class="line">--check-column time \</span><br><span class="line">--last-value &apos;2018-10-01 00:00:00&apos;</span><br></pre></td></tr></table></figure></p>
 <ul>
@@ -448,7 +449,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Sqoop</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -460,7 +461,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+                <a href="javascript:void(0)" class="js-tag color1">Sqoop</a>
               </li>
              
               <li class="article-tag-list-item">
