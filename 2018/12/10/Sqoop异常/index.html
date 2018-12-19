@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/12/10/Sqoop异常/sqoop.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/10/Sqoop异常/sqoop2.png">
-<meta property="og:updated_time" content="2018-12-19T10:12:05.723Z">
+<meta property="og:updated_time" content="2018-12-19T10:15:02.541Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sqoop异常">
 <meta name="twitter:description" content="Sqoop异常不定时更新">
@@ -175,27 +175,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Sqoop异常<br>不定时更新<br><a id="more"></a></p>
-<p>#####</p>
-<ol>
-<li>sqoop 命令格式</li>
-</ol>
-<hr>
+<h5 id="1-sqoop-命令格式"><a href="#1-sqoop-命令格式" class="headerlink" title="1. sqoop 命令格式"></a>1. sqoop 命令格式</h5><hr>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sqoop <span class="built_in">export</span> \</span><br><span class="line">--connect <span class="string">'jdbc:mysql://192.168.177.239:3306/umbrella?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false'</span> \</span><br><span class="line">--username <span class="string">'root'</span> \</span><br><span class="line">--password <span class="string">';P4oT9&#125;h69'</span> \ <span class="comment">#预防字段值中有特殊符号,加上引号\</span></span><br><span class="line">--driver com.mysql.jdbc.Driver \</span><br><span class="line">--<span class="built_in">export</span>-dir <span class="string">'hdfs://cdh1:8020/user/hive/warehouse/tmp0929'</span> \</span><br><span class="line">--table person_dynamic \</span><br><span class="line">-m 1 \</span><br><span class="line">--fields-terminated-by <span class="string">'\001'</span> \<span class="comment">#列分隔符,Hive默认行分隔符'\001'or'^A'\</span></span><br><span class="line">--lines-terminated-by <span class="string">'\n'</span> \<span class="comment">#行分隔符,Hive默认行分隔符'\n'\</span></span><br><span class="line">--input-null-string <span class="string">'\\N'</span> \<span class="comment">#预防空字段\</span></span><br><span class="line">--input-null-non-string <span class="string">'\\N'</span></span><br></pre></td></tr></table></figure>
-<p>#####</p>
-<ol start="2">
-<li>sqoop 并发引发的问题</li>
-</ol>
-<hr>
+<h5 id="2-sqoop-并发引发的问题"><a href="#2-sqoop-并发引发的问题" class="headerlink" title="2. sqoop 并发引发的问题"></a>2. sqoop 并发引发的问题</h5><hr>
 <p>前段时间在使用并发sqoop job的时候出现的问题,貌似是sqoop metastore出现了问题<br>在使用<code>sqoop job --list</code>时报错<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Caused by: java.sql.SQLException: User not found: SA</span><br></pre></td></tr></table></figure></p>
 <p>出现问题后的的思路一直是寻找连接metastore,sqoop默认使用的是hsqldb,一种及其轻量的数据库,sqoop用其来存储一些sqoop job的中间状态.<br>而我用的是单机的sqoop 每个节点的sqoop都独立,没有配置sqoop server和统一的metastore,所以没有在sqoop.site.xml中配置.<br>每次启动sqoop 都会在用户的家目录即<code>~/</code>下生成.sqoop文件夹,并且在此文件夹下写一个名为<code>metastore.db.script</code>的文件,打开这个文件就发现了问题所在<br><img src="/2018/12/10/Sqoop异常/sqoop.png"><br>sqoop job将所有的状态写进了这个文件中,在磁盘中存储,其中前几行是sqoop job自动生成的,之前报的错误就是因为此文件因为并发而损坏,文件中没有了内容,<br><img src="/2018/12/10/Sqoop异常/sqoop2.png"><br>如果sqoop 命令异常或者文件损坏可以直接复制此内容到文件中来,这样可以保证sqoop job恢复<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SCHEMA</span> <span class="keyword">PUBLIC</span> AUTHORIZATION DBA</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">MEMORY</span> <span class="keyword">TABLE</span> SQOOP_ROOT(<span class="keyword">VERSION</span> <span class="built_in">INTEGER</span>,PROPNAME <span class="built_in">VARCHAR</span>(<span class="number">128</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,PROPVAL <span class="built_in">VARCHAR</span>(<span class="number">256</span>),<span class="keyword">CONSTRAINT</span> SQOOP_ROOT_UNQ <span class="keyword">UNIQUE</span>(<span class="keyword">VERSION</span>,PROPNAME))</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">MEMORY</span> <span class="keyword">TABLE</span> SQOOP_SESSIONS(JOB_NAME <span class="built_in">VARCHAR</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,PROPNAME <span class="built_in">VARCHAR</span>(<span class="number">128</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,PROPVAL <span class="built_in">VARCHAR</span>(<span class="number">1024</span>),PROPCLASS <span class="built_in">VARCHAR</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,<span class="keyword">CONSTRAINT</span> SQOOP_SESSIONS_UNQ <span class="keyword">UNIQUE</span>(JOB_NAME,PROPNAME,PROPCLASS))</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> SA <span class="keyword">PASSWORD</span> <span class="string">""</span></span><br><span class="line"><span class="keyword">GRANT</span> DBA <span class="keyword">TO</span> SA</span><br><span class="line"><span class="keyword">SET</span> WRITE_DELAY <span class="number">10</span></span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">SCHEMA</span> <span class="keyword">PUBLIC</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SQOOP_ROOT <span class="keyword">VALUES</span>(<span class="literal">NULL</span>,<span class="string">'sqoop.hsqldb.job.storage.version'</span>,<span class="string">'0'</span>)</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SQOOP_ROOT <span class="keyword">VALUES</span>(<span class="number">0</span>,<span class="string">'sqoop.hsqldb.job.info.table'</span>,<span class="string">'SQOOP_SESSIONS'</span>)</span><br></pre></td></tr></table></figure></p>
 <p>而文件中的其他内容则是每个sqoop job的状态了,记录了一个sqoop job的详细信息,<code>sqoop job -delete xxxx</code> 就是在文件中将所有xxxx这个sqoop job的内容全部删除掉.</p>
 <p><em>sqoop使用的默认数据库对于并发的支持不是很好,可以手动配置更改为其他数据库,例如mysql,但是这样就失去了sqoop自己提供的增量更新功能(提供更新列,自动根据更新列的值来做增量导入,实际上就是sqoop job所记录的状态和文件),自行实现sqoop job的功能代价太大,所以只好退而求其次,继续使用sqoop,同时在其他方面寻找改进方法.</em></p>
 <p>另外,在遇到上述问题的时候,换了集群中的另一个节点时,又出现了第二个问题 <code>Cannot restore missing job xxxx</code><br>每次创建sqoop job后执行时都会报错,<code>sqoop job --list</code>时也没有这个job,也暂时归结为并行造成的问题.取消并行后没有再遇到过.</p>
-<p>#####</p>
-<ol start="3">
-<li>sqoop import incremental</li>
-</ol>
-<hr>
+<h5 id="3-sqoop-import-incremental"><a href="#3-sqoop-import-incremental" class="headerlink" title="3. sqoop import incremental"></a>3. sqoop import incremental</h5><hr>
 <p>sqoop import中也提供了增量导入的功能<br>官方文档中关于sqoop import增量的部分<br><br>可以看到import 提供了三个参数来完成增量功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">--incremental #指定增量的模式</span><br><span class="line">    -append #指定一个自增的列,如id,实现增量导入</span><br><span class="line">    -lastmodified #指定一个时间格式的列</span><br><span class="line">--check-column #指定数据库中的某个字段,这个字段就是用来增加的列 </span><br><span class="line">--last-value #上一次导入的最大值,用来界定下一次导入的量</span><br></pre></td></tr></table></figure></p>
 <p>比如指定id列实现增量导入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--incremental-append \</span><br><span class="line">--check-column id \</span><br><span class="line">--last-value 5</span><br></pre></td></tr></table></figure></p>
 <p>或者指定时间列<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--incremental-lastmodified \</span><br><span class="line">--check-column time \</span><br><span class="line">--last-value &apos;2018-10-01 00:00:00&apos;</span><br></pre></td></tr></table></figure></p>
@@ -203,11 +191,7 @@
 <li>值得注意的是使用这种方式做增量导入的话,增量导入的数据中是包括lastValue的值在内的数据,也就是大于等于lastValue值的数据都会导入,而我的工作内容是更新更新时间做增量导入,无法实现实现类似id字段的自动增长和值的预估,使用此模式会导入重复数据.</li>
 </ul>
 <p>所以我用到了sqoop import中的另外几个参数<br><code>--query</code>或者<code>--where</code></p>
-<p>#####</p>
-<ol start="4">
-<li>sqoop import中的where和query</li>
-</ol>
-<hr>
+<h5 id="4-sqoop-import中的where和query"><a href="#4-sqoop-import中的where和query" class="headerlink" title="4. sqoop import中的where和query"></a>4. sqoop import中的where和query</h5><hr>
 <p><code>--query</code><br>query参数后边的SQL语句,需要注意:</p>
 <ul>
 <li>一般不要用双引号,除非双引号里边包含单引号,使用双引号的话就不能再使用换行符了,双引号必须在同一行.</li>
@@ -469,10 +453,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
@@ -481,7 +461,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Sqoop</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -489,11 +469,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color5">SecureCRT</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SecureCRT</a>
+                <a href="javascript:void(0)" class="js-tag color1">Sqoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
