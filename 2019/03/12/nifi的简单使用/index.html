@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>史晨昊的博客</title>
+  <title>nifi的简单使用 | 史晨昊的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="史晨昊的博客">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="NiFi是一个易于使用、功能强大、操作便利的数据处理data flow系统使用户在处理简单的transfrom时可以不用写很多代码即可操作各种数据流 nifi文档不多,所以需要在使用中不断积累经验 以下是我参考较多的文档nifi官网,方便查看各种processor的使用方法 Nifi RDBMS to Hive using NiFi 使用nifi做增量,nifi提供了方便的配置来实现增量 后续再更">
+<meta name="keywords" content="nifi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nifi的简单使用">
+<meta property="og:url" content="http://yoursite.com/2019/03/12/nifi的简单使用/index.html">
 <meta property="og:site_name" content="史晨昊的博客">
+<meta property="og:description" content="NiFi是一个易于使用、功能强大、操作便利的数据处理data flow系统使用户在处理简单的transfrom时可以不用写很多代码即可操作各种数据流 nifi文档不多,所以需要在使用中不断积累经验 以下是我参考较多的文档nifi官网,方便查看各种processor的使用方法 Nifi RDBMS to Hive using NiFi 使用nifi做增量,nifi提供了方便的配置来实现增量 后续再更">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-12T08:52:10.580Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="史晨昊的博客">
+<meta name="twitter:title" content="nifi的简单使用">
+<meta name="twitter:description" content="NiFi是一个易于使用、功能强大、操作便利的数据处理data flow系统使用户在处理简单的transfrom时可以不用写很多代码即可操作各种数据流 nifi文档不多,所以需要在使用中不断积累经验 以下是我参考较多的文档nifi官网,方便查看各种processor的使用方法 Nifi RDBMS to Hive using NiFi 使用nifi做增量,nifi提供了方便的配置来实现增量 后续再更">
   
     <link rel="alternative" href="/atom.xml" title="史晨昊的博客" type="application/atom+xml">
   
@@ -146,58 +151,61 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-GitHub-GitLab中的Git命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-nifi的简单使用" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/20/GitHub-GitLab中的Git命令/">GitHub/GitLab中的Git命令</a>
+    <h1 class="article-title" itemprop="name">
+      nifi的简单使用
     </h1>
   
 
         
-        <a href="/2018/09/20/GitHub-GitLab中的Git命令/" class="archive-article-date">
-  	<time datetime="2018-09-20T02:34:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-20</time>
+        <a href="/2019/03/12/nifi的简单使用/" class="archive-article-date">
+  	<time datetime="2019-03-12T08:40:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>无论是使用知名的GitLab、GitHub还是使用国内的码云，Git命令都是绕不过的一道门槛。Git是目前世界上最先进的分布式版本控制系统。我们没有必要成为Git大师，只需要学会Git的一些简单命令以实现对以上几种代码托管平台的使用就好了。下面以使用GitLab为例(各大托管平台操作都很相似甚至一样)</p>
-<p>前提：已经安装了Git并在GitLab上配置好了SSH免密而且创建好了远程项目</p>
-<h3 id="一、将本地项目上传到GitLab上："><a href="#一、将本地项目上传到GitLab上：" class="headerlink" title="一、将本地项目上传到GitLab上："></a>一、将本地项目上传到GitLab上：</h3><h5 id="1、创建空文件夹-本地仓库"><a href="#1、创建空文件夹-本地仓库" class="headerlink" title="1、创建空文件夹(本地仓库)"></a>1、创建空文件夹(本地仓库)</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/1.jpg">
-<h5 id="2、右键点击文件夹选择-Git-Bash-Here-nbsp-进入Git命令行模式"><a href="#2、右键点击文件夹选择-Git-Bash-Here-nbsp-进入Git命令行模式" class="headerlink" title="2、右键点击文件夹选择 Git Bash Here&nbsp;进入Git命令行模式"></a>2、右键点击文件夹选择 Git Bash Here&nbsp;进入Git命令行模式</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/2.jpg">
-<h5 id="3、连接远程项目-GitLab中创建好的项目中复制SSH地址"><a href="#3、连接远程项目-GitLab中创建好的项目中复制SSH地址" class="headerlink" title="3、连接远程项目(GitLab中创建好的项目中复制SSH地址)"></a>3、连接远程项目(GitLab中创建好的项目中复制SSH地址)</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/3.jpg">
-<h5 id="4、克隆项目到本地"><a href="#4、克隆项目到本地" class="headerlink" title="4、克隆项目到本地"></a>4、克隆项目到本地</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/4.jpg">
-<p>此时本地文件夹中产生了文件<br><img src="/2018/09/20/GitHub-GitLab中的Git命令/5.jpg"></p>
-<h5 id="5、在命令行模式下进入此文件夹"><a href="#5、在命令行模式下进入此文件夹" class="headerlink" title="5、在命令行模式下进入此文件夹"></a>5、在命令行模式下进入此文件夹</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/6.jpg">
-<h5 id="6、进入项目后默认为master分支"><a href="#6、进入项目后默认为master分支" class="headerlink" title="6、进入项目后默认为master分支"></a>6、进入项目后默认为master分支</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/7.jpg">
-<p>一般master为生产分支，开发项目时要创建其他分支并在上面操作项目(此处要将本地项目上传到Neo4jGraph分支)查看分支(因为我远程项目已经创建了两个分支，所以此处查看时有三个分支master、Neo4jGraph、intoNeo4j)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -a <span class="comment">#查看全部分支</span></span><br></pre></td></tr></table></figure></p>
-<img src="/2018/09/20/GitHub-GitLab中的Git命令/8.jpg">
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout xxx <span class="comment">#切换到xxx分支</span></span><br><span class="line">git checkout -b xxx <span class="comment">#创建xxx分支并切换</span></span><br></pre></td></tr></table></figure>
-<h5 id="7、因为要将项目上传到Neo4jGraph分支，切换到Neo4jGraph分支上"><a href="#7、因为要将项目上传到Neo4jGraph分支，切换到Neo4jGraph分支上" class="headerlink" title="7、因为要将项目上传到Neo4jGraph分支，切换到Neo4jGraph分支上"></a>7、因为要将项目上传到Neo4jGraph分支，切换到Neo4jGraph分支上</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/9.jpg">
-<h5 id="8、将本地项目加进本地仓库中-graph-platform为本地项目，Readme文件为项目文档，在GitLab查看时会自动展示readme文件"><a href="#8、将本地项目加进本地仓库中-graph-platform为本地项目，Readme文件为项目文档，在GitLab查看时会自动展示readme文件" class="headerlink" title="8、将本地项目加进本地仓库中(graph-platform为本地项目，Readme文件为项目文档，在GitLab查看时会自动展示readme文件)"></a>8、将本地项目加进本地仓库中(graph-platform为本地项目，Readme文件为项目文档，在GitLab查看时会自动展示readme文件)</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/10.jpg">
-<h5 id="9、将添加操作加到暂存区git-add-nbsp-nbsp-将文件夹中的内容全部添加到暂存区-如果需要将内容全部上传的话"><a href="#9、将添加操作加到暂存区git-add-nbsp-nbsp-将文件夹中的内容全部添加到暂存区-如果需要将内容全部上传的话" class="headerlink" title="9、将添加操作加到暂存区git add .&nbsp; &nbsp;将文件夹中的内容全部添加到暂存区(如果需要将内容全部上传的话)"></a>9、将添加操作加到暂存区git add .&nbsp; &nbsp;将文件夹中的内容全部添加到暂存区(如果需要将内容全部上传的话)</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add xxx <span class="comment">#将xxx添加到暂存区</span></span><br></pre></td></tr></table></figure>
-<img src="/2018/09/20/GitHub-GitLab中的Git命令/11.jpg">
-<h5 id="10、查看状态-可知我们的操作已经被添加到了暂存区等待提交"><a href="#10、查看状态-可知我们的操作已经被添加到了暂存区等待提交" class="headerlink" title="10、查看状态(可知我们的操作已经被添加到了暂存区等待提交)"></a>10、查看状态(可知我们的操作已经被添加到了暂存区等待提交)</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status <span class="comment">#查看状态</span></span><br></pre></td></tr></table></figure>
-<img src="/2018/09/20/GitHub-GitLab中的Git命令/12.jpg">
-<h5 id="11、把暂存区的内容提交到当前分支-此时已经将项目上传到了本地分支上"><a href="#11、把暂存区的内容提交到当前分支-此时已经将项目上传到了本地分支上" class="headerlink" title="11、把暂存区的内容提交到当前分支(此时已经将项目上传到了本地分支上)"></a>11、把暂存区的内容提交到当前分支(此时已经将项目上传到了本地分支上)</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">"xxx"</span> <span class="comment">#将暂存区内容提交到当前分支并起了个版本名称标识</span></span><br></pre></td></tr></table></figure>
-<img src="/2018/09/20/GitHub-GitLab中的Git命令/13.jpg">
-<h5 id="12、将本地分支push到远程"><a href="#12、将本地分支push到远程" class="headerlink" title="12、将本地分支push到远程"></a>12、将本地分支push到远程</h5><p>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;&nbsp;&nbsp; &nbsp;但一般为了方便将远程主机名默认为 origingit<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">push origin Neo4jGraph <span class="comment">#将内容push到远程Neo4jGraph分支上</span></span><br></pre></td></tr></table></figure></p>
-<p>没有的话远程自动创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin Neo4jGraph:Neo4jGraph</span><br></pre></td></tr></table></figure></p>
-<img src="/2018/09/20/GitHub-GitLab中的Git命令/14.jpg">
-<h5 id="13、查看GitLab，项目已经成功上传"><a href="#13、查看GitLab，项目已经成功上传" class="headerlink" title="13、查看GitLab，项目已经成功上传"></a>13、查看GitLab，项目已经成功上传</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/15.jpg">
-<blockquote>
-<p>如果要删除项目中的某个文件夹或者文件则只需要进入分支后将相应文件删除然后再将留下的内容全部add再commit最后push就好了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ls <span class="comment">#查看有什么内容</span></span><br><span class="line">rm -rf xxx <span class="comment">#强制并递归删除文件xxx</span></span><br><span class="line">git add . <span class="comment">#将剩余内容再次添加到到暂存区</span></span><br><span class="line">git commit -m <span class="string">"xxx"</span> <span class="comment">#提交</span></span><br><span class="line">git push <span class="comment">#上传</span></span><br></pre></td></tr></table></figure></p>
-</blockquote>
+        <p>NiFi是一个易于使用、功能强大、操作便利的数据处理data flow系统<br>使用户在处理简单的transfrom时可以不用写很多代码即可操作各种数据流</p>
+<p>nifi文档不多,所以需要在使用中不断积累经验</p>
+<p>以下是我参考较多的文档<br><a href="http://nifi.apache.org/docs.html" target="_blank" rel="noopener">nifi官网</a>,方便查看各种processor的使用方法</p>
+<p><a href="https://community.hortonworks.com/articles/87686/rdbms-to-hive-using-nifi-small-medium-tables.html" target="_blank" rel="noopener">Nifi RDBMS to Hive using NiFi</a></p>
+<p><a href="https://community.hortonworks.com/articles/51902/incremental-fetch-in-nifi-with-querydatabasetable.html" target="_blank" rel="noopener">使用nifi做增量</a>,nifi提供了方便的配置来实现增量</p>
+<p>后续再更新…</p>
 
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/asset/wx.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -208,7 +216,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">nifi</a>
         		</li>
       		
 		</ul>
@@ -217,16 +225,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/20/GitHub-GitLab中的Git命令/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/12/nifi的简单使用/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/19/oracle/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">oracle异常</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -246,164 +313,14 @@
 
 
 
-
-  
-    <article id="post-Hive中join的原理和机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/19/Hive中join的原理和机制/">Hive中join的原理和机制</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/19/Hive中join的原理和机制/" class="archive-article-date">
-  	<time datetime="2018-09-19T09:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>笼统的说，Hive中的Join可分为<strong>Common Join</strong>（Reduce阶段完成join）和<strong>Map Join</strong>（Map阶段完成join）。本文简单介绍一下两种join的原理和机制。<br>
-        
-          <a class="article-more-a" href="/2018/09/19/Hive中join的原理和机制/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/19/Hive中join的原理和机制/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-博客的诞生" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/18/博客的诞生/">博客的诞生</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/18/博客的诞生/" class="archive-article-date">
-  	<time datetime="2018-09-18T10:36:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>很早就想搭建一个博客来记录一些心得和笔记了<br>周转了很多人的教程都多多少少存在一些小问题,综合了几个终于把自己的搭建完成了<br>整理了一下记录下来<br>
-        
-          <a class="article-more-a" href="/2018/09/18/博客的诞生/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/18/博客的诞生/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -431,8 +348,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
