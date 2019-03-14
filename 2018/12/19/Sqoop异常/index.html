@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/12/19/Sqoop异常/sqoop.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/19/Sqoop异常/sqoop2.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/19/Sqoop异常/gf.png">
-<meta property="og:updated_time" content="2018-12-19T10:21:54.880Z">
+<meta property="og:updated_time" content="2019-03-14T06:48:10.905Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sqoop异常">
 <meta name="twitter:description" content="Sqoop异常不定时更新">
@@ -198,7 +198,8 @@
 <li><code>--query</code>不能和<code>--table</code>一起使用</li>
 </ul>
 <p><code>--where</code><br>使用<code>--query</code>的时候SQL语句里需要写<code>select * xxx</code>,看日志内容<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> ZAODS.T_ZAXT_BUREAU <span class="keyword">where</span>  (<span class="number">1</span> = <span class="number">0</span>)  <span class="keyword">AND</span> <span class="string">'ACQUISTIONTIME'</span> &gt; to_timestamp(<span class="string">'1970-01-01 00:00:00'</span>,<span class="string">'yyyy-MM-dd HH24:mi:ss'</span>)</span><br></pre></td></tr></table></figure></p>
-<p>考虑到是否会平添负担就放弃了.<br>而使用<code>--where</code>只需要提供增加的列名和界定值就可以了<br><code>sqoop import --where &quot;column &gt; to_timestamp(&#39;1970-01-01 00:00:00&#39;,&#39;yyyy-MM-dd HH24:mi:ss&#39;)&quot;</code></p>
+<p><del>考虑到是否会平添负担就放弃了.</del><br>而使用<code>--where</code>只需要提供增加的列名和界定值就可以了<br><code>sqoop import --where &quot;column &gt; to_timestamp(&#39;1970-01-01 00:00:00&#39;,&#39;yyyy-MM-dd HH24:mi:ss&#39;)&quot;</code></p>
+<p>后来又有了新的需求:oracle中的大字段列(blob,clob)不做导入,因此选择使用<code>--query</code>,这样可以在SQL语句中选择某些列导入而忽略掉不合要求的列.</p>
 
       
 
@@ -450,15 +451,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Sqoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -470,15 +475,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Sqoop</a>
+                <a href="javascript:void(0)" class="js-tag color5">nifi</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">oracle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">nifi</a>
               </li>
              
               <li class="article-tag-list-item">
