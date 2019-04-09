@@ -6,27 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Mac中更换JDK版本 | 史晨昊的博客</title>
+  <title>随笔2 | 史晨昊的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="作为一个程序猿拿到Mac之后的第一步就是开机开始安装开发环境了，想都没想就立马下载最新版本JDK，配置完后就看到文档里要求JDK8了。果然愣头青没有好下场 ：）">
-<meta name="keywords" content="Mac">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Mac中更换JDK版本">
-<meta property="og:url" content="http://yoursite.com/2018/09/21/Mac中更换JDK版本/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="随笔2">
+<meta property="og:url" content="http://yoursite.com/2018/12/19/lifes/随笔2/index.html">
 <meta property="og:site_name" content="史晨昊的博客">
-<meta property="og:description" content="作为一个程序猿拿到Mac之后的第一步就是开机开始安装开发环境了，想都没想就立马下载最新版本JDK，配置完后就看到文档里要求JDK8了。果然愣头青没有好下场 ：）">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/09/21/Mac中更换JDK版本/1.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/09/21/Mac中更换JDK版本/2.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/09/21/Mac中更换JDK版本/3.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/09/21/Mac中更换JDK版本/4.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/09/21/Mac中更换JDK版本/5.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/09/21/Mac中更换JDK版本/6.jpg">
-<meta property="og:updated_time" content="2018-09-28T10:03:09.199Z">
+<meta property="og:updated_time" content="2019-04-09T04:36:52.703Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac中更换JDK版本">
-<meta name="twitter:description" content="作为一个程序猿拿到Mac之后的第一步就是开机开始安装开发环境了，想都没想就立马下载最新版本JDK，配置完后就看到文档里要求JDK8了。果然愣头青没有好下场 ：）">
-<meta name="twitter:image" content="http://yoursite.com/2018/09/21/Mac中更换JDK版本/1.jpg">
+<meta name="twitter:title" content="随笔2">
   
     <link rel="alternative" href="/atom.xml" title="史晨昊的博客" type="application/atom+xml">
   
@@ -162,62 +151,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Mac中更换JDK版本" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-lifes/随笔2" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Mac中更换JDK版本
+      随笔2
     </h1>
   
 
         
-        <a href="/2018/09/21/Mac中更换JDK版本/" class="archive-article-date">
-  	<time datetime="2018-09-21T08:40:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-21</time>
+        <a href="/2018/12/19/lifes/随笔2/" class="archive-article-date">
+  	<time datetime="2018-12-19T10:21:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>作为一个程序猿拿到Mac之后的第一步就是开机开始安装开发环境了，想都没想就立马下载最新版本JDK，配置完后就看到文档里要求JDK8了。<br>果然愣头青没有好下场 ：）<br><a id="more"></a><br>本着愣头青的原则直接来到Java目录下<br><code>rm -rf</code><br><code>java -version</code> 查一下没有java了<br>重新下了JDK8但是无法正常安装<br>找了下解决办法 解释挺多 大概意思就是电脑中还有一些Java所依赖的文件</p>
-<h5 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h5><ul>
-<li>调出终端窗口，依次输入如下命令:</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -fr /Library/Internet\Plug-Ins/JavaAppletPlugin.plugin</span><br><span class="line">sudo rm -rf /Library/PreferencesPanes/JavaControlPanel.prefPane</span><br><span class="line">sudo rm -rf ~/Library/Application\ Support/Java</span><br></pre></td></tr></table></figure>
-<p>输入第一个命令时会提示输入密码，就是电脑密码，该命令只会卸载Mac自带的JDK版本，一般是1.6。</p>
-<ul>
-<li>若是要卸载1.6以上的版本，同样的方法：打开终端进入JDK所在的目录<code>(/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk)</code>执行命令：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf jdk1.8.0_151.jdk3</span><br></pre></td></tr></table></figure>
-<p>请勿尝试通过从 /usr/bin 删除 Java 工具来卸载 Java。此目录是系统软件的一部分，下次对操作系统执行更新时，Apple 会重置所有更改。<br>安装好新的jdk之后 会默认在 /Library下创建Java目录 在<strong>/Library/Java/JavaVirtualMachines</strong> 下有jdk1.8.0_181.jdk<br><img src="/2018/09/21/Mac中更换JDK版本/1.jpg"><br>其中Contents下的Home文件夹，是该JDK的根目录。</p>
-<img src="/2018/09/21/Mac中更换JDK版本/2.jpg">
-<ul>
-<li>配置环境变量</li>
-</ul>
-<p>如果你是第一次配置环境变量，可以使用<code>touch .bash_profile</code>创建一个.bash_profile的隐藏配置文件(如果你是为编辑已存在的配置文件，则使用”open -e .bash_profile”命令)：</p>
-<img src="/2018/09/21/Mac中更换JDK版本/3.jpg">
-<p>输入<code>open -e .bash_profile</code>命令：<br><img src="/2018/09/21/Mac中更换JDK版本/4.jpg"></p>
-<p>输入如下配置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home</span><br><span class="line">PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span>:.</span><br><span class="line">CLASSPATH=<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:.</span><br><span class="line"><span class="built_in">export</span> JAVA_HOME</span><br><span class="line"><span class="built_in">export</span> PATH</span><br><span class="line"><span class="built_in">export</span> CLASSPATH</span><br></pre></td></tr></table></figure></p>
-<p>然后保存关闭该窗口。<br><img src="/2018/09/21/Mac中更换JDK版本/5.jpg"><br>使用<code>source .bash_profile</code>使配置生效输入 <code>echo $JAVA_HOME</code> 显示刚才配置的路径这时候就可以 <code>java -version</code> 查看新安装的Java版本了<br><img src="/2018/09/21/Mac中更换JDK版本/6.jpg"></p>
-<blockquote>
-<p>拥有多个版本JDK时更换版本</p>
-</blockquote>
-<ul>
-<li>在.bash_profile文件中配置多条JAVA_HOME </li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_6_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home</span><br><span class="line"><span class="built_in">export</span> JAVA_7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0.jdk/Contents/Home</span><br><span class="line"><span class="built_in">export</span> JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home</span><br><span class="line"> </span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=<span class="variable">$JAVA_6_HOME</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>alias命令动态切换JAVA_HOME的配置</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> jdk8=<span class="string">'export JAVA_HOME=$JAVA_8_HOME'</span></span><br><span class="line"><span class="built_in">alias</span> jdk7=<span class="string">'export JAVA_HOME=$JAVA_7_HOME'</span></span><br><span class="line"><span class="built_in">alias</span> jdk6=<span class="string">'export JAVA_HOME=$JAVA_6_HOME’</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>输入完成后保存执行下面命令</li>
-</ul>
-<p>重新执行.bash_profile文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure></p>
-
+        
       
 
       
@@ -251,17 +205,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -312,7 +255,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/09/21/Mac中更换JDK版本/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/12/19/lifes/随笔2/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -326,18 +269,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/09/28/Hive元数据结构/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/12/19/oracle/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Hive元数据结构
+          oracle异常
         
       </div>
     </a>
   
   
-    <a href="/2018/09/20/GitHub-GitLab中的Git命令/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">GitHub/GitLab中的Git命令</div>
+    <a href="/2018/12/19/Sqoop异常/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Sqoop异常</div>
       <i class="icon-circle-right"></i>
     </a>
   
