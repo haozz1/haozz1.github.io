@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>史晨昊的博客</title>
+  <title>Shell 中读取文件 | 史晨昊的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="史晨昊的博客">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="shell 有好几种读取文件内容的方法,就像代码一样不同的办法解决同一种问题首先我们创建一个有内容的txt文件1234cat test.txtaaabbbccc ddd 1.管道管道顾名思义就是将命令像一个管道一样依次执行,上一个命令的结果当做下一个命令的输入 123456#! /bin/shcat test.txt | while read linedo    echo $linedone 输出">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell 中读取文件">
+<meta property="og:url" content="http://yoursite.com/2019/05/23/Shell-中读取文件/index.html">
 <meta property="og:site_name" content="史晨昊的博客">
+<meta property="og:description" content="shell 有好几种读取文件内容的方法,就像代码一样不同的办法解决同一种问题首先我们创建一个有内容的txt文件1234cat test.txtaaabbbccc ddd 1.管道管道顾名思义就是将命令像一个管道一样依次执行,上一个命令的结果当做下一个命令的输入 123456#! /bin/shcat test.txt | while read linedo    echo $linedone 输出">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-23T04:20:21.016Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="史晨昊的博客">
+<meta name="twitter:title" content="Shell 中读取文件">
+<meta name="twitter:description" content="shell 有好几种读取文件内容的方法,就像代码一样不同的办法解决同一种问题首先我们创建一个有内容的txt文件1234cat test.txtaaabbbccc ddd 1.管道管道顾名思义就是将命令像一个管道一样依次执行,上一个命令的结果当做下一个命令的输入 123456#! /bin/shcat test.txt | while read linedo    echo $linedone 输出">
   
     <link rel="alternative" href="/atom.xml" title="史晨昊的博客" type="application/atom+xml">
   
@@ -150,70 +155,69 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-使用SecureCRT传输文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Shell-中读取文件" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/29/使用SecureCRT传输文件/">使用SecureCRT传输文件</a>
+    <h1 class="article-title" itemprop="name">
+      Shell 中读取文件
     </h1>
   
 
         
-        <a href="/2018/09/29/使用SecureCRT传输文件/" class="archive-article-date">
-  	<time datetime="2018-09-29T06:10:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-29</time>
+        <a href="/2019/05/23/Shell-中读取文件/" class="archive-article-date">
+  	<time datetime="2019-05-23T03:13:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Mac中没有Xshell,远程调控服务器只好使用了一个叫SecureCRT的软件.</p>
-<p>开发或部署过程中都经常需要把文件上传到服务器或者把服务器上的文件下载到本地,这就需要我们的SecureCRT终端能实现文件传输功能了.</p>
-<p>SecureCRT下的文件传输协议有以下几种：ASCII、Xmodem、Ymodem、Zmodem<br><img src="/2018/09/29/使用SecureCRT传输文件/3.png"></p>
-<ul>
-<li>ASCII：这是最快的传输协议,但只能传送文本文件.</li>
-<li>Xmodem：这种古老的传输协议速度较慢,但由于使用了CRC错误侦测方法,传输的准确率可高达99.6%.</li>
-<li>Ymodem：这是Xmodem的改良版,使用了1024位区段传送,速度比Xmodem要快.</li>
-<li>Zmodem：Zmodem采用了串流式（streaming）传输方式,传输速度较快,而且还具有自动改变区段大小和断点续传、快速错误侦测等功能.这是目前最流行的文件传输协议.</li>
-</ul>
-<p>使用SecureCRT传输主要可以采用两种方式</p>
-<h3 id="使用lrzsz"><a href="#使用lrzsz" class="headerlink" title="使用lrzsz"></a>使用lrzsz</h3><hr>
-<p>lrzsz是一款在linux里可代替ftp上传和下载的程序.<br>之前使用Xshell的时候用的都是lrzsz,在SecureCRT中也可以正常使用</p>
-<p>安装lrzsz<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install lrzsz <span class="comment"># -y:安装过程的提示选择全部为"yes"</span></span><br></pre></td></tr></table></figure></p>
-<p>安装好了lrzsz之后就可以通过命令来直接拖拽文件时间上传或下载了.</p>
-<ul>
-<li>rz:received 输入rz时意味着服务器需要接收文件及你要上传文件到服务器上.<br>在服务器终端中直接输入rz服务器会进入等待状态,找到需要上传的文件即可.<img src="/2018/09/29/使用SecureCRT传输文件/4.png">
-</li>
-</ul>
-<img src="/2018/09/29/使用SecureCRT传输文件/5.png">
-<p>这时候在目录下查看一下就会发现多出了刚刚上传的文件了.</p>
-<blockquote>
-<p>需要注意的是：上传的时候,如果上传到的linux目录有同名的文件,是无法上传的,需要先删掉linux上的同名文件.</p>
-</blockquote>
-<ul>
-<li>sz:send    输入sz时意味着服务器要发送文件及你要把服务器上的文件下载下来.<br>下载一个文件：sz filename<br>下载多个文件：sz filename1 filename2<br>下载dir目录下的所有文件，不包含dir下的文件夹：sz dir/*<br>在终端输入<code>sz filename1 filename2 filename3</code>,回车后出现如下截图所示<img src="/2018/09/29/使用SecureCRT传输文件/6.png">
-</li>
-</ul>
-<p>选择好存放目录之后点击确定<br><img src="/2018/09/29/使用SecureCRT传输文件/7.png"><br>上传完成后相应目录下就多出了在服务器上下载的文件.</p>
-<ul>
-<li>修改默认位置<br>文件上传、下载存放的默认位置在securtCRT中设置,位于：<br>英文版 <code>options — session options — X/Y/Zmodem</code><br>中文版 <code>选项— 会话选项— X/Y/Zmodem</code></li>
-</ul>
-<h3 id="使用SFTP"><a href="#使用SFTP" class="headerlink" title="使用SFTP"></a>使用SFTP</h3><hr>
-<p>SFTP是Secure File Transfer Protocol的缩写,安全文件传送协议.可以为传输文件提供一种安全的网络的加密方法.SFTP 与 FTP有着几乎一样的语法和功能.</p>
-<p>在SecureCRT中打开SFTP<br><img src="/2018/09/29/使用SecureCRT传输文件/1.png"></p>
-<p>在SFTP窗口中输入命令定位到本地和服务器的目录下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lpwd <span class="comment">#查看本地路径</span></span><br><span class="line">lcd <span class="comment">#定位到本地目录下</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">pwd</span> <span class="comment">#查看服务器路径</span></span><br><span class="line"><span class="built_in">cd</span> <span class="comment">#定位到服务器路径下</span></span><br></pre></td></tr></table></figure></p>
-<img src="/2018/09/29/使用SecureCRT传输文件/2.png">
-<p>本地定位到需要上传文件所在的目录,服务器上定位到需要上传到的目录下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">put <span class="comment">#上传</span></span><br><span class="line">get <span class="comment">#下载</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sftp&gt; put tables.txt</span><br><span class="line">Uploading tables.txt to /home/hive/anfang/tables.txt</span><br><span class="line">  100% 420 bytes    420 bytes/s 00:00:00     </span><br><span class="line">/Users/dev/Desktop/tables.txt: 420 bytes transferred <span class="keyword">in</span> 0 seconds (420 bytes/s)</span><br><span class="line">sftp&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sftp&gt; get tables.txt</span><br><span class="line">Downloading tables.txt from /home/hive/anfang/tables.txt</span><br><span class="line">  100% 420 bytes    420 bytes/s 00:00:00     </span><br><span class="line">/home/hive/anfang/tables.txt: 420 bytes transferred <span class="keyword">in</span> 0 seconds (420 bytes/s)</span><br><span class="line">sftp&gt;</span><br></pre></td></tr></table></figure>
+        <p>shell 有好几种读取文件内容的方法,就像代码一样不同的办法解决同一种问题<br>首先我们创建一个有内容的txt文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat test.txt</span><br><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">ccc ddd</span><br></pre></td></tr></table></figure></p>
+<h5 id="1-管道"><a href="#1-管道" class="headerlink" title="1.管道"></a>1.管道</h5><p>管道顾名思义就是将命令像一个管道一样依次执行,上一个命令的结果当做下一个命令的输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/sh</span></span><br><span class="line"></span><br><span class="line">cat test.txt | <span class="keyword">while</span> <span class="built_in">read</span> line</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$line</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>输出如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">ccc ddd</span><br></pre></td></tr></table></figure></p>
+<p>但是值得注意的是如果我希望在循环中做一个累加计算,然后在循环结束后得到累加之后的值,使用管道法是不行的<br>举个例子<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/sh</span></span><br><span class="line">count=0</span><br><span class="line">cat test.txt | <span class="keyword">while</span> <span class="built_in">read</span> line</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">let</span> count++</span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$count</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$count</span></span><br></pre></td></tr></table></figure></p>
+<p>这时的输出结果是这样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">0</span><br></pre></td></tr></table></figure></p>
+<p>在循环中累加的count值在循环结束后又变成了0,原因还没探明(<strong><em>TODO</em></strong>)</p>
+<h5 id="2-while"><a href="#2-while" class="headerlink" title="2.while"></a>2.while</h5><p>除了使用管道的方法外,也可以直接使用while循环来读取文件内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/sh</span></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> line</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$line</span></span><br><span class="line"><span class="keyword">done</span>  &lt; test.txt</span><br></pre></td></tr></table></figure></p>
+<p>输出结果符合我们的预期<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">ccc ddd</span><br></pre></td></tr></table></figure></p>
+<p>以上的两个方法都是使用了read<br>read命令接收标准输入,或其他文件描述符的输入,得到输入后,read命令将数据放入一个标准变量中<br>利用read读取文件时,每次调用read命令都会读取文件中的”一行”文本<br>当文件没有可读的行时,read命令将以非零状态退出</p>
+<h5 id="3-for"><a href="#3-for" class="headerlink" title="3.for"></a>3.for</h5><p>有while循环的地方肯定有我for循环!!<br>使用变量在file中循环取值,取值的分隔符由<code>$IFS</code>确定<br>而<code>$IFS</code>默认是空白(包括:空格,制表符,换行符),也就是说如果使用默认的分隔符<code>空格</code>也会被当做一次新的循环<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/sh</span></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> `cat test.txt`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$line</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+<p>这次的输出和上几次的就不同了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">ccc</span><br><span class="line">ddd</span><br></pre></td></tr></table></figure></p>
+<p><code>$IFS</code>是系统变量,如果修改掉可能会造成意想不到的结果,所以如有需要可以在shell里临时赋值给<code>$IFS</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/sh</span></span><br><span class="line">IFS=<span class="string">"\n"</span></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> `cat test.txt`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$line</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+<p>这样一来输出就回到之前的样子了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">ccc ddd</span><br></pre></td></tr></table></figure></p>
 
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/asset/wx.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -224,11 +228,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SecureCRT</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -237,16 +237,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/29/使用SecureCRT传输文件/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/23/Shell-中读取文件/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/15/温暖的心/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">温暖的心</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -266,1137 +325,14 @@
 
 
 
-
-  
-    <article id="post-Hive配置MySQL-metastore" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/29/Hive配置MySQL-metastore/">Hive配置MySQL metastore</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/29/Hive配置MySQL-metastore/" class="archive-article-date">
-  	<time datetime="2018-09-29T02:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>hive中除了保存真正的数据以外还要额外保存用来描述库、表、列的数据,称为hive的元数据.<br>这些元数据又存放在何处呢？hive需要将这些元数据存放在另外的关系型数据库中.</p>
-<p>发行版的Hadoop无论是CDH还是HDP安装Hive之前都可以提前配置好MySQL服务来使用MySQL管理Hive的元数据,通过Cloudera Manager或者Ambari管理Hadoop集群来配置MySQL和Hive.过程这里不做描述.</p>
-<p>这里讲的是以前使用社区版Hadoop时单独安装Hadoop集群和Hive需要修改的工作.</p>
-<hr>
-<p>Hive中除了保存真正的数据以外还要额外保存用来描述库、表、列的数据,称为Hive的元数据.<br>这些元数据又存放在何处呢？Hive需要将这些元数据存放在另外的关系型数据库中.<br>如果不修改配置Hive默认使用内置的derby数据库存储元数据.<br>derby是apache开发的基于java的文件型数据库.<br>可以检查之前执行命令的目录,会发现其中产生了一个<code>metastore.db</code>的文件,这就是derby产生的用来保存元数据的数据库文件.<br>derby数据库仅仅用来进行测试,真正使用时会有很多限制.最明显的问题是不能支持并发.经测试可以发现,在同一目录下使用无法同时开启hive,不同目录下可以同时开启hive但是会各自产生metastore.db文件造成数据无法共同访问.<br>所以真正生产环境中我们是不会使用默认的derby数据库保存hive的元数据的.</p>
-<p>hive目前支持derby和mysql来存储元数据.</p>
-<p>配置hive使用mysql保存元数据信息：<br>删除hdfs中的<code>/user/hive</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -rmr /user/hive</span><br></pre></td></tr></table></figure>
-<p>复制<code>hive/conf/hive-default.xml.template为hive-site.xml</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp hive-default.xml.template hive-site.xml</span><br></pre></td></tr></table></figure>
-<p>在<configuration>中进行配置</configuration></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionURL<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>jdbc:mysql://hadoop01:3306/hive?createDatabaseIfNotExist=true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>JDBC connect string for a JDBC metastore<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span>	  </span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionDriverName<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>com.mysql.jdbc.Driver<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">description</span>&gt;</span>Driver class name for a JDBC metastore<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionUserName<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>root<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">description</span>&gt;</span>username to use against metastore database<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionPassword<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>root<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">description</span>&gt;</span>password to use against metastore database<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>手动创建hive元数据库,注意此库必须是latin1,否则会出现奇怪问题！所以推荐手动创建！并且创建库之前不能有任意的hive操作,否则自动创建出来的库表将使用mysql默认的字符集,仍然报错！</p>
-</li>
-<li><p>另一种方法是修改mysql的配置文件,让mysql默认编码集就是latin1,这样hive自动创建的元数据库就是latin1的了,但是这已修改将会影响整个mysql数据库,如果mysql中有其他库,这种方式并不好.</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database hive character <span class="built_in">set</span> latin1</span><br></pre></td></tr></table></figure>
-<p>将mysql的连接jar包拷贝到<code>$HIVE_HOME/lib</code>目录下</p>
-<p>如果出现没有权限的问题,在mysql授权(在安装mysql的机器上执行)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br><span class="line"></span><br><span class="line"><span class="comment">#(执行下面的语句  *.*:所有库下的所有表   %：任何IP地址或主机都可以连接)</span></span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'root'</span> WITH GRANT OPTION;</span><br><span class="line"></span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure></p>
-<p>再进入hive命令行,试着创建库表发现没有问题.</p>
-<p>测试发现开启多个连接没有问题.</p>
-<p>连接mysql,发现多了一个hive库.其中保存有hive的元数据.DBS-数据库的元数据信息,TBLS-表信息.COLUMNS_V2表中字段信息,SDS-表对应hdfs目录</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/29/Hive配置MySQL-metastore/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hive元数据结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/28/Hive元数据结构/">Hive元数据结构</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/28/Hive元数据结构/" class="archive-article-date">
-  	<time datetime="2018-09-28T08:47:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Hive中的数据库和表都是一目录的形式存储在HDFS的<code>/user/hive/warehouse/</code>下的,表中的数据则已文件的形式存储.<br>Hive的元数据metadata则需要存在关系型数据库中,Hive默认是将元数据存储在内嵌的Derby数据库中,而一般我们使用Hive的时候都需要将其修改为Mysql数据库.<br><a href="http://besthao.cn/2018/09/29/Hive%E9%85%8D%E7%BD%AEMySQL-metastore/" target="_blank" rel="noopener">修改方法在这里</a></p>
-<p>这里主要写一下Hive的元数据的结构,看看都存了些什么内容.</p>
-<h3 id="1-存储Hive版本的元数据表（VERSION）"><a href="#1-存储Hive版本的元数据表（VERSION）" class="headerlink" title="1. 存储Hive版本的元数据表（VERSION）"></a>1. 存储Hive版本的元数据表（VERSION）</h3><hr>
-<p>表结构很简单,存储的内容对于Hive比较重要</p>
-<table>
-<thead>
-<tr>
-<th>VER_ID</th>
-<th>SCHEMA_VERSION</th>
-<th>VERSION_COMMENT</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ID主键</td>
-<td>Hive版本</td>
-<td>版本说明</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0.13.0</td>
-<td>Set by MetaStore</td>
-</tr>
-</tbody>
-</table>
-<p>如果该表出现问题，根本进入不了Hive-Cli。<br>比如该表不存在，当启动Hive-Cli时候，就会报错<br><strong>Table ‘hive.version’ doesn’t exist</strong></p>
-<h3 id="2-Hive数据库相关的元数据表（DBS、DATABASE-PARAMS）"><a href="#2-Hive数据库相关的元数据表（DBS、DATABASE-PARAMS）" class="headerlink" title="2. Hive数据库相关的元数据表（DBS、DATABASE_PARAMS）"></a>2. Hive数据库相关的元数据表（DBS、DATABASE_PARAMS）</h3><hr>
-<ul>
-<li>DBS<br>该表存储Hive中所有数据库的基本信息，字段如下：</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>元数据表字段</th>
-<th>说明</th>
-<th>示例数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>DB_ID</td>
-<td>数据库ID</td>
-<td>2</td>
-</tr>
-<tr>
-<td>DESC</td>
-<td>数据库描述</td>
-<td>测试库</td>
-</tr>
-<tr>
-<td>DB_LOCATION_URI</td>
-<td>数据库HDFS路径</td>
-<td>hdfs://namenode/user/hive/warehouse/1234.db</td>
-</tr>
-<tr>
-<td>NAME</td>
-<td>数据库名</td>
-<td>test_db</td>
-</tr>
-<tr>
-<td>OWNER_NAME</td>
-<td>数据库所有者用户名</td>
-<td>shichenhao</td>
-</tr>
-<tr>
-<td>OWNER_TYPE</td>
-<td>所有者角色</td>
-<td>USER</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>DATABASE_PARAMS<br>该表存储数据库的相关参数,在create database的时候用到<br>WITH DBPROPERTIES (property_name=property_value, …)指定的参数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>元数据字段</th>
-<th>说明</th>
-<th>示例数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>DB_ID</td>
-<td>数据库ID</td>
-<td>2</td>
-</tr>
-<tr>
-<td>PARAM_KEY</td>
-<td>参数名</td>
-<td>createdby</td>
-</tr>
-<tr>
-<td>PARAM_VALUE</td>
-<td>参数值</td>
-<td>shichenhao</td>
-</tr>
-</tbody>
-</table>
-<p>DBS和DATABASE_PARAMS这两张表通过DB_ID字段关联</p>
-<h3 id="3-Hive表和视图相关的元数据表"><a href="#3-Hive表和视图相关的元数据表" class="headerlink" title="3. Hive表和视图相关的元数据表"></a>3. Hive表和视图相关的元数据表</h3><hr>
-<p>主要有TBLS、TABLE_PARAMS、TBL_PRIVS，这三张表通过TBL_ID关联.</p>
-<ul>
-<li>TBLS<br>该表存储Hive表、视图、索引表的基本信息</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>元数据表字段</th>
-<th>说明</th>
-<th>示例数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>TBL_ID</td>
-<td>表ID</td>
-<td>1</td>
-</tr>
-<tr>
-<td>CREATE_TIME</td>
-<td>创建时间</td>
-<td>1436317071</td>
-</tr>
-<tr>
-<td>DB_ID</td>
-<td>数据库ID</td>
-<td>2 对应DBS中的DB_ID</td>
-</tr>
-<tr>
-<td>LAST_ACCESS_TIME</td>
-<td>上次访问时间</td>
-<td>1436317071</td>
-</tr>
-<tr>
-<td>OWNER</td>
-<td>所有者</td>
-<td>shichenhao</td>
-</tr>
-<tr>
-<td>RETENTION</td>
-<td>保留字段</td>
-<td>0</td>
-</tr>
-<tr>
-<td>SD_ID</td>
-<td>序列化配置信息</td>
-<td>86 对应SDS表中的SD_ID</td>
-</tr>
-<tr>
-<td>TBL_NAME</td>
-<td>表名</td>
-<td>test</td>
-</tr>
-<tr>
-<td>TBL_TYPE</td>
-<td>表类型</td>
-<td>MANAGED_TABLE、EXTERNAL_TABLE、INDEX_TABLE、VIRTUAL_VIEW</td>
-</tr>
-<tr>
-<td>VIEW_EXPANDED_TEXT</td>
-<td>视图的详细HQL语句</td>
-<td>select ‘test’.’pt’, ‘test’.’pcid’ from ‘test_db’.’test’</td>
-</tr>
-<tr>
-<td>VIEW_ORIGINAL_TEXT</td>
-<td>视图的原始HQL语句</td>
-<td>select * from lxw1234</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>TABLE_PARAMS<br>该表存储表/视图的属性信息</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>元数据表字段</th>
-<th>说明</th>
-<th>示例数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>TBL_ID</td>
-<td>表ID</td>
-<td>1</td>
-</tr>
-<tr>
-<td>PARAM_KEY</td>
-<td>属性名</td>
-<td>totalSize、numRows、EXTERNAL</td>
-</tr>
-<tr>
-<td>PARAM_VALUE</td>
-<td>属性值</td>
-<td>970107336、21231028、TRUE</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>TBL_PRIVS<br>该表存储表/视图的授权信息</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>元数据表字段</th>
-<th>说明</th>
-<th>示例数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>TBL_GRANT_ID</td>
-<td>授权ID</td>
-<td>1</td>
-</tr>
-<tr>
-<td>CREATE_TIME</td>
-<td>授权时间</td>
-<td>1436320455</td>
-</tr>
-<tr>
-<td>GRANT_OPTION</td>
-<td></td>
-<td>0</td>
-</tr>
-<tr>
-<td>GRANTOR</td>
-<td>授权执行用户</td>
-<td>shichenhao</td>
-</tr>
-<tr>
-<td>GRANTOR_TYPE</td>
-<td>授权者类型</td>
-<td>USER</td>
-</tr>
-<tr>
-<td>PRINCIPAL_NAME</td>
-<td>被授权用户</td>
-<td>username</td>
-</tr>
-<tr>
-<td>PRINCIPAL_TYPE</td>
-<td>被授权用户类型</td>
-<td>USER</td>
-</tr>
-<tr>
-<td>TBL_PRIV</td>
-<td>权限</td>
-<td>Select、Alter</td>
-</tr>
-<tr>
-<td>TBL_ID</td>
-<td>表ID</td>
-<td>22，对应TBLS表中的TBL_ID</td>
-</tr>
-</tbody>
-</table>
-<h3 id="4-Hive文件存储信息相关的元数据表"><a href="#4-Hive文件存储信息相关的元数据表" class="headerlink" title="4.    Hive文件存储信息相关的元数据表"></a>4.    Hive文件存储信息相关的元数据表</h3><hr>
-<p>主要涉及SDS、SD_PARAMS、SERDES、SERDE_PARAMS</p>
-<p>由于HDFS支持的文件格式很多,而建Hive表时候也可以指定各种文件格式,Hive在将HQL解析成MapReduce时候,需要知道去哪里，使用哪种格式去读写HDFS文件,而这些信息就保存在这几张表中</p>
-<ul>
-<li>SDS<br>该表保存文件存储的基本信息，如INPUT_FORMAT、OUTPUT_FORMAT、是否压缩等.<br>TBLS表中的SD_ID与该表关联，可以获取Hive表的存储信息</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>元数据表字段</th>
-<th>说明</th>
-<th>示例数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SD_ID</td>
-<td>存储信息ID</td>
-<td>1</td>
-</tr>
-<tr>
-<td>CD_ID</td>
-<td>字段信息ID</td>
-<td>21，对应CDS表</td>
-</tr>
-<tr>
-<td>INPUT_FORMAT</td>
-<td>文件输入格式</td>
-<td>org.apache.hadoop.mapred.TextInputFormat</td>
-</tr>
-<tr>
-<td>IS_COMPRESSED</td>
-<td>是否压缩</td>
-<td>0</td>
-</tr>
-<tr>
-<td>IS_STOREDASSUBDIRECTORIES</td>
-<td>是否以子目录存储</td>
-<td>0</td>
-</tr>
-<tr>
-<td>LOCATION</td>
-<td>HDFS路径</td>
-<td>hdfs://namenode/hivedata/warehouse/ut.db/t_lxw</td>
-</tr>
-<tr>
-<td>NUM_BUCKETS</td>
-<td>分桶数量</td>
-<td>5</td>
-</tr>
-<tr>
-<td>OUTPUT_FORMAT</td>
-<td>文件输出格式</td>
-<td>org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat</td>
-</tr>
-<tr>
-<td>SERDE_ID</td>
-<td>序列化类ID</td>
-<td>3，对应SERDES表</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>SD_PARAMS<br>该表存储Hive存储的属性信息，在创建表时候使用<br>STORED BY ‘storage.handler.class.name’ [WITH SERDEPROPERTIES (…)指定</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>元数据表字段</th>
-<th>说明</th>
-<th>示例数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SD_ID</td>
-<td>存储配置ID</td>
-<td>1</td>
-</tr>
-<tr>
-<td>PARAM_KEY</td>
-<td>存储属性名</td>
-</tr>
-<tr>
-<td>PARAM_VALUE</td>
-<td>存储属性值</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>SERDES<br>该表存储序列化使用的类信息</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>元数据表字段</th>
-<th>说明</th>
-<th>示例数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SERDE_ID</td>
-<td>序列化类配置ID</td>
-<td>1</td>
-</tr>
-<tr>
-<td>NAME</td>
-<td>序列化类别名</td>
-</tr>
-<tr>
-<td>SLIB</td>
-<td>序列化类</td>
-<td>org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>SERDE_PARAMS<br>该表存储序列化的一些属性、格式信息,比如：行、列分隔符</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>元数据表字段</th>
-<th>说明</th>
-<th>示例数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SERDE_ID</td>
-<td>序列化类配置ID</td>
-<td>1</td>
-</tr>
-<tr>
-<td>PARAM_KEY</td>
-<td>属性名</td>
-<td>field.delim</td>
-</tr>
-<tr>
-<td>PARAM_VALUE</td>
-<td>属性值</td>
-<td>,</td>
-</tr>
-</tbody>
-</table>
-<h3 id="5-Hive表字段相关的元数据表"><a href="#5-Hive表字段相关的元数据表" class="headerlink" title="5. Hive表字段相关的元数据表"></a>5. Hive表字段相关的元数据表</h3><hr>
-<p>主要涉及COLUMNS_V2</p>
-<ul>
-<li>COLUMNS_V2<br>该表存储表对应的字段信息。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>元数据表字段</th>
-<th>说明</th>
-<th>示例数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CD_ID</td>
-<td>字段信息ID</td>
-<td>1</td>
-</tr>
-<tr>
-<td>COMMENT</td>
-<td>字段注释</td>
-</tr>
-<tr>
-<td>COLUMN_NAME</td>
-<td>字段名</td>
-<td>pt</td>
-</tr>
-<tr>
-<td>TYPE_NAME</td>
-<td>字段类型</td>
-<td>string</td>
-</tr>
-<tr>
-<td>INTEGER_IDX</td>
-<td>字段顺序</td>
-<td>2</td>
-</tr>
-</tbody>
-</table>
-<h3 id="6-Hive表分区相关的元数据表"><a href="#6-Hive表分区相关的元数据表" class="headerlink" title="6. Hive表分区相关的元数据表"></a>6. Hive表分区相关的元数据表</h3><hr>
-<p>主要涉及PARTITIONS、PARTITION_KEYS、PARTITION_KEY_VALS、PARTITION_PARAMS</p>
-<ul>
-<li>PARTITIONS<br>该表存储表分区的基本信息。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>元数据表字段</th>
-<th>说明</th>
-<th>示例数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PART_ID</td>
-<td>分区ID</td>
-<td>1</td>
-</tr>
-<tr>
-<td>CREATE_TIME</td>
-<td>分区创建时间</td>
-</tr>
-<tr>
-<td>LAST_ACCESS_TIME</td>
-<td>最后一次访问时间</td>
-</tr>
-<tr>
-<td>PART_NAME</td>
-<td>分区名</td>
-<td>pt=2015-06-12</td>
-</tr>
-<tr>
-<td>SD_ID</td>
-<td>分区存储ID</td>
-<td>21</td>
-</tr>
-<tr>
-<td>TBL_ID</td>
-<td>表ID</td>
-<td>2</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>PARTITION_KEYS<br>该表存储分区的字段信息。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>元数据表字段</th>
-<th>说明</th>
-<th>示例数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>TBL_ID</td>
-<td>表ID</td>
-<td>2</td>
-</tr>
-<tr>
-<td>PKEY_COMMENT</td>
-<td>分区字段说明</td>
-</tr>
-<tr>
-<td>PKEY_NAME</td>
-<td>分区字段名</td>
-<td>pt</td>
-</tr>
-<tr>
-<td>PKEY_TYPE</td>
-<td>分区字段类型</td>
-<td>string</td>
-</tr>
-<tr>
-<td>INTEGER_IDX</td>
-<td>分区字段顺序</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>PARTITION_KEY_VALS<br>该表存储分区字段值。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>元数据表字段</th>
-<th>说明</th>
-<th>示例数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PART_ID</td>
-<td>分区ID</td>
-<td>2</td>
-</tr>
-<tr>
-<td>PART_KEY_VAL</td>
-<td>分区字段值</td>
-<td>2015-06-12</td>
-</tr>
-<tr>
-<td>INTEGER_IDX</td>
-<td>分区字段值顺序</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>PARTITION_PARAMS<br>该表存储分区的属性信息。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>元数据表字段</th>
-<th>说明</th>
-<th>示例数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PART_ID</td>
-<td>分区ID</td>
-<td>2</td>
-</tr>
-<tr>
-<td>PARAM_KEY</td>
-<td>分区属性名</td>
-<td>numFiles、numRows</td>
-</tr>
-<tr>
-<td>PARAM_VALUE</td>
-<td>分区属性值</td>
-<td>15、502195</td>
-</tr>
-</tbody>
-</table>
-<h3 id="7-其他不常用的元数据表"><a href="#7-其他不常用的元数据表" class="headerlink" title="7. 其他不常用的元数据表"></a>7. 其他不常用的元数据表</h3><hr>
-<ul>
-<li>DB_PRIVS</li>
-</ul>
-<p>数据库权限信息表。通过GRANT语句对数据库授权后，将会在这里存储。</p>
-<ul>
-<li>IDXS</li>
-</ul>
-<p>索引表，存储Hive索引相关的元数据</p>
-<ul>
-<li>INDEX_PARAMS</li>
-</ul>
-<p>索引相关的属性信息。</p>
-<ul>
-<li>TAB_COL_STATS</li>
-</ul>
-<p>表字段的统计信息。使用ANALYZE语句对表字段分析后记录在这里。</p>
-<ul>
-<li>TBL_COL_PRIVS</li>
-</ul>
-<p>表字段的授权信息</p>
-<ul>
-<li>PART_PRIVS</li>
-</ul>
-<p>分区的授权信息</p>
-<ul>
-<li>PART_COL_STATS</li>
-</ul>
-<p>分区字段的统计信息。</p>
-<ul>
-<li>PART_COL_PRIVS</li>
-</ul>
-<p>分区字段的权限信息。</p>
-<ul>
-<li>FUNCS</li>
-</ul>
-<p>用户注册的函数信息</p>
-<ul>
-<li>FUNC_RU</li>
-</ul>
-<p>用户注册函数的资源信息</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/28/Hive元数据结构/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Mac中更换JDK版本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/21/Mac中更换JDK版本/">Mac中更换JDK版本</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/21/Mac中更换JDK版本/" class="archive-article-date">
-  	<time datetime="2018-09-21T08:40:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>作为一个程序猿拿到Mac之后的第一步就是开机开始安装开发环境了，想都没想就立马下载最新版本JDK，配置完后就看到文档里要求JDK8了。<br>果然愣头青没有好下场 ：）<br>
-        
-          <a class="article-more-a" href="/2018/09/21/Mac中更换JDK版本/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/21/Mac中更换JDK版本/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-GitHub-GitLab中的Git命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/20/GitHub-GitLab中的Git命令/">GitHub/GitLab中的Git命令</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/20/GitHub-GitLab中的Git命令/" class="archive-article-date">
-  	<time datetime="2018-09-20T02:34:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>无论是使用知名的GitLab、GitHub还是使用国内的码云，Git命令都是绕不过的一道门槛。Git是目前世界上最先进的分布式版本控制系统。我们没有必要成为Git大师，只需要学会Git的一些简单命令以实现对以上几种代码托管平台的使用就好了。下面以使用GitLab为例(各大托管平台操作都很相似甚至一样)</p>
-<p>前提：已经安装了Git并在GitLab上配置好了SSH免密而且创建好了远程项目</p>
-<h3 id="一、将本地项目上传到GitLab上："><a href="#一、将本地项目上传到GitLab上：" class="headerlink" title="一、将本地项目上传到GitLab上："></a>一、将本地项目上传到GitLab上：</h3><h5 id="1、创建空文件夹-本地仓库"><a href="#1、创建空文件夹-本地仓库" class="headerlink" title="1、创建空文件夹(本地仓库)"></a>1、创建空文件夹(本地仓库)</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/1.jpg">
-<h5 id="2、右键点击文件夹选择-Git-Bash-Here-nbsp-进入Git命令行模式"><a href="#2、右键点击文件夹选择-Git-Bash-Here-nbsp-进入Git命令行模式" class="headerlink" title="2、右键点击文件夹选择 Git Bash Here&nbsp;进入Git命令行模式"></a>2、右键点击文件夹选择 Git Bash Here&nbsp;进入Git命令行模式</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/2.jpg">
-<h5 id="3、连接远程项目-GitLab中创建好的项目中复制SSH地址"><a href="#3、连接远程项目-GitLab中创建好的项目中复制SSH地址" class="headerlink" title="3、连接远程项目(GitLab中创建好的项目中复制SSH地址)"></a>3、连接远程项目(GitLab中创建好的项目中复制SSH地址)</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/3.jpg">
-<h5 id="4、克隆项目到本地"><a href="#4、克隆项目到本地" class="headerlink" title="4、克隆项目到本地"></a>4、克隆项目到本地</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/4.jpg">
-<p>此时本地文件夹中产生了文件<br><img src="/2018/09/20/GitHub-GitLab中的Git命令/5.jpg"></p>
-<h5 id="5、在命令行模式下进入此文件夹"><a href="#5、在命令行模式下进入此文件夹" class="headerlink" title="5、在命令行模式下进入此文件夹"></a>5、在命令行模式下进入此文件夹</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/6.jpg">
-<h5 id="6、进入项目后默认为master分支"><a href="#6、进入项目后默认为master分支" class="headerlink" title="6、进入项目后默认为master分支"></a>6、进入项目后默认为master分支</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/7.jpg">
-<p>一般master为生产分支，开发项目时要创建其他分支并在上面操作项目(此处要将本地项目上传到Neo4jGraph分支)查看分支(因为我远程项目已经创建了两个分支，所以此处查看时有三个分支master、Neo4jGraph、intoNeo4j)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -a <span class="comment">#查看全部分支</span></span><br></pre></td></tr></table></figure></p>
-<img src="/2018/09/20/GitHub-GitLab中的Git命令/8.jpg">
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout xxx <span class="comment">#切换到xxx分支</span></span><br><span class="line">git checkout -b xxx <span class="comment">#创建xxx分支并切换</span></span><br></pre></td></tr></table></figure>
-<h5 id="7、因为要将项目上传到Neo4jGraph分支，切换到Neo4jGraph分支上"><a href="#7、因为要将项目上传到Neo4jGraph分支，切换到Neo4jGraph分支上" class="headerlink" title="7、因为要将项目上传到Neo4jGraph分支，切换到Neo4jGraph分支上"></a>7、因为要将项目上传到Neo4jGraph分支，切换到Neo4jGraph分支上</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/9.jpg">
-<h5 id="8、将本地项目加进本地仓库中-graph-platform为本地项目，Readme文件为项目文档，在GitLab查看时会自动展示readme文件"><a href="#8、将本地项目加进本地仓库中-graph-platform为本地项目，Readme文件为项目文档，在GitLab查看时会自动展示readme文件" class="headerlink" title="8、将本地项目加进本地仓库中(graph-platform为本地项目，Readme文件为项目文档，在GitLab查看时会自动展示readme文件)"></a>8、将本地项目加进本地仓库中(graph-platform为本地项目，Readme文件为项目文档，在GitLab查看时会自动展示readme文件)</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/10.jpg">
-<h5 id="9、将添加操作加到暂存区git-add-nbsp-nbsp-将文件夹中的内容全部添加到暂存区-如果需要将内容全部上传的话"><a href="#9、将添加操作加到暂存区git-add-nbsp-nbsp-将文件夹中的内容全部添加到暂存区-如果需要将内容全部上传的话" class="headerlink" title="9、将添加操作加到暂存区git add .&nbsp; &nbsp;将文件夹中的内容全部添加到暂存区(如果需要将内容全部上传的话)"></a>9、将添加操作加到暂存区git add .&nbsp; &nbsp;将文件夹中的内容全部添加到暂存区(如果需要将内容全部上传的话)</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add xxx <span class="comment">#将xxx添加到暂存区</span></span><br></pre></td></tr></table></figure>
-<img src="/2018/09/20/GitHub-GitLab中的Git命令/11.jpg">
-<h5 id="10、查看状态-可知我们的操作已经被添加到了暂存区等待提交"><a href="#10、查看状态-可知我们的操作已经被添加到了暂存区等待提交" class="headerlink" title="10、查看状态(可知我们的操作已经被添加到了暂存区等待提交)"></a>10、查看状态(可知我们的操作已经被添加到了暂存区等待提交)</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status <span class="comment">#查看状态</span></span><br></pre></td></tr></table></figure>
-<img src="/2018/09/20/GitHub-GitLab中的Git命令/12.jpg">
-<h5 id="11、把暂存区的内容提交到当前分支-此时已经将项目上传到了本地分支上"><a href="#11、把暂存区的内容提交到当前分支-此时已经将项目上传到了本地分支上" class="headerlink" title="11、把暂存区的内容提交到当前分支(此时已经将项目上传到了本地分支上)"></a>11、把暂存区的内容提交到当前分支(此时已经将项目上传到了本地分支上)</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">"xxx"</span> <span class="comment">#将暂存区内容提交到当前分支并起了个版本名称标识</span></span><br></pre></td></tr></table></figure>
-<img src="/2018/09/20/GitHub-GitLab中的Git命令/13.jpg">
-<h5 id="12、将本地分支push到远程"><a href="#12、将本地分支push到远程" class="headerlink" title="12、将本地分支push到远程"></a>12、将本地分支push到远程</h5><p>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;&nbsp;&nbsp; &nbsp;但一般为了方便将远程主机名默认为 origingit<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">push origin Neo4jGraph <span class="comment">#将内容push到远程Neo4jGraph分支上</span></span><br></pre></td></tr></table></figure></p>
-<p>没有的话远程自动创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin Neo4jGraph:Neo4jGraph</span><br></pre></td></tr></table></figure></p>
-<img src="/2018/09/20/GitHub-GitLab中的Git命令/14.jpg">
-<h5 id="13、查看GitLab，项目已经成功上传"><a href="#13、查看GitLab，项目已经成功上传" class="headerlink" title="13、查看GitLab，项目已经成功上传"></a>13、查看GitLab，项目已经成功上传</h5><img src="/2018/09/20/GitHub-GitLab中的Git命令/15.jpg">
-<blockquote>
-<p>如果要删除项目中的某个文件夹或者文件则只需要进入分支后将相应文件删除然后再将留下的内容全部add再commit最后push就好了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ls <span class="comment">#查看有什么内容</span></span><br><span class="line">rm -rf xxx <span class="comment">#强制并递归删除文件xxx</span></span><br><span class="line">git add . <span class="comment">#将剩余内容再次添加到到暂存区</span></span><br><span class="line">git commit -m <span class="string">"xxx"</span> <span class="comment">#提交</span></span><br><span class="line">git push <span class="comment">#上传</span></span><br></pre></td></tr></table></figure></p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/20/GitHub-GitLab中的Git命令/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hive中join的原理和机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/19/Hive中join的原理和机制/">Hive中join的原理和机制</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/19/Hive中join的原理和机制/" class="archive-article-date">
-  	<time datetime="2018-09-19T09:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>笼统的说，Hive中的Join可分为<strong>Common Join</strong>（Reduce阶段完成join）和<strong>Map Join</strong>（Map阶段完成join）。本文简单介绍一下两种join的原理和机制。<br>
-        
-          <a class="article-more-a" href="/2018/09/19/Hive中join的原理和机制/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/19/Hive中join的原理和机制/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-博客的诞生" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/18/博客的诞生/">博客的诞生</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/18/博客的诞生/" class="archive-article-date">
-  	<time datetime="2018-09-18T10:36:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>很早就想搭建一个博客来记录一些心得和笔记了<br>周转了很多人的教程都多多少少存在一些小问题,综合了几个终于把自己的搭建完成了<br>整理了一下记录下来<br>
-        
-          <a class="article-more-a" href="/2018/09/18/博客的诞生/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/18/博客的诞生/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -1424,8 +360,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
