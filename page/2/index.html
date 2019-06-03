@@ -152,6 +152,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Tomcat做图片服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/24/Tomcat做图片服务器/">Tomcat做图片服务器</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/24/Tomcat做图片服务器/" class="archive-article-date">
+  	<time datetime="2018-10-24T06:48:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用Linux做服务器时常常将大量图片存放到某个目录下面<br>而图片往往是某些数据下的一个属性,这些图片一般都要随着他的父节点一起存入数据库中,而在数据库中表示图片的字段存储的并不是该图片所在的绝对路径,而是一段供浏览器可访问的虚拟路径<br>这就需要配置图片服务器使得这些图片可被访问</p>
+<h6 id="1-安装Tomcat"><a href="#1-安装Tomcat" class="headerlink" title="1.安装Tomcat"></a>1.安装Tomcat</h6><hr>
+<p>下载并解压安装包,配置好Tomcat依赖的JDK环境变量</p>
+<h6 id="2-修改文件"><a href="#2-修改文件" class="headerlink" title="2.修改文件"></a>2.修改文件</h6><hr>
+<p>在Tomcat根目录下 /conf 下有server.xml文件<br>修改如下:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Engine</span> <span class="attr">name</span>=<span class="string">"Catalina"</span> <span class="attr">defaultHost</span>=<span class="string">"此处将localhost改为自己的公网ip"</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">"同上面的defaultHost"</span>  <span class="attr">appBase</span>=<span class="string">"webapps"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">unpackWARs</span>=<span class="string">"true"</span> <span class="attr">autoDeploy</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"本地图片的磁盘存放路径,如 /home/imgs/"</span> <span class="attr">path</span>=<span class="string">"通过Tomcat访问的路径(虚拟路径),如/imgs/"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h6 id="3-访问"><a href="#3-访问" class="headerlink" title="3.访问"></a>3.访问</h6><p>在浏览器输入访问<br><code>ip:8080/imgs/xxxx.jpg</code><br>或者修改server.xml文件 修改 HTTP访问端口为80即可在访问地址输入中省略端口访问<br><code>ip/imgs/xxxx.jpg</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tomcat</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/24/Tomcat做图片服务器/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-使用SecureCRT传输文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

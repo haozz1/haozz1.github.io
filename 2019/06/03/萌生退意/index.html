@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Shell 中读取文件 | 史晨昊</title>
+  <title>萌生退意 | 史晨昊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="shell 有好几种读取文件内容的方法,就像代码一样不同的办法解决同一种问题首先我们创建一个有内容的txt文件1234cat test.txtaaabbbccc ddd 1.管道管道顾名思义就是将命令像一个管道一样依次执行,上一个命令的结果当做下一个命令的输入 123456#! /bin/shcat test.txt | while read linedo    echo $linedone 输出">
-<meta name="keywords" content="Linux">
+  <meta name="description" content="哎">
+<meta name="keywords" content="随笔">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Shell 中读取文件">
-<meta property="og:url" content="http://yoursite.com/2019/05/23/Shell-中读取文件/index.html">
+<meta property="og:title" content="萌生退意">
+<meta property="og:url" content="http://yoursite.com/2019/06/03/萌生退意/index.html">
 <meta property="og:site_name" content="史晨昊">
-<meta property="og:description" content="shell 有好几种读取文件内容的方法,就像代码一样不同的办法解决同一种问题首先我们创建一个有内容的txt文件1234cat test.txtaaabbbccc ddd 1.管道管道顾名思义就是将命令像一个管道一样依次执行,上一个命令的结果当做下一个命令的输入 123456#! /bin/shcat test.txt | while read linedo    echo $linedone 输出">
+<meta property="og:description" content="哎">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-23T04:20:21.016Z">
+<meta property="og:updated_time" content="2019-06-03T02:59:13.261Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shell 中读取文件">
-<meta name="twitter:description" content="shell 有好几种读取文件内容的方法,就像代码一样不同的办法解决同一种问题首先我们创建一个有内容的txt文件1234cat test.txtaaabbbccc ddd 1.管道管道顾名思义就是将命令像一个管道一样依次执行,上一个命令的结果当做下一个命令的输入 123456#! /bin/shcat test.txt | while read linedo    echo $linedone 输出">
+<meta name="twitter:title" content="萌生退意">
+<meta name="twitter:description" content="哎">
   
     <link rel="alternative" href="/atom.xml" title="史晨昊" type="application/atom+xml">
   
@@ -155,40 +155,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Shell-中读取文件" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-萌生退意" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Shell 中读取文件
+      萌生退意
     </h1>
   
 
         
-        <a href="/2019/05/23/Shell-中读取文件/" class="archive-article-date">
-  	<time datetime="2019-05-23T03:13:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-23</time>
+        <a href="/2019/06/03/萌生退意/" class="archive-article-date">
+  	<time datetime="2019-06-03T02:58:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>shell 有好几种读取文件内容的方法,就像代码一样不同的办法解决同一种问题<br>首先我们创建一个有内容的txt文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat test.txt</span><br><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">ccc ddd</span><br></pre></td></tr></table></figure></p>
-<h5 id="1-管道"><a href="#1-管道" class="headerlink" title="1.管道"></a>1.管道</h5><p>管道顾名思义就是将命令像一个管道一样依次执行,上一个命令的结果当做下一个命令的输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/sh</span></span><br><span class="line"></span><br><span class="line">cat test.txt | <span class="keyword">while</span> <span class="built_in">read</span> line</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$line</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<p>输出如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">ccc ddd</span><br></pre></td></tr></table></figure></p>
-<p>但是值得注意的是如果我希望在循环中做一个累加计算,然后在循环结束后得到累加之后的值,使用管道法是不行的<br>举个例子<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/sh</span></span><br><span class="line">count=0</span><br><span class="line">cat test.txt | <span class="keyword">while</span> <span class="built_in">read</span> line</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">let</span> count++</span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$count</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$count</span></span><br></pre></td></tr></table></figure></p>
-<p>这时的输出结果是这样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">0</span><br></pre></td></tr></table></figure></p>
-<p>在循环中累加的count值在循环结束后又变成了0,原因还没探明(<strong><em>TODO</em></strong>)</p>
-<h5 id="2-while"><a href="#2-while" class="headerlink" title="2.while"></a>2.while</h5><p>除了使用管道的方法外,也可以直接使用while循环来读取文件内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/sh</span></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> line</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$line</span></span><br><span class="line"><span class="keyword">done</span>  &lt; test.txt</span><br></pre></td></tr></table></figure></p>
-<p>输出结果符合我们的预期<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">ccc ddd</span><br></pre></td></tr></table></figure></p>
-<p>以上的两个方法都是使用了read<br>read命令接收标准输入,或其他文件描述符的输入,得到输入后,read命令将数据放入一个标准变量中<br>利用read读取文件时,每次调用read命令都会读取文件中的”一行”文本<br>当文件没有可读的行时,read命令将以非零状态退出</p>
-<h5 id="3-for"><a href="#3-for" class="headerlink" title="3.for"></a>3.for</h5><p>有while循环的地方肯定有我for循环!!<br>使用变量在file中循环取值,取值的分隔符由<code>$IFS</code>确定<br>而<code>$IFS</code>默认是空白(包括:空格,制表符,换行符),也就是说如果使用默认的分隔符<code>空格</code>也会被当做一次新的循环<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/sh</span></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> `cat test.txt`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$line</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
-<p>这次的输出和上几次的就不同了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">ccc</span><br><span class="line">ddd</span><br></pre></td></tr></table></figure></p>
-<p><code>$IFS</code>是系统变量,如果修改掉可能会造成意想不到的结果,所以如有需要可以在shell里临时赋值给<code>$IFS</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/sh</span></span><br><span class="line">IFS=<span class="string">"\n"</span></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> `cat test.txt`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$line</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
-<p>这样一来输出就回到之前的样子了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">ccc ddd</span><br></pre></td></tr></table></figure></p>
+        <p>哎</p>
 
       
 
@@ -228,7 +215,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		
 		</ul>
@@ -284,7 +271,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/23/Shell-中读取文件/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/03/萌生退意/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -298,18 +285,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/06/03/萌生退意/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          萌生退意
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/05/15/温暖的心/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">温暖的心</div>
+    <a href="/2019/05/23/Shell-中读取文件/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Shell 中读取文件</div>
       <i class="icon-circle-right"></i>
     </a>
   
