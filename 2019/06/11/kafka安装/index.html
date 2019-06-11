@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Git | 史晨昊</title>
+  <title>kafka安装 | 史晨昊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="史晨昊">
-<meta property="og:url" content="http://yoursite.com/tags/Git/index.html">
+  <meta name="description" content="Apache Kafka is a distributed streaming platform ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group servic">
+<meta name="keywords" content="kafka">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kafka安装">
+<meta property="og:url" content="http://yoursite.com/2019/06/11/kafka安装/index.html">
 <meta property="og:site_name" content="史晨昊">
+<meta property="og:description" content="Apache Kafka is a distributed streaming platform ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group servic">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/06/11/kafka安装/conf.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/11/kafka安装/config.png">
+<meta property="og:updated_time" content="2019-06-11T07:29:33.430Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="史晨昊">
+<meta name="twitter:title" content="kafka安装">
+<meta name="twitter:description" content="Apache Kafka is a distributed streaming platform ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group servic">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/11/kafka安装/conf.png">
   
     <link rel="alternative" href="/atom.xml" title="史晨昊" type="application/atom+xml">
   
@@ -150,60 +158,247 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-kafka安装" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/20/GitHub-GitLab中的Git命令/" class="archive-article-date">
-  	<time datetime="2018-09-20T02:34:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/20/GitHub-GitLab中的Git命令/">GitHub/GitLab中的Git命令</a>
+    <h1 class="article-title" itemprop="name">
+      kafka安装
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/06/11/kafka安装/" class="archive-article-date">
+  	<time datetime="2019-06-11T06:22:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Apache Kafka is a distributed streaming platform</p>
+<p>ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services</p>
+<a id="more"></a>
+<h4 id="首先讲一下Kafka中涉及的一些名词概念"><a href="#首先讲一下Kafka中涉及的一些名词概念" class="headerlink" title="首先讲一下Kafka中涉及的一些名词概念"></a>首先讲一下Kafka中涉及的一些名词概念</h4><p>Broker: 服务代理.实质上就是kafka集群的一个物理节点.<br>Topic: 特定类型的消息流.”消息”是字节的有效负载(payload),话题是消息的分类的名或种子名<br>Partition: Topic的子概念.一个Topic可以有多个Partition,但一个Partition只属于一个Topic.此外,Partition则是Consumer消费的基本单元.消费时.每个消费线程最多只能使用一个Partition.一个topic中partition的数量,就是每个user group中消费该topic的最大并行数量.<br>UserGroup: 为了便于实现MQ中多播,重复消费等引入的概念.如果ConsumerA和ConsumerB属于同一个UserGroup,那么对于ConsumerA消费过的数据,ConsumerB就不能再消费了.也就是说,同一个user group中的consumer使用同一套offset<br>Offset: Offset是专门对于Partition和UserGroup而言的,用于记录某个UserGroup在某个Partition中当前已经消费到达的位置.<br>Producer: 生产者,能够发布消息到话题的任何对象.直接向某topic下的某partition发送数据.leader负责主备策略、写入数据、发送ack.<br>Consumer: 消费者.可以订阅一个或者多个话题,通过fetch的方式从Broker中拉取数据,从而消费这些已经发布的信息的对象.kafka server不直接负责每个consumer消费到了哪,所以需要client和zk联合维护每个partition读到了哪里,即offset</p>
+<h4 id="搭建Kafka集群"><a href="#搭建Kafka集群" class="headerlink" title="搭建Kafka集群"></a>搭建Kafka集群</h4><h5 id="1-搭建"><a href="#1-搭建" class="headerlink" title="1. 搭建"></a>1. 搭建</h5><p>如果你的机器可以联机互联网的话就再好不过了,这将节省很多时间而且操作更简单.<br>我这里以linux的机器为例.</p>
+<blockquote>
+<p>首先安装zookeeper</p>
+</blockquote>
+<p>因为是可以连接互联网,所以我们就不使用kafka自带的zk了,来安装一个吧,反正也很简单<br>在<a href="https://zookeeper.apache.org/index.html" target="_blank" rel="noopener">zookeeper官网</a>里我们找到了<a href="https://www.apache.org/dyn/closer.cgi/zookeeper/" target="_blank" rel="noopener">Download页面</a>,根据里面提供的镜像地址直接是有wget下载<br><code>wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.5.5/apache-zookeeper-3.5.5.tar.gz</code><br>等待zk下载并解压完毕后,进入zk的目录下面<code>cd apache-zookeeper-3.5.5/conf</code><br>这里包含了所有zk的配置文件(也就三个~)</p>
+<img src="/2019/06/11/kafka安装/conf.png">
+<p>我们只需要拷贝一份zoo_sample.cfg并作出修改<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp zoo_sample.cfg zoo.cfg</span><br><span class="line">vim zoo.cfg</span><br></pre></td></tr></table></figure></p>
+<p>编辑之后的内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tickTime=2000</span><br><span class="line">initLimit=10</span><br><span class="line">syncLimit=5</span><br><span class="line">#目录自行创建</span><br><span class="line">dataDir=/data/zookeeper/zk1/data</span><br><span class="line">dataLogDir=/data/zookeeper/zk1/log</span><br><span class="line">clientPort=2181</span><br><span class="line">server.1=[你的host]:2888:3888</span><br></pre></td></tr></table></figure></p>
+<p>其中dataDir和dataLogDir根据你自己创建的目录来写.<br>如果你想要在一台机器上模拟一个集群启动多个zk节点的话,就重复以上操作多拷贝zoo.cfg文件,例如我需要三个节点的zk集群,<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp zoo_sample.cfg zoo1.cfg</span><br><span class="line">cp zoo_sample.cfg zoo2.cfg</span><br><span class="line">cp zoo_sample.cfg zoo3.cfg</span><br></pre></td></tr></table></figure></p>
+<p>并对每个cfg文件作出修改,数据与日志目录不要重复,并且在每一份文件中都要写入如下内容(端口可自定)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server.1=192.168.178.22:2287:3387</span><br><span class="line">server.2=192.168.178.22:2288:3388</span><br><span class="line">server.3=192.168.178.22:2289:3389</span><br></pre></td></tr></table></figure></p>
+<p>然后到每个zk节点的dataDir目录下面创建myid文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /data/zookeeper/zk1/data</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"1"</span> &gt; myid</span><br></pre></td></tr></table></figure></p>
+<p>三个节点都要创建对应的myid文件,值要根据上面cfg文件中写的server.id一一对应</p>
+<p>接下来就是启动zk了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ../zookeeper/bin</span><br><span class="line">./zkServer.sh start ../conf/zoo1.cfg</span><br><span class="line">./zkServer.sh start ../conf/zoo2.cfg</span><br><span class="line">./zkServer.sh start ../conf/zoo3.cfg</span><br><span class="line"><span class="comment"># 然后查看zk节点的状态</span></span><br><span class="line">./zkServer.sh status ../conf/zoo2.cfg</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: ../conf/zoo2.cfg</span><br><span class="line">Mode: leader</span><br></pre></td></tr></table></figure></p>
+<p>三个节点的zk集群启动成功,id为2的zk节点是leader</p>
+<blockquote>
+<p>安装Kafka</p>
+</blockquote>
+<p>同样我们在<a href="http://kafka.apache.org/" target="_blank" rel="noopener">Kafka官网</a>里找到<a href="http://kafka.apache.org/downloads" target="_blank" rel="noopener">下载页面</a>,然后找到最新的<a href="https://www.apache.org/dyn/closer.cgi?path=/kafka/2.2.1/kafka_2.11-2.2.1.tgz" target="_blank" rel="noopener">镜像地址</a>直接下载压缩包<br><code>wget http://mirrors.tuna.tsinghua.edu.cn/apache/kafka/2.2.1/kafka_2.11-2.2.1.tgz</code><br>下载并解压完成后进到目录里<code>cd kafka/config</code></p>
+<img src="/2019/06/11/kafka安装/config.png">
+<p>同样我们假设启动两个broker的kafka集群,拷贝两份<code>server.properties文件</code>并做修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">cp server.properties server1.properties</span><br><span class="line"># 修改以下内容</span><br><span class="line">broker.id=1</span><br><span class="line">listeners=PLAINTEXT://192.168.178.22:9092</span><br><span class="line">log.dirs=/data/kafka/logs/kafka-logs-1</span><br><span class="line">zookeeper.connect=192.168.178.22:2182,192.168.178.22:2181,192.168.178.22:2183</span><br><span class="line"></span><br><span class="line">cp server.properties server2.properties</span><br><span class="line"># 修改以下内容</span><br><span class="line">broker.id=2</span><br><span class="line">listeners=PLAINTEXT://192.168.178.22:9093</span><br><span class="line">log.dirs=/data/kafka/logs/kafka-logs-2</span><br><span class="line">zookeeper.connect=192.168.178.22:2182,192.168.178.22:2181,192.168.178.22:2183</span><br></pre></td></tr></table></figure></p>
+<p>启动两个kafka的broker<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /data/kafka/kafka-2.11/bin</span><br><span class="line"><span class="comment"># 将日志写入文件并置于后台启动</span></span><br><span class="line">kafka-server-start.sh ../config/server1.properties &gt; broker1.log 2&gt;&amp;1 &amp;</span><br><span class="line">kafka-server-start.sh ../config/server2.properties &gt; broker2.log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure></p>
+<p>至此,kafka搭建完成,可以使用<code>jobs</code>命令查看一下任务状况<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@<span class="built_in">test</span>-hao config]<span class="comment"># jobs</span></span><br><span class="line">[1]-  Running                 kafka-server-start.sh ../config/server2.properties &gt; broker2.log 2&gt;&amp;1 &amp;  (wd: /data/kafka/kafka_2.11-2.2.1/bin)</span><br><span class="line">[2]+  Running                 kafka-server-start.sh ../config/server1.properties &gt; broker1.log 2&gt;&amp;1 &amp;  (wd: /data/kafka/kafka_2.11-2.2.1/bin)</span><br></pre></td></tr></table></figure></p>
+<p>如果你的机器无法连接互联网,下载好相应的tar包拷贝进去就可以了</p>
+<h5 id="2-测试Kafka"><a href="#2-测试Kafka" class="headerlink" title="2. 测试Kafka"></a>2. 测试Kafka</h5><p><code>`</code>bash<br>cd /data/kafka/kafka-2.11/bin</p>
+<p>#创建主题<br>./kafka-topics.sh \<br>–create \<br>–bootstrap-server 192.168.178.22:9092,192.168.178.22:9093 \<br>–replication-factor 2 \<br>–partitions 3 \<br>–topic test</p>
+<h1 id="查看broker的情况"><a href="#查看broker的情况" class="headerlink" title="查看broker的情况"></a>查看broker的情况</h1><p>./kafka-topics.sh –describe \<br>–zookeeper 10.4.121.218:3333 \<br>–topic my-replicated-topic<br>Topic:my-replicated-topic    PartitionCount:1    ReplicationFactor:3    Configs:</p>
+<pre><code># 配置情况：分区数据在节点broker.id=0、主节点是broker.id=1、副本集是broker.id=1,0,2、isr是broker.id=1,0,2
+Topic: my-replicated-topic    Partition: 0    Leader: 1    Replicas: 1,0,2    Isr: 1,0,2
+</code></pre><h1 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h1><p>./kafka-console-producer.sh \<br>–broker-list 192.168.178.22:9092,192.168.178.22:9093 \<br>–topic test<br>…<br>test1<br>test2<br>^C</p>
+<h1 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h1><h1 id="在开启一个窗口启动消费者可以看到在实时消费数据"><a href="#在开启一个窗口启动消费者可以看到在实时消费数据" class="headerlink" title="在开启一个窗口启动消费者可以看到在实时消费数据"></a>在开启一个窗口启动消费者可以看到在实时消费数据</h1><p>./kafka-console-consumer.sh \<br>–bootstrap-server 192.168.178.22:9092,192.168.178.22:9093 \<br>–from-beginning \<br>–topic test<br>…<br>test1<br>test2<br>^C</p>
+<h1 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h1><p>./kafka-topics.sh –delete \<br>–zookeeper 192.168.178.22:2181 \<br>–topic test</p>
+<h1 id="如果在server-properties文件中没有添加-delete-topic-enable-true-这一项-topic只是被标记了删除-并没有真正被删除-还需要去zk里进行手动删除-所以我一般是添加这一项的-也不会经常出现需要去删除一个topic的情况"><a href="#如果在server-properties文件中没有添加-delete-topic-enable-true-这一项-topic只是被标记了删除-并没有真正被删除-还需要去zk里进行手动删除-所以我一般是添加这一项的-也不会经常出现需要去删除一个topic的情况" class="headerlink" title="如果在server.properties文件中没有添加 delete.topic.enable=true 这一项,topic只是被标记了删除,并没有真正被删除,还需要去zk里进行手动删除,所以我一般是添加这一项的(也不会经常出现需要去删除一个topic的情况)"></a>如果在server.properties文件中没有添加 delete.topic.enable=true 这一项,topic只是被标记了删除,并没有真正被删除,还需要去zk里进行手动删除,所以我一般是添加这一项的(也不会经常出现需要去删除一个topic的情况)</h1>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/asset/wx.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kafka</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/11/kafka安装/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/06/06/测试评论系统专用贴/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">测试评论系统专用贴</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
+  
+  
+    <section id="comments" class="comments">
+    <style>
+      .comments{margin:30px;padding:10px;background:#fff}
+      @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+    </style>
+    <div id="vcomment" class="comment"></div>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cloud.panjunwen.com/av-min.js"></script>
+<!-- <script src="http://raw.githack.com/haozz1/valine/master/Valine.min.js"></script> -->
+<script src="https://deserts.io/assets/js/Valine.min.js?v=729dfcf6de"></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+   new Valine({
+            av: AV,
+            el: '#vcomment',
+            notify: notify,
+            verify: verify,
+            admin_email: "shichenhao94@163.com",
+            emoticon_url: 'https://cloud.panjunwen.com/alu',
+			      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+            app_id: "Qn3gDXzEzrAAuKdp6oSVNj18-gzGzoHsz",
+            app_key: "3JNwtTsill63XKw7GtQhIrat",
+            placeholder: "留下邮箱,评论会通过邮件通知哟~ (支持MarkDown格式~)",
+            avatar: "identicon",
+            avatar_cdn: "",
+            pageSize: ""
+    });
+    if(window.location.hash){
+          var checkExist = setInterval(function() {
+            if (document.getElementById(window.location.hash.replace("#",""))) {
+              location.href = window.location.hash;
+              clearInterval(checkExist);
+            }
+          }, 250);
+        }
+</script>
+  </section>
+  
 
 
           </div>
@@ -231,9 +426,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
