@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/06/11/kafka安装/conf.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/11/kafka安装/config.png">
-<meta property="og:updated_time" content="2019-06-11T07:29:33.430Z">
+<meta property="og:updated_time" content="2019-06-11T07:32:14.499Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kafka安装">
 <meta name="twitter:description" content="Apache Kafka is a distributed streaming platform ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group servic">
@@ -91,7 +91,7 @@
 		        
 					<a class="mail" target="_blank" href="/shichenhao94@163.com" title="mail"><i class="icon-mail"></i></a>
 		        
-					<a class="twitter" target="_blank" href="/www.twitter.com" title="twitter"><i class="icon-twitter"></i></a>
+					<a class="twitter" target="_blank" href="https://twitter.com/BestHaoz" title="twitter"><i class="icon-twitter"></i></a>
 		        
 			</div>
 		</nav>
@@ -132,7 +132,7 @@
 			        
 						<a class="mail" target="_blank" href="/shichenhao94@163.com" title="mail"><i class="icon-mail"></i></a>
 			        
-						<a class="twitter" target="_blank" href="/www.twitter.com" title="twitter"><i class="icon-twitter"></i></a>
+						<a class="twitter" target="_blank" href="https://twitter.com/BestHaoz" title="twitter"><i class="icon-twitter"></i></a>
 			        
 				</div>
 			</nav>
@@ -205,15 +205,8 @@
 <p>启动两个kafka的broker<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /data/kafka/kafka-2.11/bin</span><br><span class="line"><span class="comment"># 将日志写入文件并置于后台启动</span></span><br><span class="line">kafka-server-start.sh ../config/server1.properties &gt; broker1.log 2&gt;&amp;1 &amp;</span><br><span class="line">kafka-server-start.sh ../config/server2.properties &gt; broker2.log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure></p>
 <p>至此,kafka搭建完成,可以使用<code>jobs</code>命令查看一下任务状况<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@<span class="built_in">test</span>-hao config]<span class="comment"># jobs</span></span><br><span class="line">[1]-  Running                 kafka-server-start.sh ../config/server2.properties &gt; broker2.log 2&gt;&amp;1 &amp;  (wd: /data/kafka/kafka_2.11-2.2.1/bin)</span><br><span class="line">[2]+  Running                 kafka-server-start.sh ../config/server1.properties &gt; broker1.log 2&gt;&amp;1 &amp;  (wd: /data/kafka/kafka_2.11-2.2.1/bin)</span><br></pre></td></tr></table></figure></p>
 <p>如果你的机器无法连接互联网,下载好相应的tar包拷贝进去就可以了</p>
-<h5 id="2-测试Kafka"><a href="#2-测试Kafka" class="headerlink" title="2. 测试Kafka"></a>2. 测试Kafka</h5><p><code>`</code>bash<br>cd /data/kafka/kafka-2.11/bin</p>
-<p>#创建主题<br>./kafka-topics.sh \<br>–create \<br>–bootstrap-server 192.168.178.22:9092,192.168.178.22:9093 \<br>–replication-factor 2 \<br>–partitions 3 \<br>–topic test</p>
-<h1 id="查看broker的情况"><a href="#查看broker的情况" class="headerlink" title="查看broker的情况"></a>查看broker的情况</h1><p>./kafka-topics.sh –describe \<br>–zookeeper 10.4.121.218:3333 \<br>–topic my-replicated-topic<br>Topic:my-replicated-topic    PartitionCount:1    ReplicationFactor:3    Configs:</p>
-<pre><code># 配置情况：分区数据在节点broker.id=0、主节点是broker.id=1、副本集是broker.id=1,0,2、isr是broker.id=1,0,2
-Topic: my-replicated-topic    Partition: 0    Leader: 1    Replicas: 1,0,2    Isr: 1,0,2
-</code></pre><h1 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h1><p>./kafka-console-producer.sh \<br>–broker-list 192.168.178.22:9092,192.168.178.22:9093 \<br>–topic test<br>…<br>test1<br>test2<br>^C</p>
-<h1 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h1><h1 id="在开启一个窗口启动消费者可以看到在实时消费数据"><a href="#在开启一个窗口启动消费者可以看到在实时消费数据" class="headerlink" title="在开启一个窗口启动消费者可以看到在实时消费数据"></a>在开启一个窗口启动消费者可以看到在实时消费数据</h1><p>./kafka-console-consumer.sh \<br>–bootstrap-server 192.168.178.22:9092,192.168.178.22:9093 \<br>–from-beginning \<br>–topic test<br>…<br>test1<br>test2<br>^C</p>
-<h1 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h1><p>./kafka-topics.sh –delete \<br>–zookeeper 192.168.178.22:2181 \<br>–topic test</p>
-<h1 id="如果在server-properties文件中没有添加-delete-topic-enable-true-这一项-topic只是被标记了删除-并没有真正被删除-还需要去zk里进行手动删除-所以我一般是添加这一项的-也不会经常出现需要去删除一个topic的情况"><a href="#如果在server-properties文件中没有添加-delete-topic-enable-true-这一项-topic只是被标记了删除-并没有真正被删除-还需要去zk里进行手动删除-所以我一般是添加这一项的-也不会经常出现需要去删除一个topic的情况" class="headerlink" title="如果在server.properties文件中没有添加 delete.topic.enable=true 这一项,topic只是被标记了删除,并没有真正被删除,还需要去zk里进行手动删除,所以我一般是添加这一项的(也不会经常出现需要去删除一个topic的情况)"></a>如果在server.properties文件中没有添加 delete.topic.enable=true 这一项,topic只是被标记了删除,并没有真正被删除,还需要去zk里进行手动删除,所以我一般是添加这一项的(也不会经常出现需要去删除一个topic的情况)</h1>
+<h5 id="2-测试Kafka"><a href="#2-测试Kafka" class="headerlink" title="2. 测试Kafka"></a>2. 测试Kafka</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">cd /data/kafka/kafka-2.11/bin</span><br><span class="line">#创建主题</span><br><span class="line">./kafka-topics.sh \</span><br><span class="line">--create \</span><br><span class="line">--bootstrap-server 192.168.178.22:9092,192.168.178.22:9093 \</span><br><span class="line">--replication-factor 2 \</span><br><span class="line">--partitions 3 \</span><br><span class="line">--topic test</span><br><span class="line"></span><br><span class="line"># 查看broker的情况</span><br><span class="line">./kafka-topics.sh --describe \</span><br><span class="line">--zookeeper 10.4.121.218:3333 \</span><br><span class="line">--topic my-replicated-topic</span><br><span class="line">Topic:my-replicated-topic	PartitionCount:1	ReplicationFactor:3	Configs:</span><br><span class="line">    # 配置情况：分区数据在节点broker.id=0、主节点是broker.id=1、副本集是broker.id=1,0,2、isr是broker.id=1,0,2</span><br><span class="line">	Topic: my-replicated-topic	Partition: 0	Leader: 1	Replicas: 1,0,2	Isr: 1,0,2</span><br><span class="line"></span><br><span class="line"># 生产者</span><br><span class="line">./kafka-console-producer.sh \</span><br><span class="line">--broker-list 192.168.178.22:9092,192.168.178.22:9093 \</span><br><span class="line">--topic test</span><br><span class="line">...</span><br><span class="line">test1</span><br><span class="line">test2</span><br><span class="line">^C</span><br><span class="line"></span><br><span class="line"># 消费者</span><br><span class="line"># 在开启一个窗口启动消费者可以看到在实时消费数据</span><br><span class="line">./kafka-console-consumer.sh \</span><br><span class="line">--bootstrap-server 192.168.178.22:9092,192.168.178.22:9093 \</span><br><span class="line">--from-beginning \</span><br><span class="line">--topic test</span><br><span class="line">...</span><br><span class="line">test1</span><br><span class="line">test2</span><br><span class="line">^C</span><br><span class="line"></span><br><span class="line"># 删除</span><br><span class="line">./kafka-topics.sh --delete \</span><br><span class="line">--zookeeper 192.168.178.22:2181 \</span><br><span class="line">--topic test</span><br><span class="line"># 如果在server.properties文件中没有添加 delete.topic.enable=true 这一项,topic只是被标记了删除,并没有真正被删除,还需要去zk里进行手动删除,所以我一般是添加这一项的(也不会经常出现需要去删除一个topic的情况)</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -504,11 +497,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,6 +510,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">kafka</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">nifi</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,14 +534,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博客</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">nifi</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
             
             <div class="clearfix"></div>
