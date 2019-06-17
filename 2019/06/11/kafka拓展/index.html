@@ -6,17 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>kafka拓展 | 史晨昊</title>
+  <title>kafka异常 | 史晨昊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="kafka">
+  <meta name="description" content="1. 远程无法访问kafka在启动之后,只能通过本地访问 修改kafka配置文件里的host,使用真实ip而不可使用localhost或者127.0.0.1 并且在 hosts文件中添加ip hostname的记录例如12345vim /etc/hosts127.0.0.1 hao# 添加下面一条记录192.168.1.1 hao  在使用开发工具本地调试的时候还是无法成功创建生产者生产数据因为远">
+<meta name="keywords" content="kafka">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kafka拓展">
+<meta property="og:title" content="kafka异常">
 <meta property="og:url" content="http://yoursite.com/2019/06/11/kafka拓展/index.html">
 <meta property="og:site_name" content="史晨昊">
+<meta property="og:description" content="1. 远程无法访问kafka在启动之后,只能通过本地访问 修改kafka配置文件里的host,使用真实ip而不可使用localhost或者127.0.0.1 并且在 hosts文件中添加ip hostname的记录例如12345vim /etc/hosts127.0.0.1 hao# 添加下面一条记录192.168.1.1 hao  在使用开发工具本地调试的时候还是无法成功创建生产者生产数据因为远">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-11T09:10:31.066Z">
+<meta property="og:updated_time" content="2019-06-17T08:10:38.642Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kafka拓展">
+<meta name="twitter:title" content="kafka异常">
+<meta name="twitter:description" content="1. 远程无法访问kafka在启动之后,只能通过本地访问 修改kafka配置文件里的host,使用真实ip而不可使用localhost或者127.0.0.1 并且在 hosts文件中添加ip hostname的记录例如12345vim /etc/hosts127.0.0.1 hao# 添加下面一条记录192.168.1.1 hao  在使用开发工具本地调试的时候还是无法成功创建生产者生产数据因为远">
   
     <link rel="alternative" href="/atom.xml" title="史晨昊" type="application/atom+xml">
   
@@ -159,7 +162,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      kafka拓展
+      kafka异常
     </h1>
   
 
@@ -172,7 +175,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h5 id="1-远程无法访问"><a href="#1-远程无法访问" class="headerlink" title="1. 远程无法访问"></a>1. 远程无法访问</h5><p>kafka在启动之后,只能通过本地访问</p>
+<p>修改kafka配置文件里的host,使用真实ip而不可使用localhost或者127.0.0.1</p>
+<p>并且在 hosts文件中添加ip hostname的记录<br>例如<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br><span class="line"></span><br><span class="line">127.0.0.1 hao</span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加下面一条记录</span></span><br><span class="line">192.168.1.1 hao</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>在使用开发工具本地调试的时候还是无法成功创建生产者生产数据<br>因为远程服务器没有公网ip,需要通过跳板机做内网端口转发,将zk端口和kafka端口在本地做映射,是能做到发送而无法接收到返回的数据请求,所以无法完成本地调试</li>
+</ul>
+
       
 
       
@@ -463,7 +472,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -475,15 +484,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">kafka</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -496,6 +501,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
               </li>
              
               <li class="article-tag-list-item">
