@@ -152,6 +152,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-kafka拓展" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/11/kafka拓展/">kafka拓展</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/11/kafka拓展/" class="archive-article-date">
+  	<time datetime="2019-06-11T09:08:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kafka</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/11/kafka拓展/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-kafka安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -743,6 +816,33 @@ Sqoop job可以监控/user/hive/_sqoop/相应表名 文件夹的大小变化
 <p>但有时候第三步alter的时候可能说用户会话不存在,这就很麻烦了<br>处理办法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sid</span>, <span class="built_in">serial</span>#,paddr, <span class="keyword">status</span>,<span class="keyword">type</span>, last_call_et,blocking_Session,<span class="keyword">event</span>,wait_class,state, command <span class="keyword">from</span> v$<span class="keyword">session</span> <span class="keyword">where</span> <span class="keyword">sid</span>=<span class="number">142</span></span><br></pre></td></tr></table></figure></p>
 <p>得到paddr比如000000015F4DBEA0<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> addr,pid,spid,username,pga_used_mem <span class="keyword">from</span> v$process <span class="keyword">where</span> addr = <span class="string">'000000015F4DBEA0'</span></span><br></pre></td></tr></table></figure></p>
 <p>得到spid比如1783<br>在系统终端直接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 1783</span><br></pre></td></tr></table></figure></p>
+<h5 id="2-exp导出"><a href="#2-exp导出" class="headerlink" title="2. exp导出"></a>2. exp导出</h5><blockquote>
+<p>EXP-00003:未找到段(0,0)的存储定义<br>此表为空表没数据,使用exp无法导出,但不影响导出任务,导入也不会有这个表</p>
+</blockquote>
+<blockquote>
+<p>EXP-00006:内部出现不一致性错误<br>此表为11g分区表间隔分区表,使用exp无法导出,可以将错误表剔除再导出或者使用数据泵expdp</p>
+</blockquote>
+<h5 id="3-imp导入"><a href="#3-imp导入" class="headerlink" title="3. imp导入"></a>3. imp导入</h5><blockquote>
+<p>ORA-01917 IMP-00017 由于oracle错误,以下语句失败 “GRANT SELECT ON “LVKE” TO “QCZSJ””<br>由于一些额外的用户、权限不存在引起的导入错误,不影响导入任务,因为这些与所需数据无关无需导入,不存在才会报错,属正常可以无视</p>
+</blockquote>
+<blockquote>
+<p>ORA-00959 表空间xxx不存在<br>创建user的同时要创建表空间,并为表空间指定表空间文件<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> xxods <span class="keyword">logging</span> <span class="keyword">datafile</span> <span class="string">'/home/oracle/dbf/xx.dbf'</span> <span class="keyword">size</span> <span class="number">32</span>m <span class="keyword">autoextend</span> <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">32</span>m <span class="keyword">maxsize</span> <span class="keyword">unlimited</span> <span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>也可以顺便将表空间赋予给user<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> xxx <span class="keyword">default</span> <span class="keyword">tablespace</span> xxx;</span><br></pre></td></tr></table></figure></p>
+<p>有时候(SHINYUE40_SDRZ的那些表所属有两个表空间,shine40_sdrz和shineyue40,需要创建两个表空间,不必须赋予给user)会遇到数据需要多个表空间,至于需要的除了同名user的之外还有什么,只能在导入过程中遇到异常才知道,或者就是在导出的时候查看一下导出数据有那些表空间并记录好,在导入之前做好这些准备工作</p>
+<blockquote>
+<p>ORA-01658 无法为表空间中的xxx段创建INITIAL区<br>表空间不足,为报错的user的表空间增加表空间文件<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> xxods <span class="keyword">add</span> <span class="keyword">datafile</span> <span class="string">'/home/oracle/dbf/xx2.dbf'</span> <span class="keyword">size</span> <span class="number">500</span>m <span class="keyword">autoextend</span> <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">100</span>m <span class="keyword">maxsize</span> <span class="keyword">unlimited</span>;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>ORA-04098: trigger is invalid and failed re-validation tips 触发器无效或未通过重新验证<br>同一张表有多个dmp文件,在导入成功第一个dmp文件之后会为这张表创建了触发器,再导入其他dmp文件就会遇到这个错误<br>得到这张表的触发器(使用PLSQL、NAVICAT或者sql查询),删除这个触发器,并在导入其他dmp文件的时候加上<code>data_only=y</code>防止再创建触发器而使得后续再次报错</p>
+</blockquote>
+<h5 id="4-impdp导入"><a href="#4-impdp导入" class="headerlink" title="4. impdp导入"></a>4. impdp导入</h5><blockquote>
+<p>ORA-39083:对象INDEX无法创建错误  ORA-14102:只能指定一个LOGGING或NOLOGGING子句<br>引发这一错误的原因是oracle的bug,在创建约束或索引的语句中出现了logging、nologging关键字,解决方法有两种</p>
+<ol>
+<li>打补丁<br>下载 Patch 8795792(oracle官方的下载途径太麻烦,去网上找一找),按照步骤做好</li>
+<li>参数加语句<br><code>TRANSFORM=SEGMENT_ATTRIBUTES:N:INDEX TRANSFORM=SEGMENT_ATTRIBUTES:N:CONSTRAINT</code><br>但是我们的导入过程中遇到的并不是跟这个一模一样的bug,报错时查看错误日志中提示的失败SQL,我们提示的是建表语句的错误(原因未知)<br>解决方法:得到错误表的建表语句,手动在oracle中创建该表,然后单独导入该表(tables=xxx)并加上参数<code>table_exists_action=truncate</code></li>
+</ol>
+</blockquote>
 
       
 
@@ -843,123 +943,6 @@ Sqoop job可以监控/user/hive/_sqoop/相应表名 文件夹的大小变化
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/12/19/Sqoop异常/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-oracle的导入导出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/12/oracle的导入导出/">oracle的导入导出</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/12/oracle的导入导出/" class="archive-article-date">
-  	<time datetime="2018-12-12T10:16:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>oracle 提供了完善的exp/imp功能,可以用来备份数据.<br>当然,plsql developer等数据库连接工具提供了图形化的操作功能,但是那些功能也是在你选择了任务提交后将你所做的操作转换为系统命令提供给系统的,所以我就简单的总结一下在使用exp/imp过程中的经验.</p>
-<h3 id="1-准备"><a href="#1-准备" class="headerlink" title="1. 准备"></a>1. 准备</h3><p>在做数据导出之前,我们先要做一些准备工作,这些工作项你可以选择在后续的过程中做甚至不做,但是为了后续工作能少出现一些意外,或者让结果更尽如人意,还是准备一下为好：)</p>
-<h5 id="1-1-更多功能"><a href="#1-1-更多功能" class="headerlink" title="1.1. 更多功能"></a>1.1. 更多功能</h5><p>exp/imp 是oracle提供的用来导出/导入数据的功能,相似的,oracle还提供了 expdp/impdp 两个功能.<br>简单来说expdp和impdp是exp/imp的加强版,他们的效率更高,允许数据多样性更高(这个后面会说到),但是相比于exp/imp可以同时在client和server使用来说,expdp/impdp是server端的工具程序,他们只能在oracle server使用.<br>imp只适用于exp导出的文件,不适用于expdp导出文件;impdp只适用于expdp导出的文件,而不适用于exp导出文件.<br>对于10g以上的服务器,使用exp通常不能导出0行数据的空表,而此时必须使用expdp导出.</p>
-<p>而无论你是用哪一套命令,你所在的操作环境必须拥有oracle.</p>
-<h5 id="1-2-流水线"><a href="#1-2-流水线" class="headerlink" title="1.2. 流水线"></a>1.2. 流水线</h5><p>这里的流水线的意思是 <code>源oracle-&gt;exp client-&gt;imp client-&gt;目标oracle</code> 这一串工作的流程.</p>
-<ul>
-<li><p>尽量保证流水线上的每一步的字符集是相同的.<br>而关于oracle字符集的讲解和设置,<a href="http://www.cnblogs.com/rootq/articles/2049324.html" target="_blank" rel="noopener">这里</a>讲的很详细.</p>
-</li>
-<li><p>尽量保证版本一致.<br>如果你的流水线中 exp client和imp client为单独的两台机器而非源/目标机器(这样的情况属于大多数,因为很多情况你是无法去相应的机器上操作的,这也是没有使用expdp/impdp的原因),尽量保证四个机器的oracle版本一致,我用的都是oracle11.<br>oracle 的很多版本都提供了单独的工具包,这样你可以不用安装完整的oracle就可以使用其中的exp/imp命令,我刚开始的时候就是用了oracle12中的<code>instantclient-basic-windows.x64-12.2.0.1.0</code> 和 <code>instantclient-tools-windows.x64-12.2.0.1.0</code>两个包,其中tools就是exp等一些命令的包,但是因为与我的源oracle版本不一致而放弃使用改为安装完整的oracle11,另外一件令我很费解的事是oracle11的tools包中竟然没有exp等命令文件…</p>
-</li>
-</ul>
-<h5 id="1-3-目标oracle"><a href="#1-3-目标oracle" class="headerlink" title="1.3. 目标oracle"></a>1.3. 目标oracle</h5><p>为你的目标oracle创建好新用户,赋予用户dba权限,如有必要需要同时赋予表空间</p>
-<h3 id="2-exp-导出"><a href="#2-exp-导出" class="headerlink" title="2. exp 导出"></a>2. exp 导出</h3><p>示例命令<br><code>exp test/test@localhost/ee file=/home/oracle/test.dmp log=/home/oracle/test.log</code><br>导出test用户下的所有数据,包括数据库连接、序号等.<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log tables=(xxxx1,xxx2)</code><br>全用户导出的话省略tables,缺省full 等同于<code>full=y</code> 全用户导出<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log</code></p>
-<ul>
-<li><p>使用缓冲(速度差异很大)<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log buffer=4096000</code><br>网上有人说buffer建议在1024000-10240000之间,自己把控吧,我用的40960000</p>
-</li>
-<li><p>使用direct<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log direct=y recordlength=65536</code></p>
-</li>
-<li>直接导出,数据从磁盘读入到高速缓存,直接写入到最终文件,所以没有数据行检查与匹配的过程,据不权威的评测结果,性能有50%到70%的提升</li>
-<li>recordlength参数(IO缓冲大小),与direct参数配对使用,默认该参数为1024bytes,上面的例子为64K(最大值也为64K)</li>
-<li>使用direct后,buffer参数失效;</li>
-<li>使用direct,不支持query子句(没有行匹配的过程),不支持带Blob类型字段的表,但是系统会自动判断、自动切换,也就是说不会因为一张表的问题,导致整个schema不能使用direct备份;</li>
-<li>direct不支持表空间导出</li>
-</ul>
-<img src="/2018/12/12/oracle的导入导出/exp.png">
-<p>可以看到使用exp导出时,空表会出现异常,但不会影响整个操作,另外导出整个user同时导出了数据之外的很多东西,如果只要数据可以选择<code>tables=()</code></p>
-<p>如果导出中还遇到以下错误,可以尝试解决<br><img src="/2018/12/12/oracle的导入导出/yichang.png"></p>
-<p>我还遇到过在导出过程中突然报错<code>内部出现不一致性错误</code><br><img src="/2018/12/12/oracle的导入导出/cuowu.png"><br>而造成这个错误的原因是oracle11后,数据表的新特性,网上说的都是建议使用数据泵(expdp/impdp),可是因为我无法操作server端,只好用<code>tables=()</code>得到这个user的所有表,再把有错误的表删掉.(至于怎么知道是哪个表出现问题,我不会告诉你我是一个表一个表试的,或者你看一下所有表的列表顺序,一般提示错误时还没打印出的那张表就是有问题的表)</p>
-<h3 id="3-imp-导入"><a href="#3-imp-导入" class="headerlink" title="3. imp 导入"></a>3. imp 导入</h3><p>导入过程终于可以用server端了！！<br>但是因为导出用的exp,导入只能用imp,貌似也没有什么不一样…<br><code>imp tlods/tlods@localhost/orcl fromuser=tlods touser=tlods file=f:dmp\tlods.dmp buffer=4096000</code><br>因为我是按user导出的,所以我直接再按user导入<br><img src="/2018/12/12/oracle的导入导出/daoru.png"><br>如果这时候又出现了异常,当然选择继续忽视！<br><img src="/2018/12/12/oracle的导入导出/shibai.png"><br>而如果遇到这个错误,那就得看一下了,因为这样的话这个表是没有导入进去的,分析完就知道了是这个表需要表空间,而我们的目标oracle里是没有的.<br>现在遇到的情况是如果需要导入的表中存在LOB字段,就会报错 <code>oracle error 959</code><br>解决办法:</p>
-<ul>
-<li>先将这个user导入的数据删除,就是把那些已经成功的表删除 <code>drop table xxods.xxxx</code></li>
-<li><p>创建表空间</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> xxods <span class="keyword">logging</span> <span class="keyword">datafile</span> <span class="string">'/home/oracle/dbf/xx.dbf'</span> <span class="keyword">size</span> <span class="number">32</span>m <span class="keyword">autoextend</span> <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">32</span>m <span class="keyword">maxsize</span> <span class="keyword">unlimited</span> <span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>为用户赋予表空间</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> xxods <span class="keyword">default</span> <span class="keyword">tablespace</span> xxods;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>再次导入就可以了</p>
-</li>
-</ul>
-<p>如果过程中又遇到了如下问题<code>无法为表空间xxx中的段创建INITIAL区</code><br><img src="/2018/12/12/oracle的导入导出/kongjian.png"><br>原因是表空间不足了,创建表空间时指定的文件大小限制为最大32G,为此表空间再添加文件就是了.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> xxods <span class="keyword">add</span> <span class="keyword">datafile</span> <span class="string">'/home/oracle/dbf/xx2.dbf'</span> <span class="keyword">size</span> <span class="number">500</span>m <span class="keyword">autoextend</span> <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">100</span>m <span class="keyword">maxsize</span> <span class="keyword">unlimited</span></span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>思考:在exp导出的时候指定表 <code>tables=()</code>只导出表数据的话就不会导出一些表空间之类的东西,那么这样再imp的时候还会不会出现这个错误呢？</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/12/oracle的导入导出/">展开全文 >></a>
         </p>
       
 
@@ -1099,11 +1082,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
