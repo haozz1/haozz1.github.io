@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>mac下的u盘刻录 | 史晨昊</title>
+  <title>Archives | 史晨昊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近工作中需要将一份超大数据导入到新的机器上,那台机器重新添加了磁盘之后需要重新安装系统,于是新工作又来了.下载好了CenOS-7-everything.iso后需要做u盘刻录然后给机器安装新系统 1. 查看u盘盘符diskutil list 查看盘符1234567891011121314151617181920sh-3.2# diskutil list/dev/disk0 (internal):">
-<meta name="keywords" content="Mac,Linux">
-<meta property="og:type" content="article">
-<meta property="og:title" content="mac下的u盘刻录">
-<meta property="og:url" content="http://yoursite.com/2018/12/11/mac下的u盘刻录/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="史晨昊">
+<meta property="og:url" content="http://yoursite.com/archives/page/3/index.html">
 <meta property="og:site_name" content="史晨昊">
-<meta property="og:description" content="最近工作中需要将一份超大数据导入到新的机器上,那台机器重新添加了磁盘之后需要重新安装系统,于是新工作又来了.下载好了CenOS-7-everything.iso后需要做u盘刻录然后给机器安装新系统 1. 查看u盘盘符diskutil list 查看盘符1234567891011121314151617181920sh-3.2# diskutil list/dev/disk0 (internal):">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-11T07:51:23.025Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mac下的u盘刻录">
-<meta name="twitter:description" content="最近工作中需要将一份超大数据导入到新的机器上,那台机器重新添加了磁盘之后需要重新安装系统,于是新工作又来了.下载好了CenOS-7-everything.iso后需要做u盘刻录然后给机器安装新系统 1. 查看u盘盘符diskutil list 查看盘符1234567891011121314151617181920sh-3.2# diskutil list/dev/disk0 (internal):">
+<meta name="twitter:title" content="史晨昊">
   
     <link rel="alternative" href="/atom.xml" title="史晨昊" type="application/atom+xml">
   
@@ -155,235 +150,63 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-mac下的u盘刻录" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      mac下的u盘刻录
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/09/18/博客的诞生/" class="archive-article-date">
+  	<time datetime="2018-09-18T10:36:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-18</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/09/18/博客的诞生/">博客的诞生</a>
     </h1>
   
 
-        
-        <a href="/2018/12/11/mac下的u盘刻录/" class="archive-article-date">
-  	<time datetime="2018-12-11T07:26:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近工作中需要将一份超大数据导入到新的机器上,那台机器重新添加了磁盘之后需要重新安装系统,于是新工作又来了.<br>下载好了CenOS-7-everything.iso后需要做u盘刻录然后给机器安装新系统</p>
-<h5 id="1-查看u盘盘符"><a href="#1-查看u盘盘符" class="headerlink" title="1. 查看u盘盘符"></a>1. 查看u盘盘符</h5><p><code>diskutil list</code> 查看盘符<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">sh-3.2<span class="comment"># diskutil list</span></span><br><span class="line">/dev/disk0 (internal):</span><br><span class="line">   <span class="comment">#:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:      GUID_partition_scheme                         251.0 GB   disk0</span><br><span class="line">   1:                        EFI EFI                     314.6 MB   disk0s1</span><br><span class="line">   2:                 Apple_APFS Container disk1         250.7 GB   disk0s2</span><br><span class="line"></span><br><span class="line">/dev/disk1 (synthesized):</span><br><span class="line">   <span class="comment">#:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:      APFS Container Scheme -                      +250.7 GB   disk1</span><br><span class="line">                                 Physical Store disk0s2</span><br><span class="line">   1:                APFS Volume Macintosh HD            81.0 GB    disk1s1</span><br><span class="line">   2:                APFS Volume Preboot                 66.2 MB    disk1s2</span><br><span class="line">   3:                APFS Volume Recovery                1.0 GB     disk1s3</span><br><span class="line">   4:                APFS Volume VM                      4.3 GB     disk1s4</span><br><span class="line"></span><br><span class="line">/dev/disk3 (external, physical):</span><br><span class="line">   <span class="comment">#:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:     FDisk_partition_scheme                        *62.1 GB    disk3</span><br><span class="line">   1:             Windows_FAT_32 KINGSTON                61.9 GB    disk3s1</span><br></pre></td></tr></table></figure></p>
-<p>可以看到我使用的kingston u盘的卷标是 <code>disk3s1</code> 完整路径是<code>/dev/disk3s1</code> </p>
-<h5 id="2-取消挂载"><a href="#2-取消挂载" class="headerlink" title="2. 取消挂载"></a>2. 取消挂载</h5><p><code>diskutil umount /dev/卷标</code><br>上面一步知道了我的u盘的路径 所以完整命令为<code>diskutil umount /dev/disk3s1</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh-3.2<span class="comment"># diskutil umount /dev/disk3s1 </span></span><br><span class="line">Volume KINGSTON on disk3s1 unmounted</span><br></pre></td></tr></table></figure></p>
-<p>成功后会得到提示.</p>
-<h5 id="3-写入u盘"><a href="#3-写入u盘" class="headerlink" title="3. 写入u盘"></a>3. 写入u盘</h5><p><code>sudo dd if=镜像路径 of=/dev/r卷标 bs=1m</code> <code>加r会让写入速度更快,bs为一次写入容量</code><br>结合我的得到完整命令为<br><code>sudo dd if=/Users/dev/Downloads/CentOS-7-x86_64-DVD-1810.iso of=/dev/rdisk3s1 bs=1m</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sh-3.2<span class="comment"># sudo dd if=/Users/dev/Downloads/CentOS-7-x86_64-DVD-1810.iso of=/dev/rdisk3s1 bs=1m</span></span><br><span class="line">4376+0 records <span class="keyword">in</span></span><br><span class="line">4376+0 records out</span><br><span class="line">4588568576 bytes transferred <span class="keyword">in</span> 143.529066 secs (31969612 bytes/sec)</span><br></pre></td></tr></table></figure>
-<p>成功后会得到提示<br>也可以使用<code>iostat</code>命令查看磁盘写入状态<br>例如<code>iostat -w 2</code></p>
-<h5 id="4-弹出u盘"><a href="#4-弹出u盘" class="headerlink" title="4. 弹出u盘"></a>4. 弹出u盘</h5><p><code>diskutil eject /dev/卷标</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh-3.2<span class="comment"># diskutil eject /dev/disk3s1</span></span><br><span class="line">Disk /dev/disk3s1 ejected</span><br></pre></td></tr></table></figure>
-<p>然后就可以拔出u盘,拿到新机器上u盘启动安装新系统了.</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/asset/wx.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/12/11/mac下的u盘刻录/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/12/12/oracle的导入导出/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          oracle的导入导出
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/10/24/Tomcat做图片服务器/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Tomcat做图片服务器</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
-  
-  
-    <section id="comments" class="comments">
-    <style>
-      .comments{margin:30px;padding:10px;background:#fff}
-      @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
-    </style>
-    <div id="vcomment" class="comment"></div>
-<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cloud.panjunwen.com/av-min.js"></script>
-<!-- <script src="http://raw.githack.com/haozz1/valine/master/Valine.min.js"></script> -->
-<script src="https://deserts.io/assets/js/Valine.min.js?v=729dfcf6de"></script>
-<script>
-   var notify = 'false' == true ? true : false;
-   var verify = 'false' == true ? true : false;
-   new Valine({
-            av: AV,
-            el: '#vcomment',
-            notify: notify,
-            verify: verify,
-            admin_email: "shichenhao94@163.com",
-            emoticon_url: 'https://cloud.panjunwen.com/alu',
-			      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
-            app_id: "Qn3gDXzEzrAAuKdp6oSVNj18-gzGzoHsz",
-            app_key: "3JNwtTsill63XKw7GtQhIrat",
-            placeholder: "留下邮箱,收到回复后会通过邮件通知你哟~ (支持MarkDown格式~)",
-            avatar: "mp",
-            avatar_cdn: "",
-            pageSize: ""
-    });
-    if(window.location.hash){
-          var checkExist = setInterval(function() {
-            if (document.getElementById(window.location.hash.replace("#",""))) {
-              location.href = window.location.hash;
-              clearInterval(checkExist);
-            }
-          }, 250);
-        }
-</script>
-  </section>
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
   
 
 
@@ -412,8 +235,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
