@@ -6,27 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>oracle的导入导出 | 史晨昊</title>
+  <title>oracle技巧 | 史晨昊</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="oracle 提供了完善的exp/imp功能,可以用来备份数据.当然,plsql developer等数据库连接工具提供了图形化的操作功能,但是那些功能也是在你选择了任务提交后将你所做的操作转换为系统命令提供给系统的,所以我就简单的总结一下在使用exp/imp过程中的经验. 1. 准备在做数据导出之前,我们先要做一些准备工作,这些工作项你可以选择在后续的过程中做甚至不做,但是为了后续工作能少出现一">
+  <meta name="description" content="1. python3 中的cx_Oraclecx_Oracle 模块是没法直接通过pip install的,要想使用,需要配置好几个东西,此处默认已经安装了python3(离线的话需要配置好yum和pip源)   oracle instantclient   将zip包放置到/opt/下并解压   cx_Oracle    下载地址,下载如图压缩包  下载完成后,解压并进入,然后 python36">
 <meta name="keywords" content="oracle">
 <meta property="og:type" content="article">
-<meta property="og:title" content="oracle的导入导出">
-<meta property="og:url" content="http://yoursite.com/2018/12/12/oracle的导入导出/index.html">
+<meta property="og:title" content="oracle技巧">
+<meta property="og:url" content="http://yoursite.com/2019/07/23/oracle技巧/index.html">
 <meta property="og:site_name" content="史晨昊">
-<meta property="og:description" content="oracle 提供了完善的exp/imp功能,可以用来备份数据.当然,plsql developer等数据库连接工具提供了图形化的操作功能,但是那些功能也是在你选择了任务提交后将你所做的操作转换为系统命令提供给系统的,所以我就简单的总结一下在使用exp/imp过程中的经验. 1. 准备在做数据导出之前,我们先要做一些准备工作,这些工作项你可以选择在后续的过程中做甚至不做,但是为了后续工作能少出现一">
+<meta property="og:description" content="1. python3 中的cx_Oraclecx_Oracle 模块是没法直接通过pip install的,要想使用,需要配置好几个东西,此处默认已经安装了python3(离线的话需要配置好yum和pip源)   oracle instantclient   将zip包放置到/opt/下并解压   cx_Oracle    下载地址,下载如图压缩包  下载完成后,解压并进入,然后 python36">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/12/12/oracle的导入导出/exp.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/12/oracle的导入导出/yichang.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/12/oracle的导入导出/cuowu.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/12/oracle的导入导出/daoru.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/12/oracle的导入导出/shibai.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/12/oracle的导入导出/kongjian.png">
-<meta property="og:updated_time" content="2018-12-14T09:37:57.057Z">
+<meta property="og:image" content="http://yoursite.com/2019/07/23/oracle技巧/cx.jpg">
+<meta property="og:updated_time" content="2019-07-23T03:46:01.723Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="oracle的导入导出">
-<meta name="twitter:description" content="oracle 提供了完善的exp/imp功能,可以用来备份数据.当然,plsql developer等数据库连接工具提供了图形化的操作功能,但是那些功能也是在你选择了任务提交后将你所做的操作转换为系统命令提供给系统的,所以我就简单的总结一下在使用exp/imp过程中的经验. 1. 准备在做数据导出之前,我们先要做一些准备工作,这些工作项你可以选择在后续的过程中做甚至不做,但是为了后续工作能少出现一">
-<meta name="twitter:image" content="http://yoursite.com/2018/12/12/oracle的导入导出/exp.png">
+<meta name="twitter:title" content="oracle技巧">
+<meta name="twitter:description" content="1. python3 中的cx_Oraclecx_Oracle 模块是没法直接通过pip install的,要想使用,需要配置好几个东西,此处默认已经安装了python3(离线的话需要配置好yum和pip源)   oracle instantclient   将zip包放置到/opt/下并解压   cx_Oracle    下载地址,下载如图压缩包  下载完成后,解压并进入,然后 python36">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/23/oracle技巧/cx.jpg">
   
     <link rel="alternative" href="/atom.xml" title="史晨昊" type="application/atom+xml">
   
@@ -162,70 +157,52 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-oracle的导入导出" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-oracle技巧" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      oracle的导入导出
+      oracle技巧
     </h1>
   
 
         
-        <a href="/2018/12/12/oracle的导入导出/" class="archive-article-date">
-  	<time datetime="2018-12-12T10:16:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-12</time>
+        <a href="/2019/07/23/oracle技巧/" class="archive-article-date">
+  	<time datetime="2019-07-23T03:17:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>oracle 提供了完善的exp/imp功能,可以用来备份数据.<br>当然,plsql developer等数据库连接工具提供了图形化的操作功能,但是那些功能也是在你选择了任务提交后将你所做的操作转换为系统命令提供给系统的,所以我就简单的总结一下在使用exp/imp过程中的经验.</p>
-<h3 id="1-准备"><a href="#1-准备" class="headerlink" title="1. 准备"></a>1. 准备</h3><p>在做数据导出之前,我们先要做一些准备工作,这些工作项你可以选择在后续的过程中做甚至不做,但是为了后续工作能少出现一些意外,或者让结果更尽如人意,还是准备一下为好：)</p>
-<h5 id="1-1-更多功能"><a href="#1-1-更多功能" class="headerlink" title="1.1. 更多功能"></a>1.1. 更多功能</h5><p>exp/imp 是oracle提供的用来导出/导入数据的功能,相似的,oracle还提供了 expdp/impdp 两个功能.<br>简单来说expdp和impdp是exp/imp的加强版,他们的效率更高,允许数据多样性更高(这个后面会说到),但是相比于exp/imp可以同时在client和server使用来说,expdp/impdp是server端的工具程序,他们只能在oracle server使用.<br>imp只适用于exp导出的文件,不适用于expdp导出文件;impdp只适用于expdp导出的文件,而不适用于exp导出文件.<br>对于10g以上的服务器,使用exp通常不能导出0行数据的空表,而此时必须使用expdp导出.</p>
-<p>而无论你是用哪一套命令,你所在的操作环境必须拥有oracle.</p>
-<h5 id="1-2-流水线"><a href="#1-2-流水线" class="headerlink" title="1.2. 流水线"></a>1.2. 流水线</h5><p>这里的流水线的意思是 <code>源oracle-&gt;exp client-&gt;imp client-&gt;目标oracle</code> 这一串工作的流程.</p>
-<ul>
-<li><p>尽量保证流水线上的每一步的字符集是相同的.<br>而关于oracle字符集的讲解和设置,<a href="http://www.cnblogs.com/rootq/articles/2049324.html" target="_blank" rel="noopener">这里</a>讲的很详细.</p>
-</li>
-<li><p>尽量保证版本一致.<br>如果你的流水线中 exp client和imp client为单独的两台机器而非源/目标机器(这样的情况属于大多数,因为很多情况你是无法去相应的机器上操作的,这也是没有使用expdp/impdp的原因),尽量保证四个机器的oracle版本一致,我用的都是oracle11.<br>oracle 的很多版本都提供了单独的工具包,这样你可以不用安装完整的oracle就可以使用其中的exp/imp命令,我刚开始的时候就是用了oracle12中的<code>instantclient-basic-windows.x64-12.2.0.1.0</code> 和 <code>instantclient-tools-windows.x64-12.2.0.1.0</code>两个包,其中tools就是exp等一些命令的包,但是因为与我的源oracle版本不一致而放弃使用改为安装完整的oracle11,另外一件令我很费解的事是oracle11的tools包中竟然没有exp等命令文件…</p>
-</li>
-</ul>
-<h5 id="1-3-目标oracle"><a href="#1-3-目标oracle" class="headerlink" title="1.3. 目标oracle"></a>1.3. 目标oracle</h5><p>为你的目标oracle创建好新用户,赋予用户dba权限,如有必要需要同时赋予表空间</p>
-<h3 id="2-exp-导出"><a href="#2-exp-导出" class="headerlink" title="2. exp 导出"></a>2. exp 导出</h3><p>示例命令<br><code>exp test/test@localhost/ee file=/home/oracle/test.dmp log=/home/oracle/test.log</code><br>导出test用户下的所有数据,包括数据库连接、序号等.<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log tables=(xxxx1,xxx2)</code><br>全用户导出的话省略tables,缺省full 等同于<code>full=y</code> 全用户导出<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log</code></p>
-<ul>
-<li><p>使用缓冲(速度差异很大)<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log buffer=4096000</code><br>网上有人说buffer建议在1024000-10240000之间,自己把控吧,我用的40960000</p>
-</li>
-<li><p>使用direct<br><code>exp jqods/jqods@10.53.188.228/rzods File=f:\dmp\jqods.dmp log=f:\dmp\jqods.log direct=y recordlength=65536</code></p>
-</li>
-<li>直接导出,数据从磁盘读入到高速缓存,直接写入到最终文件,所以没有数据行检查与匹配的过程,据不权威的评测结果,性能有50%到70%的提升</li>
-<li>recordlength参数(IO缓冲大小),与direct参数配对使用,默认该参数为1024bytes,上面的例子为64K(最大值也为64K)</li>
-<li>使用direct后,buffer参数失效;</li>
-<li>使用direct,不支持query子句(没有行匹配的过程),不支持带Blob类型字段的表,但是系统会自动判断、自动切换,也就是说不会因为一张表的问题,导致整个schema不能使用direct备份;</li>
-<li>direct不支持表空间导出</li>
-</ul>
-<img src="/2018/12/12/oracle的导入导出/exp.png">
-<p>可以看到使用exp导出时,空表会出现异常,但不会影响整个操作,另外导出整个user同时导出了数据之外的很多东西,如果只要数据可以选择<code>tables=()</code></p>
-<p>如果导出中还遇到以下错误,可以尝试解决<br><img src="/2018/12/12/oracle的导入导出/yichang.png"></p>
-<p>我还遇到过在导出过程中突然报错<code>内部出现不一致性错误</code><br><img src="/2018/12/12/oracle的导入导出/cuowu.png"><br>而造成这个错误的原因是oracle11后,数据表的新特性,网上说的都是建议使用数据泵(expdp/impdp),可是因为我无法操作server端,只好用<code>tables=()</code>得到这个user的所有表,再把有错误的表删掉.(至于怎么知道是哪个表出现问题,我不会告诉你我是一个表一个表试的,或者你看一下所有表的列表顺序,一般提示错误时还没打印出的那张表就是有问题的表)</p>
-<h3 id="3-imp-导入"><a href="#3-imp-导入" class="headerlink" title="3. imp 导入"></a>3. imp 导入</h3><p>导入过程终于可以用server端了！！<br>但是因为导出用的exp,导入只能用imp,貌似也没有什么不一样…<br><code>imp tlods/tlods@localhost/orcl fromuser=tlods touser=tlods file=f:dmp\tlods.dmp buffer=4096000</code><br>因为我是按user导出的,所以我直接再按user导入<br><img src="/2018/12/12/oracle的导入导出/daoru.png"><br>如果这时候又出现了异常,当然选择继续忽视！<br><img src="/2018/12/12/oracle的导入导出/shibai.png"><br>而如果遇到这个错误,那就得看一下了,因为这样的话这个表是没有导入进去的,分析完就知道了是这个表需要表空间,而我们的目标oracle里是没有的.<br>现在遇到的情况是如果需要导入的表中存在LOB字段,就会报错 <code>oracle error 959</code><br>解决办法:</p>
-<ul>
-<li>先将这个user导入的数据删除,就是把那些已经成功的表删除 <code>drop table xxods.xxxx</code></li>
-<li><p>创建表空间</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> xxods <span class="keyword">logging</span> <span class="keyword">datafile</span> <span class="string">'/home/oracle/dbf/xx.dbf'</span> <span class="keyword">size</span> <span class="number">32</span>m <span class="keyword">autoextend</span> <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">32</span>m <span class="keyword">maxsize</span> <span class="keyword">unlimited</span> <span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>为用户赋予表空间</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> xxods <span class="keyword">default</span> <span class="keyword">tablespace</span> xxods;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>再次导入就可以了</p>
-</li>
-</ul>
-<p>如果过程中又遇到了如下问题<code>无法为表空间xxx中的段创建INITIAL区</code><br><img src="/2018/12/12/oracle的导入导出/kongjian.png"><br>原因是表空间不足了,创建表空间时指定的文件大小限制为最大32G,为此表空间再添加文件就是了.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> xxods <span class="keyword">add</span> <span class="keyword">datafile</span> <span class="string">'/home/oracle/dbf/xx2.dbf'</span> <span class="keyword">size</span> <span class="number">500</span>m <span class="keyword">autoextend</span> <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">100</span>m <span class="keyword">maxsize</span> <span class="keyword">unlimited</span></span><br></pre></td></tr></table></figure></p>
+        <h4 id="1-python3-中的cx-Oracle"><a href="#1-python3-中的cx-Oracle" class="headerlink" title="1. python3 中的cx_Oracle"></a>1. python3 中的cx_Oracle</h4><p>cx_Oracle 模块是没法直接通过pip install的,要想使用,需要配置好几个东西,此处默认已经安装了python3(离线的话需要配置好yum和pip源)</p>
 <blockquote>
-<p>思考:在exp导出的时候指定表 <code>tables=()</code>只导出表数据的话就不会导出一些表空间之类的东西,那么这样再imp的时候还会不会出现这个错误呢？</p>
+<ol>
+<li>oracle instantclient</li>
+</ol>
 </blockquote>
+<p>将zip包放置到/opt/下并解压</p>
+<blockquote>
+<ol start="2">
+<li>cx_Oracle </li>
+</ol>
+</blockquote>
+<p><a href="https://pypi.org/project/cx-Oracle/" target="_blank" rel="noopener">下载地址</a>,下载如图压缩包</p>
+<img src="/2019/07/23/oracle技巧/cx.jpg">
+<p>下载完成后,解压并进入,然后 python36 setup.py install 等待完成</p>
+<blockquote>
+<ol start="3">
+<li>环境变量</li>
+</ol>
+</blockquote>
+<p>配置环境变量 <code>vim /etc/profile</code><br>再文件最后加上两行内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ORACLE_HOME=/opt/instantclient_12_1</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:<span class="variable">$ORACLE_HOME</span></span><br></pre></td></tr></table></figure></p>
+<p>如果当前用户进入python3后依然无法 import cx_Oracle,请在shell端在执行一下export操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Haozz:~ haozz$ <span class="built_in">export</span> ORACLE_HOME=/opt/instantclient_12_1</span><br><span class="line">Haozz:~ haozz$ <span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:<span class="variable">$ORACLE_HOME</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-merge-into"><a href="#2-merge-into" class="headerlink" title="2. merge into"></a>2. merge into</h4><p>在oracle中,我们经常会遇到一种情形,需要将B表中的数据插入A表的同时考虑数据是否在A表中存在,如果不存在则插入,存在则更新那条记录的某个字段值.<br>此时使用merge into是最好不过的了(mysql中是 replace into)</p>
+<p>merge into的实例用法: 加入我将要把B表中的数据(姓名,身份证号码)插入 购房记录 表中,如果购房记录表中存在这个身份证号码则将标签字段修改为’多次’,如果没有则直接插入标签字段为’一次’<br>在merge into时有一个前提,源表中的身份证号码字段唯一,否则会报错 <code>ORA-30926</code>,可见<a href="http://besthao.cn/2018/12/19/oracle/" target="_blank" rel="noopener">我的文章 oracle异常中的介绍</a>,这里不在解释</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">merge</span> <span class="keyword">into</span> 购房记录 A <span class="keyword">using</span> (</span><br><span class="line">    <span class="keyword">select</span> </span><br><span class="line">    B.name,</span><br><span class="line">    B.idno </span><br><span class="line">    <span class="keyword">from</span></span><br><span class="line">    购房人员 B</span><br><span class="line">)C <span class="keyword">on</span> (A.idno=C.idno)</span><br><span class="line"><span class="keyword">when</span> <span class="keyword">matched</span> <span class="keyword">then</span> </span><br><span class="line"><span class="keyword">update</span> <span class="keyword">set</span> A.label=<span class="string">'多次'</span> </span><br><span class="line"><span class="keyword">when</span> <span class="keyword">not</span> <span class="keyword">matched</span> <span class="keyword">then</span> </span><br><span class="line"><span class="keyword">insert</span> (</span><br><span class="line">    A.name,</span><br><span class="line">    A.idno,</span><br><span class="line">    A.label</span><br><span class="line">)<span class="keyword">values</span>(</span><br><span class="line">    B.name,</span><br><span class="line">    B.idno,</span><br><span class="line">    <span class="string">'一次'</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
       
 
@@ -321,7 +298,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/12/12/oracle的导入导出/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/23/oracle技巧/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -335,18 +312,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/12/19/Sqoop异常/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Sqoop异常
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/12/11/mac下的u盘刻录/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">mac下的u盘刻录</div>
+    <a href="/2019/07/04/打倒反动派/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">打倒反动派</div>
       <i class="icon-circle-right"></i>
     </a>
   
