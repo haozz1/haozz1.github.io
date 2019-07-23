@@ -173,26 +173,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="1-python3-中的cx-Oracle"><a href="#1-python3-中的cx-Oracle" class="headerlink" title="1. python3 中的cx_Oracle"></a>1. python3 中的cx_Oracle</h4><p>cx_Oracle 模块是没法直接通过pip install的,要想使用,需要配置好几个东西,此处默认已经安装了python3(离线的话需要配置好yum和pip源)</p>
-<blockquote>
-<ol>
-<li>oracle instantclient</li>
-</ol>
-</blockquote>
-<p>将zip包放置到/opt/下并解压</p>
-<blockquote>
-<ol start="2">
-<li>cx_Oracle </li>
-</ol>
-</blockquote>
-<p><a href="https://pypi.org/project/cx-Oracle/" target="_blank" rel="noopener">下载地址</a>,下载如图压缩包</p>
+<h5 id="1-oracle-instantclient"><a href="#1-oracle-instantclient" class="headerlink" title="1. oracle instantclient"></a>1. oracle instantclient</h5><p>将zip包放置到/opt/下并解压</p>
+<h5 id="2-cx-Oracle"><a href="#2-cx-Oracle" class="headerlink" title="2. cx_Oracle"></a>2. cx_Oracle</h5><p><a href="https://pypi.org/project/cx-Oracle/" target="_blank" rel="noopener">下载地址</a>,下载如图压缩包</p>
 <img src="/2019/07/23/oracle技巧/cx.jpg">
 <p>下载完成后,解压并进入,然后 python36 setup.py install 等待完成</p>
-<blockquote>
-<ol start="3">
-<li>环境变量</li>
-</ol>
-</blockquote>
-<p>配置环境变量 <code>vim /etc/profile</code><br>再文件最后加上两行内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ORACLE_HOME=/opt/instantclient_12_1</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:<span class="variable">$ORACLE_HOME</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="3-环境变量"><a href="#3-环境变量" class="headerlink" title="3. 环境变量"></a>3. 环境变量</h5><p>配置环境变量 <code>vim /etc/profile</code><br>再文件最后加上两行内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ORACLE_HOME=/opt/instantclient_12_1</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:<span class="variable">$ORACLE_HOME</span></span><br></pre></td></tr></table></figure></p>
 <p>如果当前用户进入python3后依然无法 import cx_Oracle,请在shell端在执行一下export操作</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Haozz:~ haozz$ <span class="built_in">export</span> ORACLE_HOME=/opt/instantclient_12_1</span><br><span class="line">Haozz:~ haozz$ <span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:<span class="variable">$ORACLE_HOME</span></span><br></pre></td></tr></table></figure>
 <h4 id="2-merge-into"><a href="#2-merge-into" class="headerlink" title="2. merge into"></a>2. merge into</h4><p>在oracle中,我们经常会遇到一种情形,需要将B表中的数据插入A表的同时考虑数据是否在A表中存在,如果不存在则插入,存在则更新那条记录的某个字段值.<br>此时使用merge into是最好不过的了(mysql中是 replace into)</p>
@@ -1092,11 +1077,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
+                <a href="javascript:void(0)" class="js-tag color5">nifi</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">nifi</a>
+                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1104,11 +1089,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
