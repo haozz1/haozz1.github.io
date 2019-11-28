@@ -28,7 +28,7 @@ rss: /atom.xml
 # 是否需要修改 root 路径
 # 如果您的网站存放在子目录中，例如 http://yoursite.com/blog，
 # 请将您的 url 设为 http://yoursite.com/blog 并把 root 设为 /blog/。
-root: /
+root: /tags/随笔/
 
 # Content
 
@@ -47,7 +47,7 @@ reward_type: 2
 # 打赏wording
 reward_wording: '谢谢你请我吃糖果'
 # 支付宝二维码图片地址，跟你设置头像的方式一样。比如：/assets/img/alipay.jpg
-alipay: 
+alipay:
 # 微信二维码图片地址
 weixin: /img/asset/wx.jpg
 
@@ -98,7 +98,7 @@ gitment_oauth:
   client_secret: '4815632c452c687ea20d2ec38d7177590ffd7d3f'       #client secret
 
 #6、Valine https://valine.js.org
-valine: 
+valine:
  appid: Qn3gDXzEzrAAuKdp6oSVNj18-gzGzoHsz #Leancloud应用的appId
  appkey: 3JNwtTsill63XKw7GtQhIrat   #Leancloud应用的appKey
  verify: false #验证码
