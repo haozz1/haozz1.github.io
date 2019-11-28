@@ -125,9 +125,9 @@ slider:
 #smart_menu:
 #  friends: false
 smart_menu:
-  innerArchive: 'all'
-  friends: 'theirs'
-  aboutme: 'me'
+  innerArchive: 'all '
+  friends: ' theirs '
+  aboutme: ' me'
 skip_render: README.md
 counter: true
 
