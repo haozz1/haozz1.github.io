@@ -1,8 +1,8 @@
 # Header
 
 menu:
-  主页: /
-  随笔: /tags/随笔/
+  Home: /
+  Essay: /tags/随笔/
 
 # SubNav
 subnav:
@@ -15,7 +15,7 @@ subnav:
   #jianshu: "#"
   #douban: "#"
   #segmentfault: "#"
-  #bilibili: "#"
+  bilibili: "#"
   #acfun: "#"
   mail: "shichenhao94@163.com"
   #facebook: "#"
