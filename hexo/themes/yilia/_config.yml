@@ -125,9 +125,9 @@ slider:
 #smart_menu:
 #  friends: false
 smart_menu:
-  innerArchive: '文章'
-  friends: '外站'
-  aboutme: '介绍'
+  innerArchive: 'all'
+  friends: 'theirs'
+  aboutme: 'me'
 skip_render: README.md
 counter: true
 
