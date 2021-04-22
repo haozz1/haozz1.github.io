@@ -152,69 +152,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-新mac" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/22/新mac/">新mac</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/22/新mac/" class="archive-article-date">
-  	<time datetime="2021-04-22T05:06:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>测试测试测试测试</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/22/新mac/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-JsavSpring框架下的Log" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -2677,6 +2614,90 @@
 
 
   
+    <article id="post-oracle技巧" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/23/oracle技巧/">oracle技巧</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/23/oracle技巧/" class="archive-article-date">
+  	<time datetime="2019-07-23T03:17:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-python3-中的cx-Oracle"><a href="#1-python3-中的cx-Oracle" class="headerlink" title="1. python3 中的cx_Oracle"></a>1. python3 中的cx_Oracle</h4><p>cx_Oracle 模块是没法直接通过pip install的,要想使用,需要配置好几个东西,此处默认已经安装了python3(离线的话需要配置好yum和pip源)</p>
+<h5 id="1-oracle-instantclient"><a href="#1-oracle-instantclient" class="headerlink" title="1. oracle instantclient"></a>1. oracle instantclient</h5><p><a href="https://www.oracle.com/technetwork/cn/topics/linuxx86-64soft-095635-zhs.html" target="_blank" rel="noopener">oracle官网下载地址</a><br>官网下载需要注册,我把我用到的 instantclient-basic-linux.x64-12.1.0.2.0.zip <a href>放到了网盘可供下载</a><br>将zip包放置到/opt/下并解压</p>
+<h5 id="2-cx-Oracle"><a href="#2-cx-Oracle" class="headerlink" title="2. cx_Oracle"></a>2. cx_Oracle</h5><p><a href="https://pypi.org/project/cx-Oracle/" target="_blank" rel="noopener">下载地址</a>,下载如图压缩包</p>
+<img src="/2019/07/23/oracle技巧/cx.jpg">
+<p>下载完成后,解压并进入,然后 python36 setup.py install 等待完成</p>
+<h5 id="3-环境变量"><a href="#3-环境变量" class="headerlink" title="3. 环境变量"></a>3. 环境变量</h5><p>配置环境变量 <code>vim /etc/profile</code><br>再文件最后加上两行内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ORACLE_HOME=/opt/instantclient_12_1</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:<span class="variable">$ORACLE_HOME</span></span><br></pre></td></tr></table></figure></p>
+<p>如果当前用户进入python3后依然无法 import cx_Oracle,请在shell端在执行一下export操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Haozz:~ haozz$ <span class="built_in">export</span> ORACLE_HOME=/opt/instantclient_12_1</span><br><span class="line">Haozz:~ haozz$ <span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:<span class="variable">$ORACLE_HOME</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-merge-into"><a href="#2-merge-into" class="headerlink" title="2. merge into"></a>2. merge into</h4><p>在oracle中,我们经常会遇到一种情形,需要将B表中的数据插入A表的同时考虑数据是否在A表中存在,如果不存在则插入,存在则更新那条记录的某个字段值.<br>此时使用<code>merge into</code>是最好不过的了(mysql中是 <code>replace into</code>)</p>
+<p>merge into的实例用法:假如我要把B表中的数据(姓名,身份证号码)插入 购房记录 表中,如果购房记录表中存在这个身份证号码则将标签字段修改为’多次’,如果没有则直接插入标签字段为’一次’<br>在merge into时有一个前提,源表中的身份证号码字段唯一,否则会报错 <code>ORA-30926</code>,可见<a href="http://besthao.cn/2018/12/19/oracle/" target="_blank" rel="noopener">我的文章 oracle异常中的介绍</a>,这里不再解释</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">merge</span> <span class="keyword">into</span> 购房记录 A <span class="keyword">using</span> (</span><br><span class="line">    <span class="keyword">select</span> </span><br><span class="line">    B.name,</span><br><span class="line">    B.idno </span><br><span class="line">    <span class="keyword">from</span></span><br><span class="line">    购房人员 B</span><br><span class="line">)C <span class="keyword">on</span> (A.idno=C.idno)</span><br><span class="line"><span class="keyword">when</span> <span class="keyword">matched</span> <span class="keyword">then</span> </span><br><span class="line"><span class="keyword">update</span> <span class="keyword">set</span> A.label=<span class="string">'多次'</span> </span><br><span class="line"><span class="keyword">when</span> <span class="keyword">not</span> <span class="keyword">matched</span> <span class="keyword">then</span> </span><br><span class="line"><span class="keyword">insert</span> (</span><br><span class="line">    A.name,</span><br><span class="line">    A.idno,</span><br><span class="line">    A.label</span><br><span class="line">)<span class="keyword">values</span>(</span><br><span class="line">    B.name,</span><br><span class="line">    B.idno,</span><br><span class="line">    <span class="string">'一次'</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/23/oracle技巧/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -2803,10 +2824,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Sqoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
@@ -2815,11 +2832,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kafka</a>
+                <a href="javascript:void(0)" class="js-tag color1">Sqoop</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">nifi</a>
+                <a href="javascript:void(0)" class="js-tag color1">kafka</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2827,11 +2844,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+                <a href="javascript:void(0)" class="js-tag color5">nifi</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SecureCRT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
               </li>
             
             <div class="clearfix"></div>
