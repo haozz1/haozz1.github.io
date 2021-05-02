@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8c22674b-173b-4699-92a5-d9df68324747" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.deploy_git/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="8c22674b-173b-4699-92a5-d9df68324747" name="Default Changelist" comment="source">
+      <change afterPath="$PROJECT_DIR$/source/_posts/天宫/fashe.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +20,9 @@
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1qpIMFZVixl2nctaitYlQYjdh2v" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="compactDirectories" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -32,10 +30,12 @@
     <option name="showModules" value="false" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/source/_posts/天宫" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
@@ -66,12 +66,40 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617770054646</updated>
-      <workItem from="1619066603549" duration="2155000" />
+      <workItem from="1619066603549" duration="2366000" />
+      <workItem from="1619070386230" duration="21000" />
+      <workItem from="1619922666400" duration="49000" />
+      <workItem from="1619922754882" duration="1097000" />
     </task>
+    <task id="LOCAL-00001" summary="source">
+      <created>1619068991200</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1619068991200</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="source" />
+    <option name="LAST_COMMIT_MESSAGE" value="source" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
