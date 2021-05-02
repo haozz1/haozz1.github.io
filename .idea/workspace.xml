@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c22674b-173b-4699-92a5-d9df68324747" name="Default Changelist" comment="source">
-      <change afterPath="$PROJECT_DIR$/source/_posts/天宫/fashe.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.deploy_git/archives/index 2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.deploy_git/fonts/iconfont.16acc2 2.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.deploy_git/fonts/iconfont.45d7ee 2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.deploy_git/fonts/iconfont.8c627f 2.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.deploy_git/fonts/iconfont.b322fa 2.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.deploy_git/fonts/tooltip.4004ff 2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.deploy_git/img/default-skin 2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.deploy_git/img/myname 2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.deploy_git/img/preloader 2.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,14 +50,21 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/source/_posts/天宫" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -69,7 +84,8 @@
       <workItem from="1619066603549" duration="2366000" />
       <workItem from="1619070386230" duration="21000" />
       <workItem from="1619922666400" duration="49000" />
-      <workItem from="1619922754882" duration="1097000" />
+      <workItem from="1619922754882" duration="1359000" />
+      <workItem from="1619956574014" duration="2268000" />
     </task>
     <task id="LOCAL-00001" summary="source">
       <created>1619068991200</created>
@@ -78,7 +94,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619068991200</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="source">
+      <created>1619923942973</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1619923942973</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
