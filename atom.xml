@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hao</title>
+  <title>Haoz</title>
   
   <subtitle>Don&#39;t Be So Serious</subtitle>
   <link href="http://yoursite.com/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>Hao</name>
+    <name>Haoz</name>
     
   </author>
   
