@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2021/05/02/%E6%91%98%E6%8A%84/</loc>
+    
+    <lastmod>2021-09-09</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2021/09/09/clickhouse%E9%9B%86%E7%BE%A4%E7%9B%B8%E5%85%B3/</loc>
     
     <lastmod>2021-09-09</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://yoursite.com/2021/05/02/%E5%A4%A9%E5%AE%AB/</loc>
     
     <lastmod>2021-05-03</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2021/05/02/%E6%91%98%E6%8A%84/</loc>
-    
-    <lastmod>2021-05-02</lastmod>
     
   </url>
   
@@ -72,14 +72,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/12/19/oracle/</loc>
-    
-    <lastmod>2021-04-22</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/07/23/oracle%E6%8A%80%E5%B7%A7/</loc>
+    <loc>http://yoursite.com/2019/03/12/nifi%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2021-04-22</lastmod>
     
@@ -93,7 +86,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/03/12/nifi%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</loc>
+    <loc>http://yoursite.com/2019/07/23/oracle%E6%8A%80%E5%B7%A7/</loc>
+    
+    <lastmod>2021-04-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/12/19/oracle/</loc>
     
     <lastmod>2021-04-22</lastmod>
     
@@ -107,7 +107,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/06/11/kafka%E5%AE%89%E8%A3%85/</loc>
+    <loc>http://yoursite.com/2019/06/17/kafka%E6%8B%93%E5%B1%95/</loc>
     
     <lastmod>2021-04-22</lastmod>
     
@@ -121,7 +121,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/06/17/kafka%E6%8B%93%E5%B1%95/</loc>
+    <loc>http://yoursite.com/2019/06/11/kafka%E5%AE%89%E8%A3%85/</loc>
     
     <lastmod>2021-04-22</lastmod>
     
@@ -170,7 +170,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/04/17/Java%E5%9F%BAJava%E5%9F%BA%E7%A1%80%E6%95%B4%E7%90%86%E4%B9%8B%E7%BA%BF%E7%A8%8B%E6%B1%A0/</loc>
+    <loc>http://yoursite.com/2020/02/07/Java%E7%9A%84IO%E8%BF%9B%E5%8C%96%E7%AE%80%E5%8F%B2/</loc>
     
     <lastmod>2021-04-22</lastmod>
     
@@ -184,14 +184,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/02/07/Java%E7%9A%84IO%E8%BF%9B%E5%8C%96%E7%AE%80%E5%8F%B2/</loc>
-    
-    <lastmod>2021-04-22</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/07/Java%E5%9F%BA%E7%A1%80%E6%95%B4%E7%90%86%E4%B9%8B%E7%BA%BF%E7%A8%8B/</loc>
+    <loc>http://yoursite.com/2020/04/17/Java%E5%9F%BAJava%E5%9F%BA%E7%A1%80%E6%95%B4%E7%90%86%E4%B9%8B%E7%BA%BF%E7%A8%8B%E6%B1%A0/</loc>
     
     <lastmod>2021-04-22</lastmod>
     
@@ -199,6 +192,13 @@
   
   <url>
     <loc>http://yoursite.com/2020/05/07/JVM%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2021-04-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/07/Java%E5%9F%BA%E7%A1%80%E6%95%B4%E7%90%86%E4%B9%8B%E7%BA%BF%E7%A8%8B/</loc>
     
     <lastmod>2021-04-22</lastmod>
     
@@ -270,13 +270,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/Git/</loc>
-    <lastmod>2021-09-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/tags/Hive/</loc>
     <lastmod>2021-09-09</lastmod>
     <changefreq>daily</changefreq>
@@ -284,14 +277,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/Java/</loc>
+    <loc>http://yoursite.com/tags/Git/</loc>
     <lastmod>2021-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/Spring/</loc>
+    <loc>http://yoursite.com/tags/Java/</loc>
     <lastmod>2021-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -326,6 +319,13 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/tags/clickhouse/</loc>
+    <lastmod>2021-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/tags/kafka/</loc>
     <lastmod>2021-09-09</lastmod>
     <changefreq>daily</changefreq>
@@ -333,7 +333,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/clickhouse/</loc>
+    <loc>http://yoursite.com/tags/Spring/</loc>
+    <lastmod>2021-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/nifi/</loc>
     <lastmod>2021-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -355,13 +362,6 @@
   
   <url>
     <loc>http://yoursite.com/tags/%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2021-09-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/tags/nifi/</loc>
     <lastmod>2021-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
