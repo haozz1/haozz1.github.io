@@ -11,7 +11,7 @@ tags: [Prometheus,Linux]
 
 ***Document of Prometheus*** https://prometheus.io/docs/introduction/overview/
 
-***Download of Prometheus***https://prometheus.io/download/
+***Download of Prometheus*** https://prometheus.io/download/
 
 ---
 
@@ -81,10 +81,9 @@ ts=2022-06-01T06:23:12.755Z caller=main.go:957 level=info msg="Starting TSDB ...
 
 Prometheus提供了多种Exporter,可以帮助从第三方系统导出现有指标作为Prometheus指标
 
-***Exporters***:https://prometheus.io/docs/instrumenting/exporters/#exporters-and-integrations
+***Exporters***: https://prometheus.io/docs/instrumenting/exporters/#exporters-and-integrations
 
-这里使用的是非官方的exporter
-https://github.com/free/sql_exporter/tree/caf149bcfa2ccacb873e82c7e6bb8014b6a2b81d
+这里使用的是非官方的exporter https://github.com/free/sql_exporter/tree/caf149bcfa2ccacb873e82c7e6bb8014b6a2b81d
 
 和install Prometheus相似,修改sql_exporter.yml和*.collector.yml文件并启动exporter:
 
