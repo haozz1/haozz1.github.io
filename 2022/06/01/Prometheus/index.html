@@ -9,7 +9,7 @@
   <title>Prometheus | Haoz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="PrometheusPrometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud.Document of Prometheus https://prometheus.io/docs/introduction/overview/ Download of Prome">
-<meta name="keywords" content="Prometheus,Linux">
+<meta name="keywords" content="Linux,Prometheus">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Prometheus">
 <meta property="og:url" content="http://yoursite.com/2022/06/01/Prometheus/index.html">
@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://yoursite.com/2022/06/01/Prometheus/dash3.png">
 <meta property="og:image" content="http://yoursite.com/2022/06/01/Prometheus/va.png">
 <meta property="og:image" content="http://yoursite.com/2022/06/01/Prometheus/va2.png">
-<meta property="og:updated_time" content="2022-06-01T08:22:10.227Z">
+<meta property="og:updated_time" content="2022-06-01T08:26:54.499Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Prometheus">
 <meta name="twitter:description" content="PrometheusPrometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud.Document of Prometheus https://prometheus.io/docs/introduction/overview/ Download of Prome">
@@ -190,7 +190,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Prometheus"><a href="#Prometheus" class="headerlink" title="Prometheus"></a>Prometheus</h1><h3 id="Prometheus-is-an-open-source-systems-monitoring-and-alerting-toolkit-originally-built-at-SoundCloud"><a href="#Prometheus-is-an-open-source-systems-monitoring-and-alerting-toolkit-originally-built-at-SoundCloud" class="headerlink" title="Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud."></a>Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud.</h3><p><strong><em>Document of Prometheus</em></strong> <a href="https://prometheus.io/docs/introduction/overview/" target="_blank" rel="noopener">https://prometheus.io/docs/introduction/overview/</a></p>
-<p><strong><em>Download of Prometheus</em></strong><a href="https://prometheus.io/download/" target="_blank" rel="noopener">https://prometheus.io/download/</a></p>
+<p><strong><em>Download of Prometheus</em></strong> <a href="https://prometheus.io/download/" target="_blank" rel="noopener">https://prometheus.io/download/</a></p>
 <hr>
 <h2 id="1-Prometheus-install"><a href="#1-Prometheus-install" class="headerlink" title="1. Prometheus install"></a>1. Prometheus install</h2><p>下载并解压压缩文件之后,进入到Prometheus目录<br>查看或修改配置文件<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># my global config</span></span><br><span class="line"><span class="attr">global:</span></span><br><span class="line">  <span class="attr">scrape_interval:</span> <span class="string">15s</span> <span class="comment"># Set the scrape interval to every 15 seconds. Default is every 1 minute.</span></span><br><span class="line">  <span class="attr">evaluation_interval:</span> <span class="string">15s</span> <span class="comment"># Evaluate rules every 15 seconds. The default is every 1 minute.</span></span><br><span class="line">  <span class="comment"># scrape_timeout is set to the global default (10s).</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Alertmanager configuration</span></span><br><span class="line"><span class="attr">alerting:</span></span><br><span class="line">  <span class="attr">alertmanagers:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">static_configs:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">targets:</span></span><br><span class="line">          <span class="comment"># - alertmanager:9093</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Load rules once and periodically evaluate them according to the global 'evaluation_interval'.</span></span><br><span class="line"><span class="attr">rule_files:</span></span><br><span class="line">  <span class="comment"># - "first_rules.yml"</span></span><br><span class="line">  <span class="comment"># - "second_rules.yml"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># A scrape configuration containing exactly one endpoint to scrape:</span></span><br><span class="line"><span class="comment"># Here it's Prometheus itself.</span></span><br><span class="line"><span class="attr">scrape_configs:</span></span><br><span class="line">  <span class="comment"># The job name is added as a label `job=&lt;job_name&gt;` to any timeseries scraped from this config.</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">job_name:</span> <span class="string">"prometheus"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># metrics_path defaults to '/metrics'</span></span><br><span class="line">    <span class="comment"># scheme defaults to 'http'.</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">static_configs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">targets:</span> <span class="string">["localhost:9090"]</span></span><br></pre></td></tr></table></figure></p>
 <p>运行以下命令启动Prometheus: </p>
@@ -201,8 +201,8 @@
 <img src="/2022/06/01/Prometheus/p.png">
 <hr>
 <h2 id="2-Sql-Exporter"><a href="#2-Sql-Exporter" class="headerlink" title="2. Sql Exporter"></a>2. Sql Exporter</h2><p>Prometheus提供了多种Exporter,可以帮助从第三方系统导出现有指标作为Prometheus指标</p>
-<p><strong><em>Exporters</em></strong>:<a href="https://prometheus.io/docs/instrumenting/exporters/#exporters-and-integrations" target="_blank" rel="noopener">https://prometheus.io/docs/instrumenting/exporters/#exporters-and-integrations</a></p>
-<p>这里使用的是非官方的exporter<br><a href="https://github.com/free/sql_exporter/tree/caf149bcfa2ccacb873e82c7e6bb8014b6a2b81d" target="_blank" rel="noopener">https://github.com/free/sql_exporter/tree/caf149bcfa2ccacb873e82c7e6bb8014b6a2b81d</a></p>
+<p><strong><em>Exporters</em></strong>: <a href="https://prometheus.io/docs/instrumenting/exporters/#exporters-and-integrations" target="_blank" rel="noopener">https://prometheus.io/docs/instrumenting/exporters/#exporters-and-integrations</a></p>
+<p>这里使用的是非官方的exporter <a href="https://github.com/free/sql_exporter/tree/caf149bcfa2ccacb873e82c7e6bb8014b6a2b81d" target="_blank" rel="noopener">https://github.com/free/sql_exporter/tree/caf149bcfa2ccacb873e82c7e6bb8014b6a2b81d</a></p>
 <p>和install Prometheus相似,修改sql_exporter.yml和*.collector.yml文件并启动exporter:</p>
 <p>sql_exporter.yml:<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">global:</span></span><br><span class="line">  <span class="comment"># Subtracted from Prometheus' scrape_timeout to give us some headroom and prevent Prometheus from timing out first.</span></span><br><span class="line">  <span class="attr">scrape_timeout_offset:</span> <span class="string">500ms</span></span><br><span class="line">  <span class="comment"># Minimum interval between collector runs: by default (0s) collectors are executed on every scrape.</span></span><br><span class="line">  <span class="attr">min_interval:</span> <span class="string">0s</span></span><br><span class="line">  <span class="comment"># Maximum number of open connections to any one target. Metric queries will run concurrently on multiple connections,</span></span><br><span class="line">  <span class="comment"># as will concurrent scrapes.</span></span><br><span class="line">  <span class="attr">max_connections:</span> <span class="number">3</span></span><br><span class="line">  <span class="comment"># Maximum number of idle connections to any one target. Unless you use very long collection intervals, this should</span></span><br><span class="line">  <span class="comment"># always be the same as max_connections.</span></span><br><span class="line">  <span class="attr">max_idle_connections:</span> <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># A SQL Exporter job is the equivalent of a Prometheus job: a set of related DB instances.</span></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># All metrics for the targets defined here get a `job="pricing_db"` label.</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">job_name:</span> <span class="string">mssql_standard</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Collectors (referenced by name) to execute on all targets in this job.</span></span><br><span class="line">    <span class="attr">collectors:</span> <span class="string">[mssql_standard]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Similar to Prometheus static_configs.</span></span><br><span class="line">    <span class="attr">static_configs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">targets:</span></span><br><span class="line">          <span class="comment"># Map of instance name (exported as instance label) to DSN</span></span><br><span class="line">          <span class="attr">'data.database.windows.net:1433':</span> <span class="string">'sqlserver://username:password@data.database.windows.net:1433'</span></span><br><span class="line">          <span class="attr">'data.database.windows.net:1433':</span> <span class="string">'sqlserver://username:password@data.database.windows.net:1433'</span></span><br><span class="line">        <span class="attr">labels:</span></span><br><span class="line">          <span class="attr">env:</span> <span class="string">'prod'</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">targets:</span></span><br><span class="line">          <span class="comment"># Map of instance name (exported as instance label) to DSN</span></span><br><span class="line">          <span class="attr">'data.database.windows.net:1433':</span> <span class="string">'sqlserver://username:password@data-ingestion-tool.database.windows.net:1433'</span></span><br><span class="line">        <span class="attr">labels:</span></span><br><span class="line">          <span class="attr">env:</span> <span class="string">'test'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Collector definition files.</span></span><br><span class="line"><span class="attr">collector_files:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">"*.collector.yml"</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
@@ -274,11 +274,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Prometheus</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Prometheus</a>
         		</li>
       		
 		</ul>
@@ -535,11 +535,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,14 +551,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Prometheus</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
@@ -567,15 +559,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kafka</a>
+                <a href="javascript:void(0)" class="js-tag color1">clickhouse</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">clickhouse</a>
+                <a href="javascript:void(0)" class="js-tag color1">kafka</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -588,6 +584,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SecureCRT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Prometheus</a>
               </li>
              
               <li class="article-tag-list-item">
