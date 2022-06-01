@@ -3,18 +3,19 @@ title: Prometheus
 date: 2022-06-01 15:56:09
 tags: [Prometheus,Linux]
 ---
+
 # Prometheus
 
 ### Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud.
 
 
-### Document of Prometheus https://prometheus.io/docs/introduction/overview/
-### Download of Prometheus https://prometheus.io/download/
+***Document of Prometheus*** https://prometheus.io/docs/introduction/overview/
+
+***Download of Prometheus***https://prometheus.io/download/
 
 ---
 
 ## 1. Prometheus install
-
 
 下载并解压压缩文件之后,进入到Prometheus目录
 查看或修改配置文件
@@ -74,12 +75,13 @@ ts=2022-06-01T06:23:12.755Z caller=main.go:957 level=info msg="Starting TSDB ...
 
 {% asset_img p.png %}
 
+---
 
-## 2. Sql Server Exporter
+## 2. Sql Exporter
 
 Prometheus提供了多种Exporter,可以帮助从第三方系统导出现有指标作为Prometheus指标
 
-#### Exporters:https://prometheus.io/docs/instrumenting/exporters/#exporters-and-integrations
+***Exporters***:https://prometheus.io/docs/instrumenting/exporters/#exporters-and-integrations
 
 这里使用的是非官方的exporter
 https://github.com/free/sql_exporter/tree/caf149bcfa2ccacb873e82c7e6bb8014b6a2b81d
@@ -359,7 +361,6 @@ scrape_configs:
 
 ## 3. Zookeeper Exporter
 
-
 zookeeper从3.6版本之后就提供了Prometheus相关的配置
 
 安装zookeeper 3.6或更新的版本,将关于Prometheus相关的配置打开
@@ -416,6 +417,7 @@ metricsProvider.exportJvmInfo=true
 {% asset_img zkp.png %}
 启动zookeeper之后,在 http://localhost:9090/targets 可以看到新的zookeeper target,同样的在 http://ip1:7000/metrics 可以看到zookeeper的metrics
 {% asset_img zkm.png %}
+
 ---
 
 ## 4. Grafana
